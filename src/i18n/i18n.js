@@ -5,8 +5,9 @@ import messages from './lang'
 Vue.use(VueI18n)
 //从localStorage获取语言选择。
 const i18n = new VueI18n({
-    locale: localStorage.lang || 'cn', //初始未选择默认 cn 中文
+    locale:  'cn', //初始未选择默认 cn 中文
     messages,
 })
-locale.i18n((key, value) => i18n.t(key, value)) //重点：为了实现element插件的多语言切换
+locale.i18n((key, value) => i18n.t(key, value)) //兼容element
+ 
 export default i18n

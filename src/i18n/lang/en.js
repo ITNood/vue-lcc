@@ -1,8 +1,10 @@
+
 import enLocale from 'element-ui/lib/locale/lang/en' //引入element语言包
-module.exports = {
-    messages: {
+const en = {
+    message: {
         'text': 'Good good study, Day day up',
     },
-    enLocale
+    ...enLocale
 }
-
+ 
+export default en;

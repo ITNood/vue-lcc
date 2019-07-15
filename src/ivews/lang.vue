@@ -11,7 +11,7 @@
             <el-col :span="12"><el-button @click="changEn()" class="language active">English</el-button></el-col>
             <el-col :span="12"><el-button @click="changCn()" class="language">简体中文</el-button></el-col>
         </el-row>
-        <p>{{ $t('language.navbar.contact') }}</p>
+        <p>{{$t('message.text')}}</p>
       </div>
     </div>
   </div>
@@ -29,14 +29,18 @@ export default {
   //   },
   methods: {
     changEn(en) {
-      this.$i18n.locale = en;
       localStorage.setItem("lang", en);
+      this.$i18n.locale = "en"
     },
     changCn(cn) {
-      this.$i18n.locale = cn;
       localStorage.setItem("lang", cn);
+      this.$i18n.locale = "cn";
     }
-  }
+  },
+  created(){
+        let that = this;
+        console.log(localStorage.lang)
+        localStorage.lang == undefined ? 'cn':localStorage.lang}
 };
 </script>
 
