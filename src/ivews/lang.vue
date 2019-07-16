@@ -11,7 +11,8 @@
             <el-col :span="12"><el-button @click="changEn()" class="language active">English</el-button></el-col>
             <el-col :span="12"><el-button @click="changCn()" class="language">简体中文</el-button></el-col>
         </el-row>
-        <!-- //<p>{{ $t('language.navbar.contact') }}</p> -->
+        <p>{{$t('message.text')}}</p>
+        <router-link to="/login" style="color:white"><el-button>登录</el-button></router-link>
       </div>
     </div>
   </div>
@@ -20,23 +21,22 @@
 <script>
 export default {
   data() {
-    return {
-      tabPosition: 'English'
-    };
+    return {};
   },
-  //   created() {
-  //       localStorage.lang == undefined ? "cn" : localStorage.lang;
-  //   },
   methods: {
-    changEn(en) {
-      this.$i18n.locale = en;
-      localStorage.setItem("lang", en);
+    changEn() {
+      window.localStorage.setItem("lang", 'en');
+      this.$i18n.locale = "en"
     },
-    changCn(cn) {
-      this.$i18n.locale = cn;
-      localStorage.setItem("lang", cn);
+    changCn() {
+      window.localStorage.setItem("lang", 'cn');
+      this.$i18n.locale = "cn";
     }
-  }
+  },
+  created(){
+        let that = this;
+        localStorage.lang == undefined ? 'cn':localStorage.lang
+    }
 };
 </script>
 

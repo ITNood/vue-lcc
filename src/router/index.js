@@ -32,6 +32,27 @@ export default new Router({
       component: () => {
         return import('../ivews/forget')
       }
+    },
+    {
+      path: '/home',
+      name: 'home',
+      component: () => {
+        return import('../ivews/home')
+      }
+    },
+    {
+      path: '/buy',
+      name: 'buy',
+      component: () => {
+        return import('../ivews/buy')
+      }
+    },
+    {
+      path: '/update',
+      name: 'update',
+      component: () => {
+        return import('../ivews/update')
+      }
     }
   ]
 })

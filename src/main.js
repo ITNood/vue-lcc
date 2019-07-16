@@ -6,16 +6,9 @@ import router from './router'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import './assets/style/default.less'
-// import VueI18n from './i18n/i18n'
+import i18n from './i18n/i18n';
 import VueParticles from 'vue-particles'//粒子背景
-// Vue.use(VueI18n)
-// const i18n = new VueI18n({
-//   locale: 'cn', // 语言标识
-//   messages: {
-//     'cn': require('./i18n/lang/cn'),
-//     'en': require('./i18n/lang/en')
-//   }
-//   })
+import './assets/fonts/iconfont.css'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
@@ -24,7 +17,7 @@ Vue.use(VueParticles)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  //i18n,
+  i18n,
   router,
   components: { App },
   template: '<App/>'

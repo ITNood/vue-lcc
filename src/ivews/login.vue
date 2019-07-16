@@ -1,10 +1,10 @@
 <template>
   <div>
-    <Top :pathUrl="url"/>
+    <Top :pathUrl="url" :title="message" :appUrl="href" :font="classIcon"/>
     <div id="login">
-        <h5>登录</h5>
+        <h5>{{$t('message.login')}}</h5>
         <el-form :model="loginForm" :rules="rules" ref="loginForm" id="loginForm">
-            <el-form-item prop="username" label="用户名" class="login">
+            <el-form-item prop="username" :label="$t('message.user')" class="login">
                 <el-input v-model="loginForm.username" placeholder="请输入用户名"></el-input>
             </el-form-item>
 
@@ -32,6 +32,9 @@ export default {
   data() {
     return {
         url:'/lang',
+        message:'',
+        href:'',
+        classIcon:'',
         rules:{
             username:[
                 {required:true,message:'用户名不能为空',trigger:'blur'}

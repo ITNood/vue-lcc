@@ -1,0 +1,94 @@
+<template>
+  <div>
+    <Bottom />
+    <div class="head">
+      <el-row :gutter="20">
+        <el-col :span="12"><img src="../assets/img/logo1.png" style="width:40px;margin-top:5px;"></el-col>
+        <el-col :span="12"><router-link :to="router" class="buy"><span>V0</span>{{text}}</router-link></el-col>
+      </el-row>
+    </div>
+    <div class="total">
+      <p>我的总值</p>
+      <h1><span>$</span>{{account}}<i class="icon-ziyuanldpi icon iconfont"></i></h1>
+    </div>
+
+    <div class="money">
+      <p>我的持币</p>
+      <el-row :gutter="15">
+        <el-col :span="12">
+          <div class="list">
+            <p>LCC</p>
+            <h5><span>$</span>{{lcc}}</h5>
+            <p>0.001</p>
+            <router-link to="">操作管理</router-link>
+            <i class="lcc"></i>
+          </div>
+        </el-col>
+        <el-col :span="12">
+          <div class="list">
+            <p>USDT</p>
+            <h5><span>$</span>{{usdt}}</h5>
+            <p>0.001</p>
+            <router-link to="">操作管理</router-link>
+            <i class="usdt"></i>
+          </div>
+        </el-col>
+      </el-row>
+    </div>
+
+    <div class="finance">
+      <p>私人财务</p>
+      <ul class="financeList">
+        <li v-for="(list,index) in lists" :key="index">
+          <router-link :to="list.url">
+            <span class="icon iconfont" :class="list.classIcon"></span>
+            <h5>{{list.title}}</h5>
+            <p>{{list.text}}</p>
+            <i class="el-icon-arrow-right"></i>
+          </router-link>
+        </li>
+      </ul>
+    </div>
+  </div>
+</template>
+
+<script>
+import Bottom from "../components/bottom";
+export default {
+  components: {
+    Bottom
+  },
+  data() {
+    return {
+      router:'/buy',
+      text:'购买配套>>',
+      account:'0.00',
+      lcc:'0.00',
+      usdt:'0.00',
+      lists:[
+        {
+          url:'/assets',
+          title:'钱包资产',
+          text:'我的钱包列表',
+          classIcon:'icon-qianbao'
+        },
+        {
+          url:'/finance',
+          title:'财务账单',
+          text:'会员财务账单',
+          classIcon:'icon-caiwuguanlivg'
+        },
+        {
+          url:'/news',
+          title:'私人信箱',
+          text:'私人通知信息',
+          classIcon:'icon-xiaoxi'
+        }
+      ]
+    };
+  }
+};
+</script>
+
+<style scoped>
+</style>
