@@ -20,7 +20,7 @@
             <p>LCC</p>
             <h5><span>$</span>{{lcc}}</h5>
             <p>0.001</p>
-            <router-link to="">操作管理</router-link>
+            <router-link to="/lcc">操作管理</router-link>
             <i class="lcc"></i>
           </div>
         </el-col>
@@ -29,7 +29,7 @@
             <p>USDT</p>
             <h5><span>$</span>{{usdt}}</h5>
             <p>0.001</p>
-            <router-link to="">操作管理</router-link>
+            <router-link to="/usdt">操作管理</router-link>
             <i class="usdt"></i>
           </div>
         </el-col>

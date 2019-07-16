@@ -1,12 +1,7 @@
 <template>
   <div>
-    <Top
-      :pathUrl="url"
-      :title="message"
-      :appUrl="href"
-      :font="classIcon"
-    />
-    <div class="container">
+    <Top :pathUrl="url" :title="message" :appUrl="href" :font="classIcon" />
+    <div class="container" style="margin-bottom:20px;">
       <div class="buyTips">每个用户只限购买一份配套, 配套只允许一次升级机会，请慎重选择。</div>
       <ul id="buyList">
         <li
@@ -51,7 +46,7 @@
     <!--支付方式-->
     <el-dialog
       :visible.sync="centerDialogVisible"
-      width="80%"
+      width="85%"
       center
       :close-on-click-modal="false"
       id="open"
@@ -124,7 +119,7 @@ export default {
   },
   methods: {
     buy(ev) {
-      this.centerDialogVisible=true
+        this.centerDialogVisible=true
       console.log(ev);
     },
     change(ev){

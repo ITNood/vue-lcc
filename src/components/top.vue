@@ -13,7 +13,7 @@
         <h5>{{title}}</h5>
       </el-col>
       <el-col :span="6">
-        <router-link :to="appUrl" :class="font"></router-link>
+        <router-link :to="appUrl" class="iconRight" :class="font"></router-link>
       </el-col>
     </el-header>
 </template>

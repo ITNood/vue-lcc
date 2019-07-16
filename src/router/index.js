@@ -53,6 +53,13 @@ export default new Router({
       component: () => {
         return import('../ivews/update')
       }
+    },
+    {
+      path: '/lcc',
+      name: 'lcc',
+      component: () => {
+        return import('../ivews/lcc')
+      }
     }
   ]
 })
