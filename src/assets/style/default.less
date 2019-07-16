@@ -8,6 +8,9 @@
 @background: #1a202e; //背景颜色
 @border: #313743; //线条颜色
 @input: #999999; //输入框字体颜色
+@error: #d33150; //错误提示颜色
+@radius: 0;
+@padding:20px;
 
 body {
     margin: 0;
@@ -100,3 +103,244 @@ img {
     color: @fontcolor
 }
 
+/*------------------top-----------------*/
+#top {
+    background: #121622;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 999;
+    width: 100%;
+
+    .back {
+        color: @fontcolor;
+        font-size: 16px;
+        line-height: 50px;
+        text-decoration: none;
+    }
+}
+
+#login {
+    padding: 0 20px;
+    height: 100vh;
+    position: relative;
+
+    h5 {
+        color: @fontcolor;
+        font-size: 20px;
+        font-weight: normal;
+        padding: 70px 0 20px 0;
+        margin: 0;
+    }
+
+    .rules {
+        color: @input;
+        text-align: center;
+        display: block;
+        text-decoration: none;
+        position: absolute;
+        bottom: 50px;
+        width: 200px;
+        text-align: center;
+        left: 50%;
+        margin-left: -100px;
+    }
+}
+
+#loginForm {
+    background: @background;
+    padding: 15px;
+    border-top: 2px @blue solid;
+}
+
+.login {
+    .el-form-item__label {
+        color: @fontcolor
+    }
+
+    .el-input__inner {
+        background: transparent;
+        border: none;
+        border-bottom: 1px @border solid;
+        padding: 0;
+        color: @fontcolor;
+        border-radius: @radius;
+    }
+
+    .el-input__inner::-webkit-input-placeholder {
+        color: @input
+    }
+
+    .el-input__inner:focus {
+        border-bottom-color: @blue;
+    }
+}
+
+.login-bottom {
+    margin-top: 20px;
+    position: relative;
+    padding-bottom: 25px;
+
+    .forgetPassword {
+        color: @fontcolor;
+        line-height: 50px;
+    }
+
+    .login-btn {
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 50px;
+        width: 50px;
+        background: @blue;
+        border-radius: 50%;
+        border: none;
+        padding: 0;
+
+        i {
+            width: 20px;
+            height: 25px;
+            display: block;
+            background: url('../img/icon-comein.png') no-repeat center;
+            background-size: cover;
+            margin: 12px 15px;
+        }
+    }
+}
+
+.el-form-item__error {
+    color: @error;
+}
+
+.el-form-item.is-error .el-input__inner {
+    border-bottom-color: @error;
+}
+
+.is-error .el-form-item__label:before {
+    color: @error
+}
+
+.selectcountry {
+    display: block;
+
+    .el-form-item__label {
+        display: block;
+        float: none;
+        text-align: left;
+    }
+
+    .el-select {
+        float: left;
+        width: 34.5%;
+        position: relative;
+
+        &:before {
+            width: 1px;
+            height: 20px;
+            position: absolute;
+            top: 10px;
+            right: 0;
+            display: block;
+            background: @border;
+            content: '';
+        }
+    }
+
+    .mobile {
+        width: 65%;
+        float: right;
+
+        .el-input__inner {
+            padding-left: 10px;
+        }
+    }
+}
+
+#code {
+    width: 100px;
+    position: absolute;
+    bottom: 6px;
+    right: 0;
+}
+
+#send {
+    background: transparent;
+    border: none;
+    color: @blue;
+    position: absolute;
+    bottom: 6px;
+    right: 0;
+    width: 100px;
+    padding: 0;
+    line-height: 34px;
+}
+
+.submit {
+    margin: 20px 0;
+    width: 100%;
+    background: @blue;
+    color: @fontcolor;
+    border: none;
+    border-radius: 20px;
+
+    &:focus,
+    &:hover {
+        color: @fontcolor;
+        background: @blue
+    }
+}
+
+/*
+*
+*-------------------------------tips组件-------------------------
+*
+*/
+#tips {
+    background: rgba(18, 22, 34, .8);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    .tipsContent{
+        background: @background;
+        border-radius: 6px;
+        width: 100%;
+        .padding{
+            padding:@padding;
+            text-align: center;
+            i{
+                font-size: 36px;
+                color: @blue;
+            }
+            h5{
+                color: @fontcolor;
+                font-size:20px;
+                margin: 15px;
+                font-weight: normal;
+            }
+            p{
+                color: @fontcolor;
+                font-size:16px;
+            }
+        }
+    }
+}
+
+.centerContent {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    height: 100vh;
+    padding:0 25px;
+}

@@ -18,6 +18,20 @@ export default new Router({
       component: () => {
         return import('../ivews/lang')
       }
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: () => {
+        return import('../ivews/login')
+      }
+    },
+    {
+      path: '/forget',
+      name: 'forget',
+      component: () => {
+        return import('../ivews/forget')
+      }
     }
   ]
 })
