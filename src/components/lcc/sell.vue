@@ -57,9 +57,10 @@
 <script>
 export default {
   name: "Sell",
-  props:['centerDialogVisible'],
+  props: ['centerData'],
   data() {
     return {
+      centerDialogVisible:false,
       num1: 1,
       price1: "0.00",
       total1: "0.00"
@@ -70,9 +71,13 @@ export default {
       console.log(value);
     },
     sell(){
-      this.centerDialogVisible=false
+      this.$emit('btn2',this.centerDialogVisible)
+      // this.centerDialogVisible=!this.centerDialogVisible
     }
-  }
+  },
+   created() {
+      this.centerDialogVisible = this.centerData
+    },
 };
 </script>
 

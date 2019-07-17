@@ -14,8 +14,8 @@
              <el-col :span="12"><el-button class="submit" @click="btn1()" style="background:#e43c1d">买入</el-button></el-col>
              <el-col :span="12"><el-button class="submit" @click="btn2()" style="background:#05cf7f">出售</el-button></el-col>
          </el-row>
-         <Buy :dialogVisible="show"/>
-         <Sell :centerDialogVisible="show1"/>
+         <Buy  @btn1="btn1" ref="child1" :dialogVisible="show"/>
+         <Sell @btn2="btn2" :centerDialogVisible="show1"/>
      </div>
  </div>
 </template>
@@ -45,11 +45,20 @@ export default {
   }
  },
  methods: {
-     btn1(){
-         this.show=true
+     btn1(data){
+         this.$refs.child1.buy(this.show); 
+        //  if(data!==undefined){
+        //  this.show=!data
+        //  }else{
+        //     this.show=!this.show
+        //  }
      },
-     btn2(){
-         this.show1=true
+     btn2(data){
+           if(data!==undefined){
+         this.show1=!data
+         }else{
+            this.show1=!this.show1
+         }
      }
  },
 }

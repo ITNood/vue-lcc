@@ -57,10 +57,10 @@
 <script>
 export default {
   name: "Buy",
-  props:['dialogVisible'],
   data() {
     return {
       num: 1,
+      dialogVisible:false,
       price: "0.00",
       total: "0.00"
     };
@@ -69,8 +69,8 @@ export default {
     handleChange(value) {
       console.log(value);
     },
-    buy(){
-      this.dialogVisible=false
+    buy(flag){
+        this.dialogVisible=!this.dialogVisible
     }
   }
 };
