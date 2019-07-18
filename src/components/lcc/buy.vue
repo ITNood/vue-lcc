@@ -7,7 +7,7 @@
       :close-on-click-modal="false"
       class="lccOpen"
     >
-      <p>您将委托平台购买LCC</p>
+      <p>您将委托平台购买FC</p>
       <p>买入无需手续费</p>
       <b></b>
       <ul class="lccList">

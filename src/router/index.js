@@ -60,6 +60,104 @@ export default new Router({
       component: () => {
         return import('../ivews/lcc')
       }
+    },
+    {
+      path: '/code',
+      name: 'code',
+      component: () => {
+        return import('../ivews/code')
+      }
+    },
+    {
+      path: '/usdt',
+      name: 'usdt',
+      component: () => {
+        return import('../ivews/usdt')
+      }
+    },
+    {
+      path: '/recharge',
+      name: 'recharge',
+      component: () => {
+        return import('../ivews/recharge')
+      }
+    },
+    {
+      path: '/outRecharge',
+      name: 'outRecharge',
+      component: () => {
+        return import('../ivews/outRecharge')
+      }
+    },
+    {
+      path:'/rechargeOrder',
+      name: 'rechargeOrder',
+      component: () => {
+        return import('../ivews/rechargeOrder')
+      }
+    },
+    {
+      path: '/chat',
+      name: 'chat',
+      component: () => {
+        return import('../ivews/chat')
+      }
+    },
+    {
+      path: '/transfer',
+      name: 'transfer',
+      component: () => {
+        return import('../ivews/transfer')
+      }
+    },
+    {
+      path: '/assets',
+      name: 'assets',
+      component: () => {
+        return import('../ivews/assets')
+      }
+    },
+    {
+      path: '/points',
+      name: 'points',
+      component: () => {
+        return import('../ivews/points')
+      }
+    },
+    {
+      path: '/exchange',
+      name: 'exchange',
+      component: () => {
+        return import('../ivews/exchange')
+      }
+    },
+    {
+      path: '/salary',
+      name: 'salary',
+      component: () => {
+        return import('../ivews/salary')
+      }
+    },
+    {
+      path: '/finance',
+      name:'finance',
+      component:()=>{
+        return import('../ivews/finance')
+      }
+    },
+    {
+      path: '/news',
+      name: 'news',
+      component: () => {
+        return import('../ivews/news')
+      }
+    },
+    {
+      path: '/details',
+      name: 'details',
+      component: () => {
+        return import('../ivews/details')
+      }
     }
   ]
 })

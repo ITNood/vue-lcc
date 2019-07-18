@@ -288,7 +288,7 @@ img {
     right: 0;
 }
 
-#send {
+.send {
     background: transparent;
     border: none;
     color: @blue;
@@ -441,7 +441,7 @@ img {
     span {
         background: url('../img/V0.png') no-repeat center;
         background-size: cover;
-        width: 30px;
+        width: 25px;
         height: 30px;
         text-align: center;
         line-height: 30px;
@@ -650,7 +650,7 @@ img {
             color: @fontcolor;
 
             span {
-                width: 30px;
+                width: 25px;
                 height: 30px;
                 background: url('../img/V0.png') no-repeat center;
                 background-size: 100%;
@@ -954,5 +954,1127 @@ img {
         color: @input;
         text-align: left !important;
         line-height: 20px;
+    }
+}
+
+/*
+*
+*---------------------------code------------------------
+*
+*
+*/
+.codeContent {
+    background: @background;
+    padding: 20px;
+    position: relative;
+
+    h5 {
+        border-bottom: 1px dashed @border;
+        color: @fontcolor;
+        font-size: 16px;
+        text-align: center;
+        font-weight: normal;
+        padding-bottom: 15px;
+        position: relative;
+        margin: 0 0 15px 0;
+
+        i {
+            width: 15px;
+            height: 15px;
+            background: #121622;
+            border-radius: 50%;
+            position: absolute;
+            display: block;
+            bottom: -8px;
+        }
+
+        .one {
+            left: -27px;
+        }
+
+        .two {
+            right: -27px;
+        }
+
+    }
+
+    img {
+        margin-top: 50px;
+        width: 50%;
+        margin: 0 auto;
+        display: block;
+    }
+
+    p {
+        color: @fontcolor;
+        text-align: center;
+    }
+
+}
+
+/*
+*
+*
+*-------------------------USDT----------------------------
+*
+*
+*/
+#usdt {
+    display: block;
+    position: relative;
+    bottom: 0;
+}
+
+.histry {
+    margin-top: 20px;
+
+    .histryList {
+        background: @background;
+        padding: 15px;
+        overflow: auto;
+        height: calc(100vh - 457px);
+
+        li {
+            position: relative;
+            padding-right: 50%;
+            border-bottom: 1px solid @border;
+            padding: 5px 0;
+            margin-bottom: 8px;
+
+            p {
+                color: @input;
+                margin: 0;
+            }
+
+            h5 {
+                font-weight: normal;
+                margin: 0;
+            }
+
+            span {
+                position: absolute;
+                right: 0;
+                top: 5px;
+                line-height: 32px;
+            }
+        }
+    }
+}
+
+/*
+*
+*
+*--------------------------recharge-----------------------
+*
+*
+*/
+.recharge {
+    padding-top: 15px;
+
+    .rechargeContent {
+        border-top: 1px solid @blue;
+        padding: 20px;
+        background: @background;
+        text-align: center;
+        color: @fontcolor;
+
+        img {
+            width: 50%;
+            display: block;
+            margin: 15px auto;
+        }
+
+        .hold {
+            background: @blue;
+            color: @fontcolor;
+            border: none;
+            padding: 0 15px;
+            line-height: 28px;
+            border-radius: 14px;
+            font-size: 12px;
+        }
+
+        .address {
+            margin-top: 15px;
+
+            span {
+                display: block;
+            }
+
+            .copy {
+                margin-top: 15px;
+                line-height: 28px;
+                padding: 0 25px;
+                background: #6a7586;
+                border: none;
+                color: @fontcolor;
+                border-radius: 14px;
+                font-size: 12px;
+            }
+        }
+    }
+}
+
+
+/*
+*
+*
+*----------------------------outRecharge---------------------------------
+*
+*/
+#tabs {
+    color: @fontcolor;
+    margin: 50px 20px 0;
+
+    .el-tabs__nav-wrap::after {
+        background: transparent;
+    }
+
+    .el-tabs__nav {
+        width: 100%;
+
+        .el-tabs__item {
+            width: 50%;
+            display: block;
+            float: left;
+            text-align: center;
+            color: @fontcolor;
+        }
+    }
+}
+
+.el-tabs__active-bar {
+    background-color: @blue;
+}
+
+.outside {
+    li {
+        border-bottom: 1px solid @border;
+        padding: 8px 0;
+        margin-bottom: 8px;
+
+        p {
+            margin: 0;
+        }
+
+        h5 {
+            margin: 0;
+            line-height: 40px;
+            font-weight: normal;
+        }
+
+        .el-input__inner {
+            background: transparent;
+            border: none;
+            color: @fontcolor;
+            padding: 0;
+            font-size: 12px;
+
+            &::-webkit-input-placeholder {
+                color: @input;
+            }
+        }
+
+    }
+}
+
+#order {
+
+    overflow: hidden;
+
+    .orderList {
+        overflow-y: auto;
+        height: calc(100vh - 125px);
+
+        li {
+            background: @background;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+
+            a {
+                display: block;
+                color: @fontcolor;
+                text-decoration: none;
+
+                .status {
+                    padding-right: 100px;
+                    position: relative;
+
+                    h5 {
+                        margin: 0;
+                        font-size: 14px;
+                        line-height: 25px;
+                    }
+
+                    .orderStauts {
+                        position: absolute;
+                        right: 0;
+                        top: 0;
+                        padding-right: 20px;
+                        line-height: 25px;
+
+                        i {
+                            display: block;
+                            width: 20px;
+                            height: 25px;
+                            color: @input;
+                            text-align: right;
+                            line-height: 25px;
+                            font-size: 16px;
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+                        }
+                    }
+                }
+
+                .orderContent {
+                    margin-top: 10px;
+
+                    p {
+                        color: @input;
+                        margin: 0;
+                    }
+
+                    dd {
+                        color: @fontcolor;
+                        margin: 0;
+                        line-height: 25px;
+                    }
+                }
+
+                .textRight {
+                    text-align: right;
+                }
+            }
+        }
+    }
+}
+
+
+/*
+*
+*
+*
+*--------------------------------rechargeOrder--------------------------------------
+*
+*
+*/
+.orderText {
+    margin: 15px 0;
+
+    .public {
+        li {
+            line-height: 30px;
+            color: @fontcolor;
+            padding-right: 60%;
+            position: relative;
+
+            span {
+                position: absolute;
+                right: 0;
+                top: 0;
+            }
+        }
+    }
+}
+
+.selectPay {
+    .el-input__inner {
+        height: 30px;
+        background: transparent;
+        border: none;
+        text-align: right;
+    }
+
+    .el-input__icon {
+        line-height: 30px !important;
+    }
+}
+
+.download {
+    margin-top: 20px;
+
+    .downloadContent {
+        background: @background;
+        position: relative;
+        overflow: hidden;
+        height: 150px;
+
+        img {
+            height: 150px;
+            border: none;
+        }
+
+        input {
+            width: 100%;
+            height: 150px;
+            position: absolute;
+            z-index: 99;
+            opacity: 0;
+        }
+
+        .addPicture {
+            position: absolute;
+            left: 0;
+            top: 0;
+            text-align: center;
+            color: @input;
+            width: 100%;
+            height: 150px;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+
+            i {
+                font-size: 36px;
+                display: block;
+            }
+
+            p {
+                margin: 0;
+                display: block
+            }
+        }
+    }
+}
+
+/*
+*
+*
+*----------------------------------chat----------------------------
+*
+*
+*/
+.appeal {
+    color: white;
+    line-height: 50px;
+    padding: 0;
+    border: none;
+    display: block;
+    float: right;
+}
+
+.appeal>span {
+    font-size: 15px;
+}
+
+.appeal:hover {
+    color: white
+}
+
+.chatContent {
+    padding: 60px 20px;
+}
+
+.newContent {
+    position: relative;
+    padding-left: 50px;
+}
+
+#wechat>li {
+    color: white;
+    margin-bottom: 15px;
+}
+
+#wechat>li>p {
+    margin-bottom: 10px;
+}
+
+.newContent>img {
+    width: 40px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.newContent {
+    text-align: left;
+}
+
+.newContent>h5 {
+    text-align: left;
+}
+
+.newContent>span,
+.actived>span {
+    padding: 10px 15px;
+    border-radius: 4px;
+    background: #45464a;
+    display: inline-block;
+    margin-top: 5px;
+}
+
+.newContent>span>img,
+.actived>span>img {
+    display: inline;
+    max-width: 100px;
+    max-height: 100px;
+}
+
+.actived {
+    text-align: right;
+    position: relative;
+    padding-right: 50px;
+}
+
+.actived>img {
+    right: 0;
+    position: absolute;
+    top: 0;
+    width: 40px;
+    border-radius: 50%;
+}
+
+.appealed>span {
+    background: #45464a;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 10px;
+    display: block;
+    text-align: justify
+}
+
+#chatfooter {
+    height: 50px;
+    width: 100%;
+    background: #0c0c0e;
+    display: block;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+}
+
+.foot {
+    padding: 5px 55px;
+    position: relative;
+}
+
+.selectFiled {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    margin-top: 2px;
+    top: 11px;
+    left: 15px;
+    border: 1px solid rgba(255, 255, 255, .5);
+    border-radius: 4px
+}
+
+.selectFiled>input {
+    opacity: 0;
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.selectFiled>i {
+    color: white;
+    display: block;
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: normal;
+    text-align: center;
+}
+
+.inputText {
+    margin: 0;
+    height: 30px;
+}
+
+.inputText .el-input__inner {
+    height: 30px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, .5);
+    border-radius: 0;
+    padding: 0;
+    color: white;
+}
+
+#send {
+    position: absolute;
+    color: white;
+    top: 11px;
+    line-height: 28px;
+    right: 15px;
+}
+
+.proof {
+    width: 100px;
+    position: absolute;
+    top: 50%;
+    height: 90px;
+    margin-top: -45px;
+    left: 50%;
+    margin-left: -50px;
+}
+
+.proof>img {
+    display: block;
+    width: 50px;
+    float: left;
+}
+
+.proof>span {
+    float: right;
+    display: block;
+    line-height: 90px;
+}
+
+.observation {
+    float: right;
+    line-height: 50px;
+    color: @fontcolor;
+    background: transparent;
+    border: none;
+    padding: 0;
+
+    &:hover,
+    &:focus {
+        background: transparent;
+        color: @fontcolor;
+    }
+}
+
+/*
+*
+*
+*-----------------------transfer-------------------------
+*
+*
+*/
+
+.transfer {
+    overflow: hidden;
+
+    .transferHistry {
+        height: calc(100vh - 125px);
+        overflow-y: auto;
+
+        li {
+            border-bottom: 1px solid @border;
+            margin-bottom: 8px;
+            padding: 5px 0;
+            position: relative;
+
+            p {
+                color: @input;
+                margin: 0;
+
+            }
+
+            h5 {
+                margin: 0;
+                font-weight: normal;
+            }
+
+            span {
+                position: absolute;
+                right: 0;
+                top: 5px;
+                line-height: 32px;
+            }
+        }
+    }
+
+}
+
+/*
+*
+*
+*--------------------------asssts-----------------------
+*
+*
+*/
+.asssts {
+    padding-top: 20px;
+
+    a {
+        color: @border;
+        text-decoration: none;
+
+        i {
+            background: @blue;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin: 0 auto;
+            display: block;
+            font-size: 20px;
+            color: @fontcolor;
+            line-height: 40px;
+            text-align: center;
+            font-weight: normal;
+        }
+
+        p {
+            font-size: 14px;
+            color: @fontcolor;
+            text-align: center;
+            margin: 5px 0 0
+        }
+    }
+}
+
+.purse {
+    margin-top: 20px;
+
+    p {
+        margin: 0;
+        color: @fontcolor;
+    }
+
+    .purseList {
+        margin-top: 15px;
+
+        li {
+            background: @background;
+            border-top: 2px solid @blue;
+            padding: 30px;
+            margin-bottom: 15px;
+
+            // display: -webkit-box;
+            // display: -ms-flexbox;
+            // display: -webkit-flex;
+            // display: flex;
+            // -webkit-box-pack: center;
+            // -ms-flex-pack: center;
+            // -webkit-justify-content: center;
+            // justify-content: center;
+            // -webkit-box-align: center;
+            // -ms-flex-align: center;
+            // -webkit-align-items: center;
+            // align-items: center;
+            &:after {
+                clear: both;
+                content: '';
+                overflow: visible;
+                display: block;
+            }
+
+            img {
+                float: left;
+                width: 35px;
+                display: block;
+                margin-right: 30px;
+                margin-top: 3px
+            }
+
+            .purseText {
+                float: left;
+
+                h5 {
+                    margin: 0;
+                    color: @fontcolor;
+                    font-size: 15px;
+                    font-weight: normal;
+                }
+
+                p {
+                    color: @input;
+                    font-size: 12px;
+                }
+            }
+
+            b {
+                float: right;
+                font-size: 20px;
+                line-height: 37px;
+                color: @fontcolor;
+                font-weight: normal;
+            }
+        }
+    }
+}
+
+/*
+*
+*
+*-----------------------------points----------------------
+*
+*
+*/
+.pointsAccount {
+    border-bottom: 1px solid @border;
+    padding-bottom: 10px;
+
+    .bag {
+        text-align: center;
+
+        p {
+            margin: 8px;
+        }
+
+        h5 {
+            font-size: 16px;
+            font-weight: normal;
+            margin: 0 0 10px;
+        }
+    }
+}
+
+.tranPoints {
+    width: 100%;
+}
+
+
+/*
+*
+*
+*----------------------------salary------------------------------
+*
+*
+*/
+.maxSalary {
+    background: @background;
+    padding: 20px;
+
+    .percent {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        display: block;
+        margin: 0 auto;
+
+        // .el-progress /deep/ path:first-child {
+        //     stroke: #1b2645;
+        // }
+
+        .progressText {
+            display: block;
+            position: absolute;
+            width: 100px;
+            height: 71px;
+            top: 0;
+            left: 0;
+            text-align: center;
+            padding-top: 29px;
+
+            h5 {
+                color: @blue;
+                font-weight: normal;
+                font-size: 20px;
+                margin: 0;
+            }
+
+            p {
+                color: @fontcolor;
+                margin: 0;
+            }
+        }
+    }
+
+    .salaryList {
+        margin-top: 15px;
+
+        .salaryContent {
+            border-right: 1px solid @border;
+            text-align: center;
+            color: @fontcolor;
+
+            &:last-child {
+                border: none
+            }
+
+            h5 {
+                font-size: 16px;
+                margin: 0;
+                font-weight: normal;
+                line-height: 25px
+            }
+
+            p {
+                margin: 5px 0 0;
+            }
+        }
+    }
+}
+
+.getSalary {
+    margin-top: 20px;
+
+    li {
+        border-bottom: 1px solid @border;
+        padding: 8px 0;
+        line-height: 25px;
+        color: @fontcolor;
+        position: relative;
+
+        p {
+            margin: 0;
+            line-height: 25px;
+        }
+
+        .get-out {
+            position: relative;
+            padding-right: 80px;
+
+            .el-input__inner {
+                height: 25px;
+                background: transparent;
+                padding: 0;
+                border: none;
+                font-size: 12px;
+                color: @fontcolor;
+
+                &::-webkit-input-placeholder {
+                    color: @input;
+                }
+            }
+
+            .take {
+                background: transparent;
+                border: none;
+                color: @blue;
+                border-left: 1px solid @border;
+                padding: 0 15px;
+                line-height: 25px;
+                position: absolute;
+                right: 0;
+                top: 8px;
+                font-size: 12px;
+            }
+        }
+
+        i {
+            position: absolute;
+            right: 0;
+            font-style: normal;
+        }
+    }
+}
+
+/*
+*
+*
+*
+*---------------------------finance--------------------------------
+*
+*
+*/
+.merits {
+    padding-top: 20px;
+    color: @fontcolor;
+
+    p {
+        margin: 0 0 10px;
+    }
+
+    .bill {
+        background: @background;
+        border-radius: 6px;
+        padding: 15px;
+
+        .billTime {
+            border-bottom: 1px solid @border;
+            line-height: 25px;
+            color: @fontcolor;
+            position: relative;
+            height: 25px;
+
+            span {
+                position: absolute;
+                top: 0;
+                right: 0;
+                line-height: 25px;
+            }
+        }
+
+        .billContent {
+            margin-top: 10px;
+            padding-left: 110px;
+            position: relative;
+
+            .position {
+                position: absolute;
+                top: 0;
+                left: 0;
+
+                .percentText {
+                    width: 80px;
+                    height: 80px;
+                    text-align: center;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    color: @fontcolor;
+                    padding-top: 18px;
+
+                    h5 {
+                        font-size: 16px;
+                        font-weight: normal;
+                        margin: 0;
+                        height: 20px;
+                        line-height: 20px;
+                    }
+
+                    p {
+                        margin: 8px 0 0;
+                    }
+                }
+            }
+
+            .meritsList {
+                li {
+                    position: relative;
+                    line-height: 20px;
+
+                    span {
+                        position: absolute;
+                        right: 0
+                    }
+                }
+            }
+        }
+    }
+}
+
+.el-progress /deep/ path:first-child {
+    stroke: #162960;
+}
+
+.performance {
+    overflow: hidden;
+
+    .performContent {
+        height: calc(100vh - 308px);
+        overflow-y: auto;
+    }
+}
+
+
+/*
+*
+*-------------------------news----------------
+*
+*/
+.news {
+    overflow: hidden;
+    padding-top: 20px;
+
+    .newsList {
+        height: calc(100vh - 90px);
+        overflow-y: auto;
+
+        li {
+            color: @fontcolor;
+            border-bottom: 1px solid @border;
+            padding-bottom: 8px;
+            margin-bottom: 10px;
+
+            a {
+                display: block;
+                color: @fontcolor;
+                text-decoration: none;
+
+                p {
+                    margin: 0;
+                    color: @input;
+                }
+
+                .newsText {
+                    line-height: 25px;
+                    padding-right: 25px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    position: relative;
+
+                    i {
+                        position: absolute;
+                        right: 0;
+                        line-height: 25px;
+                        font-size: 14px;
+                    }
+                }
+            }
+
+        }
+
+        .newsTitle {
+            border-bottom: 1px solid @border;
+            padding-bottom: 10px;
+
+            p {
+                color: @input;
+                margin: 0 0 8px;
+            }
+
+            h5 {
+                margin: 0;
+                line-height: 30px;
+                color: @fontcolor;
+                font-size: 16px;
+                font-weight: normal;
+            }
+        }
+
+        .newsFont {
+            text-align: justify;
+            line-height: 180%;
+            color: @fontcolor;
+
+            p {
+                margin: 0;
+            }
+        }
+    }
+}
+
+.selectsell {
+    margin-top: 10px;
+
+    p {
+        margin: 0 0 10px;
+        color: @fontcolor;
+        text-align: left !important;
+    }
+
+    .el-radio.is-bordered {
+        padding: 0 10px 0 10px;
+        border-radius: 15px;
+        height: 30px;
+        font-size: 12px;
+        line-height: 30px;
+        width: 110px;
+        border: none;
+        overflow: hidden;
+        padding: 0;
+
+        .el-radio__input {
+            display: none;
+        }
+    }
+
+    .el-radio.is-bordered.is-checked {
+        border-color: @blue
+    }
+
+    .el-radio__input.is-checked+.el-radio__label {
+        color: @fontcolor;
+        background-color: @blue
+    }
+
+    .el-radio__label {
+        background: #272c39;
+        font-size: 12px;
+        display: inline-block;
+        padding: 0;
+        display: block;
+        width: 100%;
+
+
+        i {
+            margin-right: 5px;
+            position: relative;
+            top: 1px;
+        }
     }
 }

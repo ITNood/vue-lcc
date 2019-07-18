@@ -7,8 +7,8 @@
       :close-on-click-modal="false"
       class="lccOpen"
     >
-      <p>您将委托平台购买LCC</p>
-      <p>买入无需手续费</p>
+      <p>您将委托平台出售FC</p>
+      <p>交易完成将扣除5%作为手续费</p>
       <b></b>
       <ul class="lccList">
         <li>
@@ -28,6 +28,12 @@
           <span style="right:8px">${{total1}}</span>
         </li>
       </ul>
+      
+      <div class="selectsell">
+        <p style="margin-bottom:10px;">收款方式:</p>
+        <el-radio v-model="radio" label="1" border><i class="icon iconfont icon-yinhangqia"></i>场外收款</el-radio>
+        <el-radio v-model="radio" label="2" border><i class="icon iconfont icon-meiyuan8"></i>收款</el-radio>
+      </div>
       <el-button
         class="submit"
         style="background:#05cf7f"
@@ -36,8 +42,8 @@
       <ul class="know">
         <p>交易须知</p>
         <li>*提交后由平台进行撮合式交易</li>
-        <li>*买入支付方式暂时仅限兴源通宝</li>
-        <li>*买入份额根据等价值兴源通宝</li>
+        <li>*卖出根据等价值兴源通宝</li>
+        <li>*其中一份兴源通宝等于50美金</li>
       </ul>
       <!-- <span
         slot="footer"
@@ -63,21 +69,18 @@ export default {
       centerDialogVisible:false,
       num1: 1,
       price1: "0.00",
-      total1: "0.00"
+      total1: "0.00",
+      radio:'2'
     };
   },
   methods: {
     handleChange1(value) {
       console.log(value);
     },
-    sell(){
-      this.$emit('btn2',this.centerDialogVisible)
-      // this.centerDialogVisible=!this.centerDialogVisible
+    sell(flag){
+      this.centerDialogVisible=!this.centerDialogVisible
     }
   },
-   created() {
-      this.centerDialogVisible = this.centerData
-    },
 };
 </script>
 

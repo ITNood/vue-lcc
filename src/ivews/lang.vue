@@ -2,7 +2,7 @@
   <div class="home lang">
     <div class="content">
       <div style="padding:0 50px;">
-        <img src="../assets/img/logo.png">
+        <img src="../assets/img/logo1.png">
         <h4>Borderless language</h4>
         <h4>communication</h4>
         <h4>barrier</h4>
@@ -11,8 +11,7 @@
             <el-col :span="12"><el-button @click="changEn()" class="language active">English</el-button></el-col>
             <el-col :span="12"><el-button @click="changCn()" class="language">简体中文</el-button></el-col>
         </el-row>
-        <p>{{$t('message.text')}}</p>
-        <router-link to="/login" style="color:white"><el-button>登录</el-button></router-link>
+        <router-link to="/login" style="color:white"><el-button class="submit">{{$t('message.login')}}</el-button></router-link>
       </div>
     </div>
   </div>

@@ -3,7 +3,7 @@
     <Bottom />
     <div class="head">
       <el-row :gutter="20">
-        <el-col :span="12"><img src="../assets/img/logo1.png" style="width:40px;margin-top:5px;"></el-col>
+        <el-col :span="12"><img src="../assets/img/logo1.png" style="width:35px;margin-top:5px;"></el-col>
         <el-col :span="12"><router-link :to="router" class="buy"><span>V0</span>{{text}}</router-link></el-col>
       </el-row>
     </div>
@@ -17,7 +17,7 @@
       <el-row :gutter="15">
         <el-col :span="12">
           <div class="list">
-            <p>LCC</p>
+            <p>FC</p>
             <h5><span>$</span>{{lcc}}</h5>
             <p>0.001</p>
             <router-link to="/lcc">操作管理</router-link>

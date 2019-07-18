@@ -22,7 +22,7 @@
 
           <el-form-item label="短信验证码" prop="mobileCode"  class="login">
               <el-input placeholder="请输入短信验证码" v-model="form.mobileCode"></el-input>
-              <el-button id="send">发送</el-button>
+              <el-button class="send">发送</el-button>
           </el-form-item>
 
           <el-form-item label="新登录密码" prop="password"  class="login">
