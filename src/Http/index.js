@@ -6,7 +6,7 @@ import config from '../config'
 // 创建axios实例
 //let token = window.localStorage.getItem("token") 
 const Axios = axios.create({
-    baseURL: "http://www.cms2.com/",
+    baseURL: "http://www.hxfc.com/",
     timeout: 5000,//超时请求
     maxRedirects: 1,
     headers: { "Content-Type": 'application/json' },
@@ -15,8 +15,10 @@ const Axios = axios.create({
 Axios.interceptors.request.use(
     config => {
         const token = window.localStorage.getItem('token')
-        if (token) {
+        const lang = window.localStorage.getItem('lang')
+        if (token&&lang) {
             config.headers.Token = token
+            config.headers.lang = lang
         }
         return config
     },
@@ -24,6 +26,7 @@ Axios.interceptors.request.use(
         return Promise.reject(err)
     }
 )
+
 
 var loadinginstace;
 
@@ -53,7 +56,8 @@ Axios.interceptors.response.use(
         if (net_response.data.status === 500) {
             alert(net_response.data.msg)
             window.localStorage.removeItem('token')
-            window.location.href = "/"
+            // window.location.href = "/login"
+            this.$router.push('/login')
         } else if (net_response.data.status === 400) {
             alert(net_response.data.msg)
         }

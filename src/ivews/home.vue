@@ -4,7 +4,7 @@
     <div class="head">
       <el-row :gutter="20">
         <el-col :span="12"><img src="../assets/img/logo1.png" style="width:35px;margin-top:5px;"></el-col>
-        <el-col :span="12"><router-link :to="router" class="buy"><span>V0</span>{{text}}</router-link></el-col>
+        <el-col :span="12"><router-link :to="url" class="buy"><span>V{{vip}}</span>{{text}}</router-link></el-col>
       </el-row>
     </div>
     <div class="total">
@@ -53,6 +53,7 @@
 </template>
 
 <script>
+import api from '../API/index'
 import Bottom from "../components/bottom";
 export default {
   components: {
@@ -60,11 +61,12 @@ export default {
   },
   data() {
     return {
-      router:'/buy',
-      text:'购买配套>>',
+      url:'',
+      text:'',
       account:'0.00',
       lcc:'0.00',
       usdt:'0.00',
+      vip:'',
       lists:[
         {
           url:'/assets',
@@ -86,7 +88,37 @@ export default {
         }
       ]
     };
-  }
+  },
+  mounted() {
+    this.getData()
+  },
+  methods: {
+    getData(){
+      let that=this
+      api.minicart.template.choices('getUser').then(result=>{
+        if(result.status==200){
+          that.vip=result.res.level
+
+          that.account=result.res.total
+
+          that.lcc=result.res.fc
+
+          that.usdt=result.res.usdt
+
+          if(result.res.levelState == 0){
+            that.text="购买配套>>"
+            that.url="/buy"
+          }else {
+            that.text="升级配套>>"
+            that.url="/update"
+          }
+
+        }
+      }).catch(err=>{
+
+      })
+    }
+  },
 };
 </script>
 

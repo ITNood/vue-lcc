@@ -57,6 +57,7 @@
 </template>
 
 <script>
+import api from '../API/index'
 import Top from '../components/top'
 export default {
     components:{
@@ -95,7 +96,25 @@ export default {
       xtb:'0.00',
       ccf:'0.00'
   }
- }
+ },
+ mounted() {
+     this.getData()
+ },
+ methods: {
+     getData(){
+         let that=this
+         api.minicart.template.choices('home/myAssets').then(result=>{
+             if(result.status==200){
+                 that.ctp=result.res.ctp
+                 that.cash=result.res.cash
+                 that.xtb=result.res.xtb
+                 that.ccf=result.res.ccf
+             }
+         }).catch(err=>{
+             
+         })
+     }
+ },
 }
 </script>
 

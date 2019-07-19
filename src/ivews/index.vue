@@ -27,7 +27,7 @@
         <h4>decentralized travel</h4>
         <h4>payment</h4>
         <i></i>
-        <p>LCC.COIN</p>
+        <p>FC.COIN</p>
 
         <router-link
           to="/lang"

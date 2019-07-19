@@ -90,7 +90,7 @@ export default new Router({
       }
     },
     {
-      path:'/rechargeOrder',
+      path: '/rechargeOrder',
       name: 'rechargeOrder',
       component: () => {
         return import('../ivews/rechargeOrder')
@@ -140,8 +140,8 @@ export default new Router({
     },
     {
       path: '/finance',
-      name:'finance',
-      component:()=>{
+      name: 'finance',
+      component: () => {
         return import('../ivews/finance')
       }
     },
@@ -157,6 +157,55 @@ export default new Router({
       name: 'details',
       component: () => {
         return import('../ivews/details')
+      }
+    },
+    {
+      path: '/market',
+      name: 'market',
+      component: () => {
+        return import('../ivews/market')
+      }
+    },
+    {
+      path: '/my',
+      name: 'my',
+      component: () => {
+        return import('../ivews/my')
+      }
+    },
+    {
+      path: '/sign',
+      name: 'sign',
+      component: () => {
+        return import('../ivews/sign')
+      }
+    },
+    {
+      path: '/partner',
+      name: 'partner',
+      component: () => {
+        return import('../ivews/partner')
+      }
+    },
+    {
+      path: '/report',
+      name: 'report',
+      component: () => {
+        return import('../ivews/report')
+      }
+    },
+    {
+      path: '/reportDetails',
+      name: 'reportDetails',
+      component: () => {
+        return import('../ivews/reportDetails')
+      }
+    },
+    {
+      path: '/about',
+      name: 'about',
+      component: () => {
+        return import('../ivews/about')
       }
     }
   ]

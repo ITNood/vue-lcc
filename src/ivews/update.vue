@@ -14,7 +14,7 @@
                  <div class="padding-left updateList">
                      <b>V{{rank}}</b>
                      <el-select v-model="value" @change="select($event)" class="updateSelect" placeholder="请选择升级级别">
-                         <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                         <el-option v-for="item in options" :key="item.id" :label="item.name" :value="item.id">{{item.name}}</el-option>
                      </el-select>
                  </div>
              </li>
@@ -48,6 +48,7 @@
 </template>
 
 <script>
+import api from '../API/index'
 import Top from '../components/top'
 export default {
   components:{
@@ -59,9 +60,9 @@ export default {
       message: "配套升级",
       href: "",
       classIcon: "",
-      number:'1',
+      number:'',
       rank:'',
-      text:'一级权益卡',
+      text:'',
       value:'',
       point:'',
       amount:'0.00',
@@ -70,9 +71,25 @@ export default {
       options:[]
   }
  },
+ mounted() {
+     this.getData()
+ },
  methods: {
+     getData(){
+         let that=this
+         api.minicart.template.choices('home/viewInvest').then(result=>{
+             if(result.status==200){
+                 that.number=result.res.thisLevel.level
+                 that.text=result.res.thisLevel.name
+                 that.options=that.options.concat(result.res.nextLevel)
+             }
+         }).catch(err=>{
+
+         })
+     },
      select(ev){
          console.log(ev)
+         this.rank=ev
      }
  },
 }

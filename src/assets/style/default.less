@@ -745,10 +745,11 @@ img {
         .updateList {
             position: relative;
             line-height: 40px;
+            height: 40px;
 
             b {
                 position: absolute;
-                width: 30px;
+                width: 25px;
                 height: 30px;
                 overflow: hidden;
                 background: url('../img/V0.png') no-repeat center;
@@ -2075,6 +2076,587 @@ img {
             margin-right: 5px;
             position: relative;
             top: 1px;
+        }
+    }
+}
+
+/*
+*
+*
+*--------------------------market---------------------------
+*
+*
+*/
+#marketTop {
+    color: @fontcolor;
+    line-height: 50px;
+
+    .el-col {
+        height: 50px;
+        text-align: center;
+        font-size: 16px;
+
+        i {
+            font-size: 20px;
+            float: right
+        }
+    }
+}
+
+.marketDialog {
+    .el-dialog {
+        background: @background;
+    }
+
+    .el-dialog__body {
+        span {
+            color: @fontcolor;
+            line-height: 30px;
+            display: block;
+            text-align: center;
+        }
+    }
+}
+
+.marketList {
+    padding-top: 20px;
+
+    li {
+        position: relative;
+        padding-left: 65px;
+        margin-bottom: 15px;
+
+        i {
+            position: absolute;
+            border-radius: 50%;
+            overflow: hidden;
+            display: block;
+            padding: 8px;
+            width: 35px;
+            height: 35px;
+            top: 0;
+            left: 0;
+            background: #2e3547;
+
+            img {
+                width: 30px;
+                height: 35px;
+                display: block;
+                margin: 0 auto;
+            }
+        }
+
+        .bagContent {
+            border-bottom: 1px solid @border;
+            padding-bottom: 8px;
+
+            h5 {
+                color: @fontcolor;
+                margin: 0;
+                font-size: 16px;
+                font-weight: normal;
+                line-height: 23px;
+            }
+
+            p {
+                line-height: 20px;
+                color: @input;
+                margin: 0;
+            }
+
+            .text-right {
+                text-align: right;
+            }
+        }
+    }
+}
+
+/*
+*
+*
+*--------------------------my------------------------
+*
+*
+*/
+
+.myself {
+    padding: 15px 20px;
+    background: #1d4cd3;
+
+    .close {
+        float: right;
+        color: @fontcolor;
+        font-size: 18px;
+        line-height: 30px;
+    }
+
+    .means {
+        padding: 10px 0 30px 60px;
+        position: relative;
+        display: block;
+        text-decoration: none;
+
+        img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            position: absolute;
+            top: 10px;
+            left: 0;
+        }
+
+        .meansText {
+            color: @fontcolor;
+            position: relative;
+            padding-right: 30px;
+            padding-top: 5px;
+
+            h5 {
+                font-size: 18px;
+                margin: 0;
+                font-weight: normal;
+            }
+
+            p {
+                margin: 0;
+            }
+
+            i {
+                display: block;
+                position: absolute;
+                color: @fontcolor;
+                font-size: 18px;
+                right: 0;
+                top: 50%;
+                margin-top: -9px;
+            }
+        }
+    }
+}
+
+.sign {
+    margin: 15px 0;
+
+    a {
+        display: block;
+        width: 80%;
+        background: @background;
+        height: 30px;
+        border-radius: 15px;
+        text-align: center;
+        line-height: 30px;
+        color: @fontcolor;
+        text-decoration: none;
+        margin: 0 auto;
+
+        i {
+            margin-right: 3px;
+        }
+    }
+}
+
+.myList {
+    overflow: hidden;
+
+    .myHeight {
+        height: calc(100vh - 270px);
+        overflow-y: auto;
+
+        .myselfList {
+            li {
+                margin-bottom: 10px;
+
+                a {
+                    position: relative;
+                    padding-left: 50px;
+                    color: @fontcolor;
+                    text-decoration: none;
+                    display: block;
+
+                    i {
+                        display: block;
+                        width: 35px;
+                        height: 35px;
+                        background: @background;
+                        text-align: center;
+                        line-height: 35px;
+                        border-radius: 50%;
+                        font-size: 18px;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        color: #6d788a;
+                    }
+
+                    .listText {
+                        border-bottom: 1px solid @border;
+                        line-height: 35px;
+                        position: relative;
+                        height: 35px;
+
+                        span {
+                            line-height: 40px;
+                            position: absolute;
+                            right: 0;
+                            top: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/*
+*
+*
+*------------------------------sign--------------------------------
+*
+*
+*/
+.run {
+    padding-top: 20px;
+
+    .runData {
+        padding: 20px;
+        background: @background;
+        border-top: 2px solid @blue;
+
+        .dataList {
+            &::after {
+                clear: both;
+                display: block;
+                content: '';
+            }
+
+            li {
+                width: 33.33%;
+                float: left;
+                text-align: center;
+
+                h5 {
+                    color: @fontcolor;
+                    margin: 0;
+                    font-size: 14px;
+                    font-weight: normal;
+                }
+
+                p {
+                    color: @input;
+                    margin: 5px 0 0;
+                }
+            }
+        }
+    }
+}
+
+.Invitation {
+    margin-top: 20px;
+    color: @fontcolor;
+
+    p {
+        margin: 0;
+    }
+
+    .inviteList {
+        overflow: hidden;
+        margin-top: 20px;
+
+        .inviteContent {
+            height: calc(100vh - 324px);
+            overflow-y: auto;
+
+            li {
+                border-bottom: 1px solid @border;
+                padding: 10px 0;
+                position: relative;
+                padding-left: 45px;
+                padding-right: 25px;
+                height: 35px;
+                line-height: 35px;
+
+                img {
+                    width: 35px;
+                    height: 35px;
+                    overflow: hidden;
+                    border-radius: 50%;
+                    position: absolute;
+                    top: 10px;
+                    left: 0;
+                }
+
+                span {
+                    position: absolute;
+                    right: 0px;
+                    top: 10px;
+                    line-height: 35px;
+                }
+            }
+        }
+    }
+}
+
+
+/*
+*
+*
+*--------------------------------partner---------------------------
+*
+*
+*/
+.signed {
+    .el-form-item__label {
+        color: @fontcolor;
+        display: block !important;
+    }
+
+    .el-input__inner {
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid @border;
+        padding: 0;
+        font-size: 12px;
+        color: @fontcolor;
+    }
+}
+
+.custom {
+    position: relative;
+    padding-left: 120px;
+
+    .custom-one {
+        width: 120px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-bottom: 1px solid @border;
+
+
+        .el-select .el-input__inner {
+            background: transparent;
+            border: none;
+            color: @fontcolor;
+            padding: 0;
+        }
+    }
+
+    .custom-two {
+        .el-input__inner {
+            padding: 0 15px;
+        }
+    }
+}
+
+.special {
+    width: 100%;
+}
+
+
+/*
+*
+*
+*----------------------------report-----------------------
+*
+*
+*/
+.reportList {
+    padding-top: 20px;
+    overflow: hidden;
+
+    .reportContent {
+        height: calc(100vh - 140px;
+        );
+        overflow-y: auto;
+
+        .noReport {
+            background: @background;
+            padding: 20px;
+            text-align: center;
+            color: @input;
+            text-align: center;
+            border-radius: 6px;
+            line-height: 30px;
+        }
+
+        .hasReport {
+
+            li {
+                a {
+                    display: block;
+                    text-decoration: none;
+                    background: @background;
+                    padding: 20px;
+                    text-align: center;
+                    color: @input;
+                    text-align: center;
+                    border-radius: 6px;
+                    margin-bottom: 10px;
+                    position: relative;
+                    padding-right: 100px;
+                    text-align: left;
+
+                    h5 {
+                        margin: 0;
+                        color: @fontcolor;
+                        font-weight: normal;
+                        font-size: 14px;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                    }
+
+                    p {
+                        margin: 0;
+                        color: @input;
+                    }
+
+                    .reportStauts {
+                        position: absolute;
+                        right: 20px;
+                        top: 20px;
+                        line-height: 35px;
+
+                        i {
+                            color: @input
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.subReport {
+    height: 50px;
+    position: fixed;
+    bottom: 0;
+    display: block;
+    color: @fontcolor;
+    background: @blue;
+    text-align: center;
+    line-height: 50px;
+    text-decoration: none;
+    width: 100%;
+    font-size: 14px;
+}
+
+.work {
+    overflow: hidden;
+    padding-top: 20px;
+
+    .workContent {
+        height: calc(100vh - 140px);
+        overflow-y: auto;
+
+        li {
+            p {
+                color: @fontcolor;
+                margin: 0 0 8px 0;
+                text-align: center;
+            }
+
+            .workbg {
+                background: @background;
+                padding: 20px;
+
+                h5 {
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    margin: 0;
+                    line-height: 25px;
+                    font-size: 14px;
+                    font-weight: normal;
+                    white-space: nowrap;
+                    color: @fontcolor;
+                }
+
+                p {
+                    margin: 5px 0 0 0;
+                    color: @input;
+                    text-align: justify;
+                    line-height: 180%;
+                }
+            }
+        }
+    }
+}
+
+#bottom {
+    position: fixed;
+    height: 50px;
+    bottom: 0;
+    overflow: hidden;
+    width: 100%;
+
+    .solve {
+        background: @background;
+        border: none;
+        color: @input;
+        line-height: 50px;
+        width: 100%;
+        padding: 0;
+    }
+
+    .reply {
+        display: block;
+        background: @blue;
+        color: @fontcolor;
+        text-decoration: none;
+        text-align: center;
+        width: 100%;
+        line-height: 50px;
+        font-size: 14px;
+    }
+}
+
+
+/*
+*
+*
+*------------------------------about----------------------
+*
+*
+*/
+.about {
+    background: url('../img/about.jpg') no-repeat center top;
+    background-size: 100%;
+    height: 100vh;
+}
+
+.aboutContent {
+    padding: 200px 20px 0;
+    overflow: hidden;
+
+    .aboutfont {
+        background: @background;
+        border-top: 2px solid @blue;
+        padding: 20px;
+
+        img {
+            width: 100px;
+        }
+
+        p {
+            line-height: 180%;
+            margin: 0;
+            text-align: justify;
+            color: @fontcolor;
+            margin-top: 15px;
+        }
+
+        .downloadCode{
+            width: 120px;
+            margin: 20px auto 0;
+            border-radius: 6px;
+            img{
+                width: 100%;
+            }
+        }
+        .codefont{
+            text-align: center;
+            color: @fontcolor;
+            margin-top:15px;
         }
     }
 }
