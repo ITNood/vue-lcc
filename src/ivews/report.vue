@@ -27,7 +27,7 @@
         </div>
       </div>
     </div>
-    <router-link class="subReport" to="">提交新的工单</router-link>
+    <router-link class="subReport" to="/reply">提交新的工单</router-link>
   </div>
 </template>
 

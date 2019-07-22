@@ -63,7 +63,7 @@
 <script>
 export default {
   name: "Sell",
-  props: ['centerData'],
+  //props: ['centerData'],
   data() {
     return {
       centerDialogVisible:false,

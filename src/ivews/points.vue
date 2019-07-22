@@ -6,7 +6,7 @@
       :appUrl="href"
       :font="classIcon"
     />
-    <el-tabs v-model="activeName" id="tabs">
+    <el-tabs v-model="activeName" id="tabs" class="tablist">
         <el-tab-pane label="积分转账" name="first">
             <div class="pointsAccount">
                 <el-row>

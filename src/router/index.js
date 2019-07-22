@@ -207,6 +207,125 @@ export default new Router({
       component: () => {
         return import('../ivews/about')
       }
+    },
+    {
+      path: '/personality',
+      name: 'personality',
+      component: () => {
+        return import('../ivews/personality')
+      }
+    },
+    {
+      path: '/reply',
+      name: 'reply',
+      component: () => {
+        return import('../ivews/reply')
+      }
+    },
+    {
+      path: '/service',
+      name: 'service',
+      component: () => {
+        return import('../ivews/service')
+      }
+    },
+    {
+      path: '/shopCenter',
+      name: 'shopCenter',
+      component: () => {
+        return import('../ivews/shopCenter')
+      }
+    },
+    {
+      path: '/takeMoney',
+      name: 'takeMoney',
+      component: () => {
+        return import('../ivews/takeMoney')
+      }
+    },
+    {
+      path: '/cash',
+      name: 'cash',
+      component: () => {
+        return import('../ivews/cash')
+      }
+    },
+    {
+      path: '/cashBill',
+      name: 'cashBill',
+      component: () => {
+        return import('../ivews/cashBill')
+      }
+    },
+    {
+      path: '/mobile',
+      name: 'mobile',
+      component: () => {
+        return import('../ivews/mobile')
+      }
+    },
+    {
+      path: '/password',
+      name: 'password',
+      component: () => {
+        return import('../ivews/password')
+      }
+    },
+    {
+      path: '/language',
+      name: 'language',
+      component: () => {
+        return import('../ivews/language')
+      }
+    },
+    {
+      path: '/paySuccess',
+      name: 'paySuccess',
+      component: () => {
+        return import('../ivews/paySuccess')
+      }
+    },
+    {
+      path: '/payError',
+      name: 'payError',
+      component: () => {
+        return import('../ivews/payError')
+      }
+    },
+    {
+      path: '/success',
+      name: 'success',
+      component: () => {
+        return import('../ivews/success')
+      }
+    },
+    {
+      path: '/error',
+      name: 'error',
+      component: () => {
+        return import('../ivews/error')
+      }
+    },
+    {
+      path: '/takeWay',
+      name: 'takeWay',
+      component: () => {
+        return import('../ivews/takeWay')
+      }
+    },
+    {
+      path: '/addUsdt',
+      name: 'addUsdt',
+      component: () => {
+        return import('../ivews/addUsdt')
+      }
+    },
+    {
+      path: '/bank',
+      name: 'bank',
+      component: () => {
+        return import('../ivews/bank')
+      }
     }
   ]
 })

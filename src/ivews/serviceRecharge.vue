@@ -7,7 +7,7 @@
       :font="classIcon"
     />
     <div class="container">
-        <div class="pubilcOrder">
+        <div id="order">
             <ul class="orderList">
                 <li>
                     <router-link to=''>

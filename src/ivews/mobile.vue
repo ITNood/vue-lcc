@@ -1,18 +1,16 @@
 <template>
   <div>
-    <Top :pathUrl="url" />
-    <div id="login">
-      <h5>忘记密码</h5>
-      <el-form :model="form" ref="form" >
-          <el-form-item label="用户名" prop="username"  class="login">
-              <el-input placeholder="请输入用户名" v-model="form.username"></el-input>
-          </el-form-item>
+    <Top
+      :pathUrl="url"
+      :title="message"
+      :appUrl="href"
+      :font="classIcon"
+    />
 
-          <el-form-item label="手机号码" prop="mobile"  class="login selectcountry">
-            <el-select v-model="form.country">
-                <el-option v-for="item in items" :key="item.value" :label="item.label" :value="item.value"></el-option>
-            </el-select>
-            <el-input placeholder="请输入用户名" v-model="form.mobile" class="mobile"></el-input>
+    <div class="container" style="margin-bottom:0;">
+      <el-form :model="form" ref="form" >
+          <el-form-item label="当前手机号码" prop="mobile"  class="login">
+              <el-input v-model="form.mobile"></el-input>
           </el-form-item>
 
           <el-form-item label="图形验证码" prop="code"  class="login">
@@ -25,15 +23,19 @@
               <el-button class="send">发送</el-button>
           </el-form-item>
 
-          <el-form-item label="新登录密码" prop="password"  class="login">
-              <el-input placeholder="请输入新的登录密码" v-model="form.password"></el-input>
+          <el-form-item label="新手机号码"  class="login selectcountry">
+            <el-select v-model="form.country">
+                <el-option v-for="item in items" :key="item.value" :label="item.label" :value="item.value"></el-option>
+            </el-select>
+            <el-input placeholder="请输入新手机号码" v-model="form.newMobile" class="mobile"></el-input>
           </el-form-item>
 
-          <el-form-item label="确认新登录密码" prop="password"  class="login">
-              <el-input placeholder="请确认新的登录密码" v-model="form.password"></el-input>
+          <el-form-item label="短信验证码" prop="newMobileCode"  class="login">
+              <el-input placeholder="请输入短信验证码" v-model="form.newMobileCode"></el-input>
+              <el-button class="send">发送</el-button>
           </el-form-item>
       </el-form>
-      <el-button @click="forget()" class="submit">确认</el-button>
+      <el-button @click="mobile()" class="submit">确认</el-button>
     </div>
   </div>
 </template>
@@ -46,7 +48,10 @@ export default {
   },
   data() {
     return {
-      url: "/login",
+      url: "/my",
+      message: "手机号码",
+      href: "",
+      classIcon: "",
       form:{
           country:'1',
           username:'',
@@ -90,7 +95,7 @@ export default {
           },
       ]
     };
-  },
+  }
 };
 </script>
 

@@ -25,7 +25,7 @@
         <el-button class="submit" @click="submit()">确认</el-button>
     </el-tab-pane>
     <el-tab-pane label="充值订单" name="second">
-        <div id="order">
+        <div class="pubilcOrder">
             <ul class="orderList">
                 <li v-for="(item,index) in items" :key="index">
                     <router-link :to="item.state==1 || item.state==5 ? '':{path:'/rechargeOrder',query:{id:item.id}}">
@@ -61,14 +61,20 @@
         </div>
     </el-tab-pane>
   </el-tabs>
+
+  <!--pin子组件-->
+  <Pin @submit="submit" ref="child" :centerDialogVisible="show" />
  </div>
 </template>
 
 <script>
+import api from '../API/index'
 import Top from '../components/top'
+import Pin from '../components/pin'
 export default {
     components:{
-        Top
+        Top,
+        Pin
     },
  data() {
   return {
@@ -81,6 +87,9 @@ export default {
       amount:'',
       dollar:'0.00',
       rmb:'0.00',
+      fee:'',
+      rate:'',
+      show:true,
       items:[
           {
               state:2,
@@ -93,9 +102,48 @@ export default {
       ]
   }
  },
+ mounted() {
+     this.getData()
+ },
  methods: {
+     getData(){
+         let that=this
+         api.minicart.template.choices('recharge/order').then(result=>{
+             if(result.status==200){
+                 that.usdt=result.res.register
+                 that.fee=result.res.fee
+                 that.rate=result.res.rate
+             }else if(result.status==400){
+
+             }
+         }).catch(err=>{
+             that.$message.error('错误!')
+         })
+     },
      change(){
-        // console.log(this.amount)
+        let that=this
+        let number=that.amount
+        that.dollar=(Math.floor((number*that.rate*100)/100).toFixed(2))
+        that.rmb=(Math.floor((number*that.fee*100)/100).toFixed(2))
+     },
+     submit(data){
+         let that=this
+         let number=that.amount
+         if(number<=0){
+             that.$message.warning('请输入充值数量！')
+         }else {
+             this.$refs.child.open(this.show);
+            //  api.minicart.template.choices('recharge/create',{amount:number}).then(result=>{
+            //      if(result.status==200){
+            //          that.$message.success(result.msg)
+            //          window.location.reload()
+            //      }else if(result.status==400){
+            //          that.$message.error(result.msg)
+            //      }
+            //  }).catch(err=>{
+            //      that.$message.error('错误!')
+            //  })
+         }
      }
  },
 }

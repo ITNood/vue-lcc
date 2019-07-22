@@ -31,6 +31,10 @@ img {
     width: 100%;
 }
 
+.openDialog .el-dialog {
+    background: #1a202e
+}
+
 .home {
     background: url('../img/home.jpg') no-repeat center;
     background-size: cover;
@@ -1156,6 +1160,7 @@ img {
 
         p {
             margin: 0;
+            color: @fontcolor;
         }
 
         h5 {
@@ -1179,7 +1184,7 @@ img {
     }
 }
 
-#order {
+.pubilcOrder {
 
     overflow: hidden;
 
@@ -1564,6 +1569,7 @@ img {
             margin-bottom: 8px;
             padding: 5px 0;
             position: relative;
+            color: @fontcolor;
 
             p {
                 color: @input;
@@ -1705,6 +1711,7 @@ img {
 .pointsAccount {
     border-bottom: 1px solid @border;
     padding-bottom: 10px;
+    color: @fontcolor;
 
     .bag {
         text-align: center;
@@ -2569,6 +2576,23 @@ img {
                     font-weight: normal;
                     white-space: nowrap;
                     color: @fontcolor;
+                    position: relative;
+                    padding-right: 30px;
+
+                    i {
+                        display: block;
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        color: @input;
+                        line-height: 25px;
+                        font-size: 18px;
+                        border: 1px solid @border;
+                        width: 23px;
+                        height: 23px;
+                        text-align: center;
+                        border-radius: 4px;
+                    }
                 }
 
                 p {
@@ -2607,6 +2631,8 @@ img {
         width: 100%;
         line-height: 50px;
         font-size: 14px;
+        border: none;
+        padding: 0;
     }
 }
 
@@ -2645,18 +2671,740 @@ img {
             margin-top: 15px;
         }
 
-        .downloadCode{
+        .downloadCode {
             width: 120px;
             margin: 20px auto 0;
             border-radius: 6px;
-            img{
+
+            img {
                 width: 100%;
             }
         }
-        .codefont{
+
+        .codefont {
             text-align: center;
             color: @fontcolor;
-            margin-top:15px;
+            margin-top: 15px;
         }
+    }
+}
+
+
+/*
+*
+*
+*
+*-------------------------------------personality----------------------------------
+*
+*
+*/
+.personality {
+    height: 100vh;
+    padding: 0 30px;
+}
+
+.photo {
+    min-height: 470px;
+    width: 100%;
+    padding: 50px 0;
+}
+
+.selectPhoto {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.selectPhoto>img {
+    border-radius: 50%;
+    width: 75px;
+    height: 75px;
+}
+
+.picter-list {
+    margin-top: 30px;
+    height: 210px;
+}
+
+.picter-list>li {
+    width: 25%;
+    float: left;
+    display: block;
+    margin-bottom: 30px;
+}
+
+.picter-list>li>img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    margin: 0 auto;
+    display: block
+}
+
+#add-picter {
+    width: 45px;
+    height: 45px;
+}
+
+#add-picter.avatar-uploader .el-upload {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    line-height: 60px;
+    box-sizing: none;
+    background: #01c176;
+    border: none;
+    display: block;
+}
+
+#add-picter .el-upload-list--picture-card {
+    display: none
+}
+
+#add-picter .avatar-uploader-icon {
+    color: white
+}
+
+.set .el-input__inner {
+    border: none;
+    color: white;
+    border-bottom: 1px solid @border;
+    background: transparent;
+}
+
+.demo-ruleForm .el-form-item__label {
+    color: @fontcolor;
+}
+
+.rondom {
+    width: 20px;
+    display: block;
+    position: absolute;
+    right: 15px;
+    bottom: 10px;
+}
+
+.addAvatar {
+    width: 45px;
+    height: 45px;
+    background: @background;
+    border-radius: 50%;
+    position: relative;
+    margin: 0 auto;
+}
+
+.addAvatar input {
+    opacity: 0;
+    display: block;
+    position: absolute;
+    z-index: 9;
+    appearance: none;
+    -webkit-appearance: none;
+    width: 45px;
+    height: 45px;
+}
+
+.addAvatar i {
+    color: @input;
+    font-size: 24px;
+    display: block;
+    top: 0px;
+    position: absolute;
+    text-align: center;
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+}
+
+
+
+/*
+*
+*---------------------------reply--------------------
+*
+8
+*/
+.submitReport {
+    .el-form-item__label {
+        color: @fontcolor;
+        font-size: 12px;
+    }
+
+    .el-textarea__inner {
+        background: transparent;
+        border: 1px solid @border;
+        padding: 0;
+        color: @fontcolor;
+        font-size: 12px;
+        min-height: 150px !important;
+        padding: 10px;
+    }
+}
+
+.downloadImg {
+    margin-top: 20px;
+    border: 1px solid @border;
+    height: 150px;
+    position: relative;
+
+    input {
+        width: 100%;
+        height: 150px;
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .uploadText {
+        color: @input;
+        text-align: center;
+        padding-top: 46px;
+
+        i {
+            font-size: 30px;
+        }
+    }
+}
+
+
+/*
+*
+*
+*-----------------------service-------------------------
+*
+*
+*
+*/
+#serviceTabs {
+    .el-tabs__nav-wrap::after {
+        background: transparent;
+    }
+
+    .el-tabs__nav {
+        width: 100%;
+
+        .el-tabs__item {
+            width: 33.333%;
+            display: block;
+            float: left;
+            text-align: center;
+            color: @fontcolor;
+        }
+    }
+
+}
+
+
+/*
+*
+*
+*-----------------------------shopCenter---------------------------
+*
+*
+*/
+.shop {
+    background: #16234f;
+    padding: 50px 20px 20px;
+
+    .shopCash {
+        text-align: center;
+        color: @input;
+        margin: 30px 0;
+
+        p {
+            margin: 0,
+        }
+
+        h5 {
+            color: @fontcolor;
+            font-size: 24px;
+            font-weight: normal;
+            margin: 10px 0;
+
+            span {
+                font-size: 14px;
+                margin-right: 5px;
+            }
+        }
+    }
+
+    .cashList {
+        color: @fontcolor;
+        text-align: center;
+
+        h6 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: normal;
+        }
+
+        p {
+            color: @input;
+        }
+    }
+}
+
+.shoper {
+    margin: 20px;
+
+    .shopbg {
+        background: @background;
+        padding: 15px;
+        border-top: 2px solid @blue;
+
+        a {
+            display: block;
+            border-bottom: 1px solid @border;
+            line-height: 45px;
+            color: @fontcolor;
+            position: relative;
+            padding: 0 20px 0 50px;
+            height: 45px;
+            text-decoration: none;
+            margin-bottom: 10px;
+
+            i {
+                position: absolute;
+                width: 35px;
+                height: 35px;
+                border-radius: 50%;
+                background: #2e3547;
+                text-align: center;
+                line-height: 35px;
+                left: 0;
+                top: 5px;
+            }
+
+            span {
+                position: absolute;
+                right: 0;
+                top: 0;
+                line-height: 45px;
+            }
+        }
+    }
+}
+
+.takeMoney {
+    padding: 20px 0;
+
+    .usernamePhoto {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        overflow: hidden;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .moneyInput {
+        margin-top: 15px;
+        text-align: center;
+        color: @fontcolor;
+
+        p {
+            margin: 0;
+        }
+
+        .amount {
+            border-bottom: 1px solid @border;
+            font-size: 22px;
+            text-align: center;
+            line-height: 60px;
+
+            span {
+                font-size: 16px;
+            }
+        }
+    }
+}
+
+.key {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+
+    ul:after {
+        display: block;
+        clear: both;
+        overflow: visible;
+        content: ''
+    }
+
+    li {
+        width: 33.33%;
+        font-size: 20px;
+        line-height: 60px;
+        text-align: center;
+        color: @fontcolor;
+        float: left;
+    }
+}
+
+/*
+*
+*
+*--------------------------password---------------------------------------
+*
+*
+*
+*/
+.pay-tool {
+    overflow: hidden;
+    position: fixed;
+    display: block;
+    min-height: 80vh;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.pay-tool-title {
+    width: 100%;
+    height: 2.08888888rem;
+    line-height: 2.08888888rem;
+    text-align: center;
+    overflow: hidden;
+}
+
+.icon1 {
+    float: left;
+    margin-top: 0.72222222rem;
+}
+
+strong {
+    font-size: 16px;
+}
+
+.pay-tool-inputs {
+    width: 312px;
+    height: 32px;
+    margin: 1.28888888rem auto 0;
+    border-radius: 0.26666666rem;
+    text-align: center;
+}
+
+.item {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border: 1px solid @blue;
+    border-radius: 50%;
+    margin: 10px;
+    float: left;
+    overflow: hidden;
+}
+
+.icon_dot {
+    display: block;
+    width: 30px;
+    height: 30px;
+    background: url('../img/round.png') no-repeat center;
+    background-size: cover;
+}
+
+.pay-tool-keyboard {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    display: block;
+}
+
+.pay-tool-keyboard ul {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.pay-tool-keyboard li {
+    width: 33.1333%;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    font-size: 22px;
+    color: @fontcolor;
+}
+
+// .pay-tool-keyboard li:nth-child(1),
+// .pay-tool-keyboard li:nth-child(2),
+// .pay-tool-keyboard li:nth-child(3) {
+//     border-top: 1px solid #eee;
+// }
+
+// .pay-tool-keyboard li:nth-child(3),
+// .pay-tool-keyboard li:nth-child(6),
+// .pay-tool-keyboard li:nth-child(9),
+// .pay-tool-keyboard li:nth-child(12) {
+//     border-right: none;
+// }
+
+// .pay-tool-keyboard li:nth-child(10),
+// .pay-tool-keyboard li:nth-child(11),
+// .pay-tool-keyboard li:nth-child(12) {
+//     border-bottom: none;
+// }
+
+// .pay-tool-keyboard li:nth-child(10),
+// .pay-tool-keyboard li:nth-child(12),
+// .pay-tool-keyboard li:active {
+//     background-color: #d1d4dd;
+// }
+
+// .pay-tool-keyboardl li:nth-child(12):active {
+//     background-color: #fff;
+// }
+
+
+
+/*
+*
+*
+*----------------------------------------language-------------------------------
+*
+*
+*/
+.selectLang {
+    padding: 20px 0 0;
+    text-align: center;
+
+    p {
+        color: @fontcolor;
+        text-align: left;
+    }
+
+    .el-radio-group {
+        width: 100%;
+    }
+
+    .el-radio {
+        width: 40%;
+        text-align: center;
+        background: @background;
+        border: none;
+        border-radius: 20px;
+        color: @input;
+
+        .el-radio__inner {
+            display: none;
+        }
+    }
+
+    .el-radio.is-bordered.is-checked {
+        background: @blue;
+    }
+
+    .el-radio__input.is-checked+.el-radio__label {
+        color: @fontcolor;
+    }
+}
+
+/*
+*
+*
+*-------------------------------paySuccess-------------------------------
+*
+*
+*/
+.payPublic {
+    padding-top: 20px;
+    overflow: hidden;
+
+    .paybg {
+        position: relative;
+        height: calc(100vh - 120px);
+        background: @background;
+        border-radius: 6px;
+
+        i {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #121622;
+            display: block;
+            position: absolute;
+            top: 80px;
+
+            &:nth-child(1) {
+                left: -7px;
+            }
+
+            &:nth-child(2) {
+                right: -7px
+            }
+
+        }
+
+        .payContent {
+            padding: 50px 20px;
+            text-align: center;
+
+            span {
+                width: 80px;
+                height: 80px;
+                text-align: center;
+                border-radius: 50%;
+                color: @fontcolor;
+                font-size: 40px;
+                line-height: 80px;
+                background: green;
+                display: block;
+                margin: 0 auto;
+            }
+
+            p {
+                color: @fontcolor;
+
+            }
+
+            .amount {
+                font-size: 30px;
+                color: @fontcolor;
+                margin-top: 80px;
+            }
+        }
+
+        .over {
+            display: block;
+            width: 80%;
+            height: 40px;
+            border-radius: 20px;
+            border: 1px solid @blue;
+            text-align: center;
+            color: @fontcolor;
+            font-size: 14px;
+            text-decoration: none;
+            line-height: 40px;
+            position: absolute;
+            bottom: 15%;
+            left: 50%;
+            margin-left: -40%;
+        }
+    }
+
+}
+
+
+/*
+*
+*
+*
+*--------------------------takeWay-----------------------------
+*
+*
+*/
+.waylist {
+    padding-top: 20px;
+
+    p {
+        color: @fontcolor;
+    }
+
+    .el-card {
+        background: @background;
+        border-radius: 0;
+        border: none;
+        border-top: 2px solid @blue;
+        position: relative;
+        min-height: 140px;
+
+        .carContent {
+            position: relative;
+
+            &:after {
+                display: block;
+                content: '';
+                clear: both;
+            }
+
+            p {
+                color: @fontcolor
+            }
+
+            h5 {
+                color: @fontcolor;
+                font-size: 16px;
+                font-weight: normal;
+                // letter-spacing: 2px;
+                margin: 10px 0;
+                width: 100%;
+                word-wrap: break-word;
+            }
+
+            .edit {
+                line-height: 25px;
+                padding: 0 20px;
+                background: @blue;
+                color: @fontcolor;
+                border: none;
+                float: right;
+                border-radius: 12px;
+            }
+        }
+    }
+}
+
+.addCar {
+    color: @input;
+    display: block;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    padding-top: 20px;
+
+    i {
+        font-size: 24px;
+    }
+
+    p {
+        color: @input;
+    }
+}
+
+.addPublic {
+    padding-top: 20px;
+
+    .el-form-item__label {
+        color: @fontcolor;
+        font-size: 12px;
+    }
+
+    .el-textarea__inner {
+        border: none;
+        border-bottom: 1px solid @border;
+        background: transparent;
+        font-size: 12px;
+        padding: 0;
+        height: 80px;
+        color: @fontcolor
+    }
+
+    .el-input__inner {
+        border: none;
+        border-bottom: 1px solid @border;
+        background: transparent;
+        padding: 0;
+        font-size: 12px;
+        color: @fontcolor;
+    }
+}
+
+.el-message-box {
+    width: 80% !important;
+}
+
+#pin {
+    .el-dialog {
+        background: transparent
+    }
+
+    .el-icon-close{
+        color: @fontcolor;
     }
 }
