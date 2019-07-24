@@ -34,7 +34,7 @@
                     </div>
                 </li>
             </ul>
-            <el-button class="submit" @click="submit()">确认</el-button>
+            <el-button class="submit" @click="submit1()">确认</el-button>
             </el-tab-pane>
             <el-tab-pane label="充值订单" name="second">
                 <div class="pubilcOrder">
@@ -76,16 +76,15 @@
                  <div class="pubilcOrder">
             <ul class="orderList">
                 <li v-for="(item,index) in items" :key="index">
-                    <router-link :to="item.state==1 || item.state==5 ? '':{path:'/serviceRecharge',query:{id:item.id}}">
+                    <router-link :to="item.state==1 || item.state==3 || item.state==4 ? '':{path:'/serviceCash',query:{id:item.id}}">
                         <div class="status">
                             <h5>{{item.amount}}Usdt</h5>
                             <div class="orderStauts">
-                                <span v-if="item.state==1">匹配中</span>
+                                <span v-if="item.state==1">待匹配</span>
                                 <span v-else-if="item.state==2">进行中</span>
-                                <span v-else-if="item.state==3"></span>
-                                <span v-else-if="item.state==4"></span>
-                                <span v-else-if="item.state==5"></span>
-                                <span v-else-if="item.state==6"></span>
+                                <span v-else-if="item.state==3">已完成</span>
+                                <span v-else-if="item.state==4">已取消</span>
+                                <span v-else-if="item.state==5">进行中</span>
                                 <i class="el-icon-arrow-right"></i>
                             </div>
                         </div>
@@ -110,16 +109,20 @@
             </el-tab-pane>
         </el-tabs>
     </div>
+     <!--密码组件-->
+  <Pin @submit="submit" ref="child" :centerDialogVisible="show" />
   </div>
 </template>
 
 <script>
 import api from '../API/index'
 import Top from "../components/top";
+import Pin from '../components/pin'
 
 export default {
   components: {
-    Top
+    Top,
+    Pin
   },
   data() {
     return {
@@ -131,16 +134,8 @@ export default {
       dollar:0,
       rmb:0,
       amount:'',
-      items:[
-          {
-              state:2,
-              id:1,
-              date:'2018/10/2',
-              dollar:100,
-              rmb:120
-
-          }
-      ]
+      items:[],
+      show:false
     };
   },
   mounted() {
@@ -166,7 +161,7 @@ export default {
        //全部取出
      getAll(){
          let that=this
-         let rmb=that.rmb
+         let rmb=that.dollar
          if(rmb>0){
             that.amount=rmb
          }else{
@@ -176,19 +171,30 @@ export default {
      },
      
      //信用余额
-     submit(){
+     submit(pwd){
          let that=this
          let number=that.amount
-         api.minicart.template.choices('changeBalance',{amount:number,type:3}).then(result=>{
+         api.minicart.template.choices('changeBalance',{amount:number,type:3,security:pwd}).then(result=>{
              if(result.status==200){
                  that.$message.success(result.msg)
-                 window.location.reload()
+                 setTimeout(() => {
+                     window.location.reload()
+                 }, 1000);
              }else if(result.status==400){
                  that.$message.error(result.msg)
              }
          }).catch(err=>{
              that.$message.error('错误!')
          })
+     },
+     submit1(){
+         let that=this
+         let number=that.amount
+         if(number>0){
+             that.$refs.child.open(that.show);
+         }else {
+             that.$message.warning('取出信用额度不能为0！')
+         }
      }
   },
 };

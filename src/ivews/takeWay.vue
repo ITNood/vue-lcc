@@ -26,7 +26,7 @@
             <el-card class="box-card">
                 <div class="carContent" v-if="address">
                     <p>USDT地址</p>
-                    <h5>{{address}}</h5>
+                    <h5 style="font-size:14px;">{{address}}</h5>
                     <el-button class="edit" @click="usdt()">编辑</el-button>
                 </div>
                  <router-link v-else class="addCar" to="/addUsdt">

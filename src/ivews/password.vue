@@ -75,10 +75,7 @@
       >
         <div class="pay-tool">
           <div class="pay-tool-title border-bottom">
-            <span
-              class="icon1 icon-back"
-              @click="backHandle"
-            ></span>
+            <span class="icon1 icon-back"></span>
             <p>{{tips}}</p>
           </div>
           <!--密码输入框-->
@@ -167,7 +164,7 @@ export default {
       href: "",
       classIcon: "",
       activeName: "first",
-      tips:'请设置PIN密码',
+      tips: "请设置PIN密码",
       a: 1,
       ruleForm: {
         oldPwd: "",
@@ -178,8 +175,10 @@ export default {
         oldPwd: [
           { required: true, message: "请输入新登录密码", trigger: "blur" }
         ],
-        pwd: [{required:true, validator: validatePass, trigger: "blur" }],
-        confirmPwd: [{required:true, validator: validatePass2, trigger: "blur" }]
+        pwd: [{ required: true, validator: validatePass, trigger: "blur" }],
+        confirmPwd: [
+          { required: true, validator: validatePass2, trigger: "blur" }
+        ]
       },
       rules2: {},
       ruleForm2: {
@@ -202,19 +201,21 @@ export default {
       this.$refs[ruleForm].validate(valid => {
         if (valid) {
           let that = this;
-          let data = this.ruleForm;
+          let data = that.ruleForm;
           api.minicart.template
-            .choices("changePwd", data)
+            .choices("changePassword", data)
             .then(response => {
               if (response.status == 200) {
-                alert(response.msg);
-                window.location.reload();
+                that.$message.success(response.msg);
+                //window.location.reload();
+                window.localStorage.removeItem("token");
+                 that.$router.push('/login')
               } else if (response.status == 400) {
-                alert(response.msg);
+                that.$message.error(response.msg);
               }
             })
             .catch(err => {
-              alert(err.msg);
+              that.$message.error("错误!");
             });
         }
       });
@@ -223,27 +224,25 @@ export default {
     //判断是否设置了安全密码
     isSetPassword() {
       let that = this;
-      api.minicart.template.choices("isSetSafePwd").then(response => {
-        if (response.status == 200) {
-          console.log(response);
-          if (response.res == true) {
-            that.tips = "请输入原PIN密码";
-            that.a = 1;
-          } else if (response.res == false) {
-            that.tips = "请设置PIN密码";
-            that.a = 2;
+      api.minicart.template
+        .choices("isSetSafePwd")
+        .then(response => {
+          if (response.status == 200) {
+            console.log(response);
+            if (response.res == true) {
+              that.tips = "请输入原PIN密码";
+              that.a = 1;
+            } else if (response.res == false) {
+              that.tips = "请设置PIN密码";
+              that.a = 2;
+            }
+          } else if (response.status == 400) {
+            alert(response.msg);
           }
-        }else if(response.status==400){
-          alert(response.msg)
-        }
-      }).catch(err=>{
-        alert(err.msg)
-      });
-    },
-
-    backHandle() {
-      this.clearPasswordHandle(); // 返回时清除password
-      this.$emit("backFnc"); // 返回上级
+        })
+        .catch(err => {
+          alert(err.msg);
+        });
     },
     keyUpHandle(e) {
       let text = e.currentTarget.innerText;
@@ -289,7 +288,7 @@ export default {
                 alert(response.msg);
               } else if (response.status == 400) {
                 alert(response.msg);
-               window.location.reload()
+                window.location.reload();
               }
             })
             .catch(err => {

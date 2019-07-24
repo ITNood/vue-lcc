@@ -12,11 +12,22 @@
 @radius: 0;
 @padding: 20px;
 
+@font-face {
+    font-family: number;
+    src: url('../bahnschrift.ttf')
+}
+
 body {
     margin: 0;
     padding: 0;
     font-size: 12px;
     background: #121622
+}
+
+.dialogbg {
+    .el-dialog {
+        background: #1a202e;
+    }
 }
 
 ul,
@@ -33,6 +44,24 @@ img {
 
 .openDialog .el-dialog {
     background: #1a202e
+}
+
+.cashbg {
+    background: @background;
+    padding: 20px;
+    border-radius: 6px;
+}
+
+.cash-btn {
+    .el-button {
+        width: 100%;
+        border: none
+    }
+
+    .pay-btn {
+        background: @blue;
+        color: @fontcolor;
+    }
 }
 
 .home {
@@ -302,6 +331,12 @@ img {
     width: 100px;
     padding: 0;
     line-height: 34px;
+
+    &:hover,
+    &:focus {
+        background: transparent;
+        color: @blue;
+    }
 }
 
 .submit {
@@ -472,6 +507,7 @@ img {
         padding-right: 50px;
         border-bottom: 1px solid @border;
         margin-bottom: 0;
+        font-family: number;
 
         span {
             font-size: 18px;
@@ -513,12 +549,14 @@ img {
 
         p {
             margin: 0 0 8px;
+            font-family: number;
         }
 
         h5 {
             font-size: 16px;
             font-weight: normal;
             margin: 0 0 5px;
+            font-family: number;
 
             span {
                 font-size: 13px;
@@ -819,6 +857,7 @@ img {
         font-size: 24px;
         font-weight: normal;
         margin: 0;
+        font-family: number;
 
         span {
             font-size: 18px;
@@ -873,77 +912,80 @@ img {
             background: @blue;
             display: inline-block;
         }
+    }
+}
 
-        .lccList {
-            margin-top: 20px;
+.lccList {
+    margin-top: 20px;
 
-            li {
-                border-bottom: 1px solid @border;
-                padding: 0 8px;
-                line-height: 40px;
+    li {
+        border-bottom: 1px solid @border;
+        padding: 0 8px;
+        line-height: 30px;
+        color: @fontcolor;
+        position: relative;
+        text-align: left !important;
+        margin-top: 10px;
+
+
+        p {
+            margin: 0 0 10px 0;
+            text-align: left;
+            line-height: 20px;
+            font-size: 12px;
+        }
+
+        .el-input-number {
+            width: 100%;
+
+            .el-input__inner {
+                background: transparent;
+                border: none;
                 color: @fontcolor;
-                position: relative;
-                text-align: left !important;
+            }
 
+            .el-input-number__increase {
+                height: 20px;
+                width: 20px;
+                border-radius: 50%;
+                background: @blue;
+                border: none;
+                top: 10px;
 
-                p {
-                    margin: 0 0 10px 0;
-                    text-align: left;
-                }
-
-                .el-input-number {
-                    width: 100%;
-
-                    .el-input__inner {
-                        background: transparent;
-                        border: none;
-                        color: @fontcolor;
-                    }
-
-                    .el-input-number__increase {
-                        height: 20px;
-                        width: 20px;
-                        border-radius: 50%;
-                        background: @blue;
-                        border: none;
-                        top: 10px;
-
-                        i {
-                            color: @fontcolor;
-                            line-height: 20px;
-                            top: 0;
-                            position: absolute;
-                            left: 50%;
-                            margin-left: -7px;
-                            font-size: 14px;
-                        }
-                    }
-
-                    .el-input-number__decrease {
-                        height: 20px;
-                        width: 20px;
-                        border-radius: 50%;
-                        background: @blue;
-                        border: none;
-                        top: 10px;
-
-                        i {
-                            color: @fontcolor;
-                            line-height: 20px;
-                            top: 0;
-                            position: absolute;
-                            left: 50%;
-                            margin-left: -7px;
-                            font-size: 14px;
-                        }
-                    }
-                }
-
-                span {
-                    position: absolute;
+                i {
+                    color: @fontcolor;
+                    line-height: 20px;
                     top: 0;
+                    position: absolute;
+                    left: 50%;
+                    margin-left: -7px;
+                    font-size: 14px;
                 }
             }
+
+            .el-input-number__decrease {
+                height: 20px;
+                width: 20px;
+                border-radius: 50%;
+                background: @blue;
+                border: none;
+                top: 10px;
+
+                i {
+                    color: @fontcolor;
+                    line-height: 20px;
+                    top: 0;
+                    position: absolute;
+                    left: 50%;
+                    margin-left: -7px;
+                    font-size: 14px;
+                }
+            }
+        }
+
+        span {
+            position: absolute;
+            top: 0;
         }
     }
 }
@@ -1167,6 +1209,7 @@ img {
             margin: 0;
             line-height: 40px;
             font-weight: normal;
+            font-family: number;
         }
 
         .el-input__inner {
@@ -1187,6 +1230,10 @@ img {
 .pubilcOrder {
 
     overflow: hidden;
+
+    .orderList.only {
+        height: 100%;
+    }
 
     .orderList {
         overflow-y: auto;
@@ -1292,6 +1339,7 @@ img {
         background: transparent;
         border: none;
         text-align: right;
+        color: @fontcolor
     }
 
     .el-input__icon {
@@ -1696,6 +1744,7 @@ img {
                 line-height: 37px;
                 color: @fontcolor;
                 font-weight: normal;
+                font-family: number;
             }
         }
     }
@@ -1724,6 +1773,7 @@ img {
             font-size: 16px;
             font-weight: normal;
             margin: 0 0 10px;
+            font-family: number;
         }
     }
 }
@@ -1770,6 +1820,7 @@ img {
                 font-weight: normal;
                 font-size: 20px;
                 margin: 0;
+                font-family: number;
             }
 
             p {
@@ -1795,7 +1846,8 @@ img {
                 font-size: 16px;
                 margin: 0;
                 font-weight: normal;
-                line-height: 25px
+                line-height: 25px;
+                font-family: number;
             }
 
             p {
@@ -1921,6 +1973,7 @@ img {
                         margin: 0;
                         height: 20px;
                         line-height: 20px;
+                        font-family: number;
                     }
 
                     p {
@@ -1936,7 +1989,7 @@ img {
 
                     span {
                         position: absolute;
-                        right: 0
+                        right: 0;
                     }
                 }
             }
@@ -2028,6 +2081,7 @@ img {
             text-align: justify;
             line-height: 180%;
             color: @fontcolor;
+            margin-top: 20px;
 
             p {
                 margin: 0;
@@ -2425,6 +2479,11 @@ img {
         padding: 0;
         font-size: 12px;
         color: @fontcolor;
+    }
+
+    .el-input.is-disabled .el-input__inner {
+        background: transparent;
+        border-bottom-color: @border;
     }
 }
 
@@ -2915,7 +2974,8 @@ img {
         margin: 30px 0;
 
         p {
-            margin: 0,
+            margin: 0;
+            font-family: number;
         }
 
         h5 {
@@ -2923,6 +2983,7 @@ img {
             font-size: 24px;
             font-weight: normal;
             margin: 10px 0;
+            font-family: number;
 
             span {
                 font-size: 14px;
@@ -2939,6 +3000,7 @@ img {
             margin: 0;
             font-size: 16px;
             font-weight: normal;
+            font-family: number;
         }
 
         p {
@@ -3329,12 +3391,13 @@ strong {
 
             h5 {
                 color: @fontcolor;
-                font-size: 16px;
+                font-size: 18px;
                 font-weight: normal;
                 // letter-spacing: 2px;
                 margin: 10px 0;
                 width: 100%;
                 word-wrap: break-word;
+                font-family: number;
             }
 
             .edit {
@@ -3401,10 +3464,25 @@ strong {
 
 #pin {
     .el-dialog {
-        background: transparent
+        background: @background;
+        margin-top: 50px !important;
+        margin-bottom: 0 !important;
+        width: 100%;
+        height: calc(100vh - 50px)
     }
 
-    .el-icon-close{
+    .el-icon-close {
         color: @fontcolor;
     }
+}
+
+#buyer {
+    .el-dialog {
+        background: @background;
+        border-top: 2px solid @blue;
+
+        .buyContent {}
+
+    }
+
 }

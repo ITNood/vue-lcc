@@ -70,7 +70,7 @@ export default {
       console.log(value);
     },
     buy(flag){
-        this.cen=!this.dialogVisible
+        this.dialogVisible=!this.dialogVisible
     }
   }
 };

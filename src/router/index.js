@@ -326,6 +326,27 @@ export default new Router({
       component: () => {
         return import('../ivews/bank')
       }
+    },
+    {
+      path: '/serviceCash',
+      name: 'serviceCash',
+      component:()=>{
+        return import('../ivews/serviceCash')
+      }
+    },
+    {
+      path: '/serviceRecharge',
+      name: 'serviceRecharge',
+      component: () => {
+        return import('../ivews/serviceRecharge')
+      }
+    },
+    {
+      path: '/bagDetails',
+      name: 'bagDetails',
+      component: () => {
+        return import('../ivews/bagDetails')
+      }
     }
   ]
 })

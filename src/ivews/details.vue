@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import api from '../API/index'
 import Top from "../components/top";
 export default {
     components: {
@@ -32,11 +33,31 @@ export default {
       message: "私人信箱",
       href: "",
       classIcon: "",
-      date:'2019/07/18',
-      title:'新闻标题',
+      date:'',
+      title:'',
       details:''
   }
- }
+ },
+ mounted() {
+     this.getData()
+ },
+ methods: {
+     getData(){
+         let that=this
+         let id=that.$route.query.id
+         api.minicart.template.choices('noticeDetail',{id:id}).then(result=>{
+             if(result.status==200){
+                 that.date=result.res.date
+                 that.title=result.res.title
+                 that.details=result.res.detail
+             }else if(result.status==400){
+                 that.$message.error(result.msg)
+             }
+         }).catch(err=>{
+             that.$message.error('错误!')
+         })
+     }
+ },
 }
 </script>
 

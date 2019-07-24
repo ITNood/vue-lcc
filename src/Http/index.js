@@ -56,10 +56,10 @@ Axios.interceptors.response.use(
         if (net_response.data.status === 500) {
             alert(net_response.data.msg)
             window.localStorage.removeItem('token')
-            // window.location.href = "/login"
-            this.$router.push('/login')
+           // window.location.href="/login"
+           this.$router.push('/login')
         } else if (net_response.data.status === 400) {
-            alert(net_response.data.msg)
+           // alert(net_response.data.msg)
         }
 
         //返回数据

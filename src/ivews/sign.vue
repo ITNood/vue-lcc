@@ -46,7 +46,7 @@
             <div class="inviteList">
                 <ul class="inviteContent">
                     <li v-for="(item,index) in items" :key="index">
-                        <img :src="item.img">
+                        <img :src="item.avatar">
                         <span>{{index+1}}</span>
                         <el-row :gutter="8">
                             <el-col :span="12">{{item.username}}</el-col>
@@ -61,6 +61,7 @@
 </template>
 
 <script>
+import api from '../API/index'
 import Top from '../components/top'
 export default {
     components:{
@@ -78,15 +79,34 @@ export default {
       line:0,
       all:0,
       right:0,
-      items:[
-          {
-              img:require('../assets/img/photo.png'),
-              username:'kjsajjk',
-              mobile:'13800138000'
-          }
-      ]
+      items:[]
   }
- }
+ },
+ mounted() {
+     this.getData()
+ },
+ methods: {
+     getData(){
+         let that=this
+         api.minicart.template.choices('getResult').then(result=>{
+             if(result.status==200){
+                 that.partner=result.res.directNumber   //直邀伙伴
+                 that.total=result.res.teamNumber       //综合伙伴
+                 that.left=result.res.leftResult        //左区业绩
+                 that.line=result.res.directResult      //直邀业绩
+                 that.all=result.res.teamResult         //综合业绩
+                 that.right=result.res.rightResult      //右区业绩
+
+                 //直邀伙伴
+                 that.items=that.items.concat(result.res.child)
+             }else if(result.status==400){
+                 that.$message.error(result.msg)
+             }
+         }).catch(err=>{
+             that.$message.error('错误!')
+         })
+     }
+ },
 }
 </script>
 

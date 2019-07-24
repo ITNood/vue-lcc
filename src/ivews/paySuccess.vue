@@ -36,9 +36,14 @@ export default {
       message: "",
       href: "",
       classIcon: "",
-      amount:100
+      amount:''
     };
-  }
+  },
+  mounted() {
+    let that=this
+    let amount=window.localStorage.getItem('amount')
+    that.amount=amount
+  },
 };
 </script>
 

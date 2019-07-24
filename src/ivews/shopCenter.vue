@@ -38,15 +38,15 @@
           扫一扫收款
         </a>
         <router-link to="/cash">
-            <i class="icon iconfont icon-qianbao2"></i>
-            <span class="el-icon-arrow-right"></span>
-            商户现金提现
+          <i class="icon iconfont icon-qianbao2"></i>
+          <span class="el-icon-arrow-right"></span>
+          商户现金提现
         </router-link>
 
         <router-link to="/cashBill">
-            <i class="icon iconfont icon-zhangdan"></i>
-            <span class="el-icon-arrow-right"></span>
-            商户现金账单
+          <i class="icon iconfont icon-zhangdan"></i>
+          <span class="el-icon-arrow-right"></span>
+          商户现金账单
         </router-link>
       </div>
     </div>
@@ -72,11 +72,12 @@ export default {
     };
   },
   methods: {
-      scan(){
+    scan() {
 
-      }
-  },
+    }
+  }
 };
+
 </script>
 
 <style scoped>

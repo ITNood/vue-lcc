@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import api from '../API/index'
 import Top from "../components/top";
 export default {
   components: {
@@ -38,7 +39,8 @@ export default {
       classIcon: "",
       error:''
     };
-  }
+  },
+  
 };
 </script>
 

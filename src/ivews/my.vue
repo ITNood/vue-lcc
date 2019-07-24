@@ -127,14 +127,14 @@ export default {
                  that.img=result.res.avatar           //头像
                  
                  //报单中心
-                if (data.res.isFeedback == 0) {
+                if (result.res.isFeedback == 0) {
                     that.show=false
-                } else if (data.res.isFeedback == 1) {
+                } else if (result.res.isFeedback == 1) {
                     that.show=true
                 }
              }
          }).catch(err=>{
-             that.$message.error(err.msg)
+             that.$message.error('错误!')
          })
      },
      //退出登录
@@ -158,10 +158,7 @@ export default {
             that.$message.error('错误!')
         })
         }).catch(() => {
-          that.$message({
-            type: 'info',
-            message: '已取消'
-          });          
+           that.$message.info('已取消');          
         });
      }
  },

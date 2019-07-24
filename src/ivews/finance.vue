@@ -12,39 +12,41 @@
         <div
           class="bill"
           style="background:#15234e"
+          v-for="(todo,index) in todos"
+          :key="index"
         >
           <div class="billTime">
-            {{date}}
-            <span>进行中</span>
+            {{todo.date}}
+            <span>{{todo.weekNumber>0?'进行中':'已完成'}}</span>
           </div>
           <div class="billContent">
             <div class="position">
               <el-progress
                 type="circle"
-                :percentage="percent"
+                :percentage="todo.percent"
                 :width="80"
                 :stroke-width="5"
                 color="#2059ff"
                 :show-text="false"
               ></el-progress>
               <div class="percentText">
-                <h5>{{number}}</h5>
+                <h5>{{todo.weekNumber}}</h5>
                 <p>剩余周数</p>
               </div>
             </div>
 
             <ul class="meritsList">
               <li>
-                薪酬总额：<span>{{total}}</span>
+                薪酬总额：<span>{{todo.totalSalary}}</span>
               </li>
               <li>
-                薪酬标准：<span>{{pip}}</span>
+                薪酬标准：<span>{{todo.salary}}</span>
               </li>
               <li>
-                待结算周：<span>{{waitWeek}}</span>
+                待结算周：<span>{{todo.waitAmount}}</span>
               </li>
               <li>
-                已结算周：<span>{{settle}}</span>
+                已结算周：<span>{{todo.getAmount}}</span>
               </li>
             </ul>
           </div>
@@ -63,7 +65,7 @@
             >
               <div class="billTime">
                 {{item.date}}
-                <span>进行中</span>
+                <span>{{item.weekNumber>0?'进行中':'已完成'}}</span>
               </div>
               <div class="billContent">
                 <div class="position">
@@ -76,23 +78,23 @@
                     :show-text="false"
                   ></el-progress>
                   <div class="percentText">
-                    <h5>{{item.number}}</h5>
+                    <h5>{{item.weekNumber}}</h5>
                     <p>剩余周数</p>
                   </div>
                 </div>
 
                 <ul class="meritsList">
                   <li>
-                    薪酬总额：<span>{{item.total}}</span>
+                    薪酬总额：<span>{{item.totalSalary}}</span>
                   </li>
                   <li>
-                    薪酬标准：<span>{{item.pip}}</span>
+                    薪酬标准：<span>{{item.salary}}</span>
                   </li>
                   <li>
-                    待结算周：<span>{{item.waitWeek}}</span>
+                    待结算周：<span>{{item.waitAmount}}</span>
                   </li>
                   <li>
-                    已结算周：<span>{{item.settle}}</span>
+                    已结算周：<span>{{item.getAmount}}</span>
                   </li>
                 </ul>
               </div>
@@ -105,6 +107,7 @@
 </template>
 
 <script>
+import api from '../API/index'
 import Top from "../components/top";
 export default {
   components: {
@@ -122,10 +125,29 @@ export default {
       pip: 0,
       waitWeek: 0,
       settle: 0,
-      number: 8,
-      items: []
+      number: '',
+      items: [],
+      todos:[]
     };
-  }
+  },
+  mounted() {
+    this.getData()
+  },
+  methods: {
+    getData(){
+      let that=this
+      api.minicart.template.choices('home/myInvest').then(result=>{
+        if(result.status==200){
+          that.todos=that.todos.concat(result.res.order1)
+          that.items=that.items.concat(result.res.order2)
+        }else if(result.status==400){
+          that.$message.error(result.msg)
+        }
+      }).catch(err=>{
+        that.$message.error('错误!')
+      })
+    }
+  },
 };
 </script>
 

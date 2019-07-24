@@ -1,14 +1,14 @@
 <template>
- <div>
-     <Top
+  <div>
+    <Top
       :pathUrl="url"
       :title="message"
       :appUrl="href"
       :font="classIcon"
     />
     <div class="container">
-        <div id="order">
-            <ul class="orderList">
+      <!-- <div class="pubilcOrder">
+            <ul class="orderList only">
                 <li>
                     <router-link to=''>
                         <div class="status">
@@ -31,116 +31,142 @@
                     </router-link>
                 </li>
             </ul>
-        </div>
-        <!--订单详情-->
+        </div> -->
+      <!--订单详情-->
+      <div class="cashbg">
         <div class="orderText">
-            <ul class="public">
-                <li>
-                    订单编号<span>{{order}}</span>
-                </li>
-                <li>
-                    会员昵称<span>{{username}}</span>
-                </li>
-                <li>
-                    打款类型
-                    <span>
-                        <el-select v-model="value" class="selectPay" @change="change" placeholder="请选择">
-                            <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
-                        </el-select>
-                    </span>
-                </li>
-            </ul>
-            <ul class="public">
-                <li>
-                    开户姓名<span>{{name}}</span>
-                </li>
-                <li>
-                    银行名称<span>{{bank}}</span>
-                </li>
-                <li>
-                    银行账号<span>{{account}}</span>
-                </li>
-                <li>
-                    银行支行<span>{{bankAddress}}</span>
-                </li>
-            </ul>
+          <ul class="public">
+            <li>
+              订单编号<span>{{order}}</span>
+            </li>
+            <li>
+              订单时间<span>{{date}}</span>
+            </li>
+            <li>
+              会员昵称<span>{{username}}</span>
+            </li>
+            <li>
+              充值数量<span>{{number}}</span>
+            </li>
+            <li>
+              付款金额<span>{{amount}}</span>
+            </li>
+          </ul>
         </div>
+      </div>
 
-        <!--上传凭证-->
-        <div class="download">
-            <div class="downloadContent">
-                <input
-              name="img"
-              type="file"
-              @change="uploadChange($event)"
-            >
-                <img :src="img" v-if="img">
-                <div v-else class="addPicture">
-                    <div style="margin:0 auto;">
-                        <i class="el-icon-plus"></i>
-                        <p>上传凭证</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <el-button class="submit" :disabled="disabled">确认打款</el-button>
+      <el-row
+        :gutter="15"
+        style="margin-top:50px;"
+        class="cash-btn"
+      >
+        <el-col :span="7">
+          <el-button @click="look()">查看凭证</el-button>
+        </el-col>
+        <el-col :span="17">
+          <el-button class="pay-btn" @click="submit1()">确认收款</el-button>
+        </el-col>
+      </el-row>
     </div>
- </div>
+    <!--查看凭证-->
+    <el-dialog
+      :visible.sync="centerDialogVisible"
+      width="80%"
+      class="dialogbg"
+      center
+    >
+      <img :src="img">
+      <span
+        slot="footer"
+        class="dialog-footer"
+      >
+      </span>
+    </el-dialog>
+     <!--密码组件-->
+  <Pin @submit="submit" ref="child" :centerDialogVisible="show" />
+  </div>
 </template>
 
 <script>
-import Top from '../components/top'
+import api from '../API/index'
+import Top from "../components/top";
+import Pin from '../components/pin'
 export default {
-    components:{
-        Top
-    },
- data() {
-  return {
+  components: {
+    Top,
+    Pin
+  },
+  data() {
+    return {
       url: "/outRecharge",
       message: "充值订单",
       href: "/chat",
       classIcon: "el-icon-chat-dot-square",
-      amount:100,
-      date:'2019/07/17',
-      dollar:0,
-      rmb:0,
-      order:16165156,
-      username:'张三',
-      options:[],
-      value:'',
-      name:'赵四',
-      bank:'招商银行',
-      account:'62200000000000000000000000000',
-      bankAddress:'益田支行',
-      img:'',
-      disabled:true,
-  }
- },
- methods: {
-     change(val){
-         console.log(val)
-     },
-
-     uploadChange(ev) {//上传凭证
-      var file = ev.target.files[0];
-      let that = this;
-      if (window.FileReader) {
-        var reader = new FileReader();
-        reader.readAsDataURL(file);
-        //监听文件读取结束后事件
-        reader.onloadend = function(e) {
-          // 图片base64
-          that.img = e.target.result;
-         // that.ruleForm.img = e.target.result;
-        };
-      }
+      amount: '',
+      date: "",
+      order: "",
+      username: "",
+      number: "",
+      value: "",
+      img: "",
+      centerDialogVisible: false,
+      show:false
+    };
+  },
+  methods: {
+    getData(){
+        let that=this
+        let id=that.$route.query.id
+        api.minicart.template.choices('withdrawDetail',{id:id}).then(result=>{
+            if(result.status==200){
+                that.order=result.res.orderNo
+                that.number=result.res.amount
+                that.username=result.res.truename
+                that.date=result.res.date
+                that.amount=result.res.payment
+                if(result.res.img){
+                    that.img=result.res.img
+                }
+            }else if(result.status==400){
+                that.$message.error(result.msg)
+            }
+        }).catch(err=>{
+            that.$message.error('错误!')
+        })
     },
- },
-}
+    submit(pwd){
+        let that=this
+        let id=that.$route.query.id
+        api.minicart.template.choices('serviceCompleteRecharge',{id:id}).then(result=>{
+            if(result.status==200){
+                that.$message.success(result.msg)
+                setTimeout(() => {
+                    window.location.reload()
+                }, 1000);
+            }else if(result.status==400){
+                that.$message.error(result.msg)
+            }
+        }).catch(err=>{
+            that.$message.error('错误!')
+        })
+    },
+    submit1(){
+        let that=this
+        that.$refs.child.open(that.show);
+     },
+    look() {
+      let that = this;
+      that.centerDialogVisible = true;
+    },
+    chat() {
+      let that = this;
+      let id = that.$route.query.id;
+      that.$router.push("/chat?id=" + id + "&type=1");
+    }
+  }
+};
 </script>
 
-<style scoped>
-#order .orderList{
-    height: 106px !important;
-}
+<style scoped lang="less">
+
 </style>

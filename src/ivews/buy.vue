@@ -13,13 +13,14 @@
               :span="12"
               class="rights"
             >
-              <span>V{{index+1}}</span>{{item.number}}级权益卡
+              <span>V{{item.level}}</span>{{item.name}}
             </el-col>
             <el-col :span="12">
               <el-button
-                @click="buy($event)"
                 class="buy-btn"
                 :value="item.id"
+                :number="item.invest"
+                @click="buy($event)"
               >购买</el-button>
             </el-col>
           </el-row>
@@ -29,14 +30,14 @@
                 class="rightList"
                 style="border-right:1px solid #999;"
               >
-                <li>周薪资:<span>{{item.week}}</span></li>
-                <li>周封顶:<span>{{item.weekMax}}</span></li>
+                <li>周薪资:<span>{{item.week_dividend}}</span></li>
+                <li>周封顶:<span>{{item.week_cap}}</span></li>
               </ul>
             </el-col>
             <el-col :span="12">
               <ul class="rightList">
-                <li>配套金额:<span>{{item.amount}}</span></li>
-                <li>售价:<span style="color:#2059ff">{{item.price}}积分</span></li>
+                <li>配套金额:<span>{{item.given_amount}}</span></li>
+                <li>售价:<span style="color:#2059ff">{{item.invest}}积分</span></li>
               </ul>
             </el-col>
           </el-row>
@@ -51,11 +52,11 @@
       :close-on-click-modal="false"
       id="open"
     >
-      <span>您将购买一级权益卡，需支付 {{point}} 积分</span>
+      <span>您将购买一级权益卡，需支付 {{invest}} 积分</span>
       <div class="pay">
           <p>支付方式</p>
-          <el-select v-model="value" class="paySelect" placeholder="请选择" @change="change($event)">
-              <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
+          <el-select v-model="type" class="paySelect" placeholder="请选择" @change="change($event)">
+              <el-option v-for="item in options" :key="item.value" :label="item.name" :value="item.id"></el-option>
           </el-select>
       </div>
       <span
@@ -64,69 +65,91 @@
       >
         <el-button
         class="submit"
-          @click="submit()"
+          @click="submit1()"
         >确 定</el-button>
       </span>
     </el-dialog>
-
+ <!--密码组件-->
+  <Pin @submit="submit" ref="child" :centerDialogVisible="show" />
   </div>
 </template>
 
 <script>
+import api from '../API/index'
 import Top from "../components/top";
+import Pin from '../components/pin'
 export default {
   components: {
-    Top
+    Top,
+    Pin
   },
   data() {
     return {
       centerDialogVisible: false,
-      point:null,
-      value:'',
+      type:'',
       url: "/home",
       message: "购买配套",
       href: "",
       classIcon: "",
-      items: [
-        {
-          number: "一",
-          week: "0.00",
-          weekMax: "0.00",
-          amount: "0.00",
-          price: "0.00",
-          id: "1"
-        },
-        {
-          number: "一",
-          week: "0.00",
-          weekMax: "0.00",
-          amount: "0.00",
-          price: "0.00",
-          id: "222"
-        }
-      ],
-      options:[
-          {
-              label:'注册积分',
-              value:'1'
-          },
-          {
-              label:'合并积分',
-              value:'2'
-          }
-      ]
+      items: [],
+      options:[],
+      id:'',
+      show:false,
+      invest:''
     };
   },
+  mounted() {
+    this.getData()
+  },
   methods: {
+    getData(){
+      let that=this
+      api.minicart.template.choices('home/viewInvest').then(result=>{
+        if(result.status==200){
+          that.items=that.items.concat(result.res.nextLevel)
+          that.options=that.options.concat(result.res.pay)
+        }else if(result.status==400){
+          that.$message.error(result.msg)
+        }
+      }).catch(err=>{
+        that.$message.error('错误！')
+      })
+    },
     buy(ev) {
-        this.centerDialogVisible=true
-      console.log(ev);
+      let that=this
+      that.centerDialogVisible=true
+      that.id=ev.target.parentNode.value
+      console.log(that.id)
+      //console.log(ev)
+      that.items.map(result=>{
+        if(result.id==that.id){
+          console.log(result)
+          that.invest=result.invest
+        }
+      })
     },
     change(ev){
-        console.log(ev)
+
     },
-    submit(){
-        this.centerDialogVisible=false
+    submit(pwd){
+      let that=this
+      api.minicart.template.choices('home/createInvest',{id:that.id,payId:that.type,security:pwd}).then(result=>{
+        if(result.status==200){
+          that.$message.success(result.msg)
+          setTimeout(() => {
+            that.$router.push('/home')
+          }, 500);
+        }else if(result.status==400){
+          that.$message.error(result.msg)
+        }
+      }).catch(err=>{
+        that.$message.error('错误!')
+      })
+    },
+    submit1(){
+      let that=this
+      that.centerDialogVisible=false
+      that.$refs.child.open(that.show);
     }
   }
 };

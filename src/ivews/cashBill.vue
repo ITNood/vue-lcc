@@ -12,8 +12,8 @@
                 <ul class="transferHistry">
                    <li v-for="(item,index) in items" :key="index" >
                        <p>{{item.date}}</p>
-                       <h5>{{item.text}}</h5>
-                       <span>{{item.amount}}</span>
+                       <h5>{{item.detail}}</h5>
+                       <span :style="{color:(item.state==1?'#00b46d':'#d44328')}">{{item.state==1?'+':'-'}}{{item.amount}}</span>
                    </li>
                 </ul>
             </div>
@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import api from '../API/index'
 import Top from "../components/top";
 export default {
   components: {
@@ -33,15 +34,26 @@ export default {
       message: "现金账单",
       href: "",
       classIcon: "",
-      items:[
-          {
-              date:'2018/07/17',
-              text:'兑换',
-              amount:'200.00注册积分'
-          }
-      ]
+      items:[]
     };
-  }
+  },
+  mounted() {
+    this.getData()
+  },
+  methods: {
+    getData(){
+      let that=this
+      api.minicart.template.choices('merchantCashRecord').then(result=>{
+        if(result.status==200){
+          that.items=that.items.concat(result.res)
+        }else if(result.status==400){
+          that.$message.error(result.msg)
+        }
+      }).catch(err=>{
+        that.$message.error('错误！')
+      })
+    }
+  },
 };
 </script>
 

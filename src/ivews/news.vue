@@ -12,7 +12,7 @@
                 <li v-for="(item,index) in items" :key="index">
                     <router-link :to="{path:'/details',query:{id:item.id}}">
                        <p>{{item.date}}</p>
-                       <div class="newsText">{{item.text}}<i class="el-icon-arrow-right"></i></div>
+                       <div class="newsText">{{item.title}}<i class="el-icon-arrow-right"></i></div>
                     </router-link>
                 </li>
             </ul>
@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import api from '../API/index'
 import Top from "../components/top";
 export default {
     components: {
@@ -33,20 +34,26 @@ export default {
       message: "私人信箱",
       href: "",
       classIcon: "",
-      items:[
-          {
-              id:2,
-              date:'2019/07/18',
-              text:'行文对抗赛垃圾'
-          },
-          {
-              id:2,
-              date:'2019/07/18',
-              text:'行文对抗赛垃圾'
-          }
-      ]
+      items:[]
   }
- }
+ },
+ mounted() {
+     this.getData()
+ },
+ methods: {
+     getData(){
+         let that=this
+         api.minicart.template.choices('getNotice').then(result=>{
+             if(result.status==200){
+                 that.items=that.items.concat(result.res)
+             }else if(result.status==400){
+                 that.$message.error(result.msg)
+             }
+         }).catch(err=>{
+             that.$message.error('错误!')
+         })
+     }
+ },
 }
 </script>
 

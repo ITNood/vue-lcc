@@ -14,7 +14,7 @@
                  <div class="padding-left updateList">
                      <b>V{{rank}}</b>
                      <el-select v-model="value" @change="select($event)" class="updateSelect" placeholder="请选择升级级别">
-                         <el-option v-for="item in options" :key="item.id" :label="item.name" :value="item.id">{{item.name}}</el-option>
+                         <el-option v-for="item in options" :key="item.value" :label="item.name" :value="item.id"></el-option>
                      </el-select>
                  </div>
              </li>
@@ -68,7 +68,9 @@ export default {
       amount:'0.00',
       week:'0.00',
       max:'0.00',
-      options:[]
+      options:[],
+      now:'',
+      id:''
   }
  },
  mounted() {
@@ -81,6 +83,7 @@ export default {
              if(result.status==200){
                  that.number=result.res.thisLevel.level
                  that.text=result.res.thisLevel.name
+                 that.now=result.res.thisLevel.invest
                  that.options=that.options.concat(result.res.nextLevel)
              }
          }).catch(err=>{
@@ -89,7 +92,23 @@ export default {
      },
      select(ev){
          console.log(ev)
-         this.rank=ev
+
+         //this.rank=ev\
+         let that=this
+         that.id=ev
+        that.options.map(item=>{
+            if(item.id=== ev){
+            console.log(item)
+            that.rank=item.level//级别
+            that.week=item.week_dividend  //周薪资
+            that.amount=item.given_amount //配套金额
+            that.max=item.week_cap
+            that.point=item.invest-that.now
+            }
+        })
+     },
+     submit(){
+         
      }
  },
 }

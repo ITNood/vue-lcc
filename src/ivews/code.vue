@@ -14,7 +14,10 @@
         <h5>向商家付款<i class="one"></i><i class="two"></i></h5>
         <img :src="code">
         <p>扫一扫，即可付款</p>
-        <ul class="know" style="margin-top:50px;">
+        <ul
+          class="know"
+          style="margin-top:50px;"
+        >
           <p>温馨提示：</p>
           <li>本二维码在一分钟内有效，请将此二维码给予商家扫描。</li>
           <li>付款后将自动扣除等值FC</li>
@@ -25,6 +28,7 @@
 </template>
 
 <script>
+import api from "../API/index";
 import Top from "../components/top";
 export default {
   components: {
@@ -38,6 +42,66 @@ export default {
       classIcon: "",
       code: ""
     };
+  },
+  mounted() {
+    this.getData();
+  },
+  methods: {
+    getData() {
+      let that = this;
+      api.minicart.template
+        .choices("myPayCode")
+        .then(result => {
+          if (result.status == 200) {
+            that.code = result.res.img;
+          } else if (result.status == 400) {
+            that.$message.error(result.msg);
+          }
+        })
+        .catch(err => {
+          that.$message.error("错误!");
+        });
+    },
+    //-----------------------------------------------
+    WebSocketTest() {
+      if ("WebSocket" in window) {
+        // console.log("您的浏览器支持 WebSocket!");
+        // 打开一个 web socket
+        var ws = new WebSocket("ws://www.hsfc.com:2350");
+        ws.onopen = function() {
+          var json = JSON.stringify({
+            token: window.localStorage.getItem("token"),
+            //'id': getQueryString("id"),
+            //'type': getQueryString("type"),
+            heartbeat: 1
+          });
+          ws.send(json);
+          var t1 = window.setInterval(function() {
+            ws.send(json);
+          }, 30000);
+        };
+
+        ws.onmessage = function(evt) {
+          console.log(JSON.parse(evt.data));
+          var data = JSON.parse(evt.data);
+          // var data=evt.data
+          if (data.res.status == 200) {
+            window.localStorage.setItem("amount", data.res.amount);
+            this.$router.push('/paySuccess')
+          } else if (data.res.status == 400) {
+            window.localStorage.setItem("errorMsg", data.res.msg);
+            this.$router.push('/payError')
+          }
+        };
+        ws.onclose = function() {
+          // 关闭 websocket
+          console.log("连接已关闭...");
+        };
+      } else {
+        // 浏览器不支持 WebSocket
+        console.log("您的浏览器不支持 WebSocket!");
+      }
+    }
   }
 };
 </script>

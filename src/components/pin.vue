@@ -2,7 +2,7 @@
   <div>
     <el-dialog
       :visible.sync="centerDialogVisible"
-      width="80%"
+      width="100%"
       center
       id="pin"
     >
@@ -11,7 +11,6 @@
         <div class="pay-tool-title border-bottom">
           <span
             class="icon1 icon-back"
-            @click="backHandle"
           ></span>
         </div>
         <!--密码输入框-->
@@ -64,6 +63,7 @@
 const keys = () => [1, 2, 3, 4, 5, 6, 7, 8, 9, "", 0];
 export default {
   name: "Pin",
+  //props:["amnout"],
   data() {
     return {
       centerDialogVisible: false,
@@ -75,10 +75,8 @@ export default {
   methods: {
     open(flag){
         this.centerDialogVisible=!this.centerDialogVisible
-    },
-    backHandle() {
-      this.clearPasswordHandle(); // 返回时清除password
-      this.$emit("backFnc"); // 返回上级
+        this.clearPasswordHandle()
+
     },
     keyUpHandle(e) {
       let text = e.currentTarget.innerText;
@@ -96,12 +94,20 @@ export default {
       if (this.password.length >= 6) {
         let that = that;
         //输完密码后执行操作
-       console.log(parseInt(this.password.join(" ").replace(/\s/g, "")));
+        //输完密码之后，这里函数里提交
+        
+       let password=parseInt(this.password.join(" ").replace(/\s/g, ""));
+    // console.log(this.amnout)
+        this.$emit('submit',password)
+
        this.centerDialogVisible=!this.centerDialogVisible
+       this.clearPasswordHandle()
+       //这里是
       }
       return false;
     },
-    clearPasswordHandle: function() {
+    //清空密码
+    clearPasswordHandle() {
       this.password = [];
     }
   }

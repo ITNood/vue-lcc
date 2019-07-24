@@ -31,15 +31,16 @@
             </el-form-item>
 
             <el-form-item label="安置用户" prop="account" class="signed">
-                <el-input v-model="form.account" placeholder="请输入安置人账号"></el-input>
+                <el-input v-model="form.pUser" :disabled="disabled" placeholder="请输入安置人账号"></el-input>
             </el-form-item>
         </el-form>
-        <el-button class="submit">确认</el-button>
+        <el-button class="submit" @click="submit()">确认</el-button>
     </div>
   </div>
 </template>
 
 <script>
+import api from '../API/index'
 import Top from "../components/top";
 export default {
   components: {
@@ -51,10 +52,14 @@ export default {
       message:'签约合伙人',
       href:'',
       classIcon:'',
+      user:'',
+      disabled:false,
       form:{
           username:'',
           value:1,
           type:1,
+          pUser:'',
+          mobile:''
       },
       options:[
           {
@@ -63,7 +68,31 @@ export default {
           },
           {
               value:2,
-              label:'中国 +88'
+              label:'新加坡 +65'
+          },
+          {
+              value:3,
+              label:'泰国 +66'
+          },
+          {
+              value:4,
+              label:'马来西亚 +60'
+          },
+          {
+              value:5,
+              label:'日本 +81'
+          },
+          {
+              value:6,
+              label:'韩国 +82'
+          },
+          {
+              value:7,
+              label:'美国 +1'
+          },
+          {
+              value:8,
+              label:'英国 +44'
           }
       ],
       lists:[
@@ -73,20 +102,66 @@ export default {
           },
           {
               value:2,
-              label:'手动小区深度'
+              label:'自行输入用户'
           }
       ]
     };
   },
   mounted() {
-      console.log(this.form.type)
+      this.getData()
+  },
+  updated() {
+       let number=this.form.type
+      if(number==1){
+          this.form.pUser=this.user;
+          this.disabled=true
+      }else{
+          this.form.pUser=''
+          this.disabled=false
+      }
   },
   methods: {
+      getData(){
+          let that=this
+          api.minicart.template.choices('getResult').then(result=>{
+              if(result.status==200){
+                  that.user=result.res.maxUser
+              }else if(result.status==400){
+                  that.$message.error(result.msg)
+              }
+          }).catch(err=>{
+              that.$message.error('错误!')
+          })
+      },
       change(){
           console.log(this.form.value)
       },
       selected(){
           console.log(this.form.type)
+          //console.log(val)
+          let that=this
+          let number=that.form.type
+          if(number==1){
+              that.form.pUser=that.user
+              that.disabled=true
+          }else {
+              that.form.pUser=''
+              that.disabled=false
+          }
+      },
+      //提交
+      submit(){
+          let that=this
+          let data=that.form
+          api.minicart.template.choices('register',data).then(result=>{
+              if(result.status==200){
+                  that.$message.success(result.msg)
+              }else if(result.status==400){
+                  that.$message.error(result.msg)
+              }
+          }).catch(err=>{
+              that.$message.error('错误!')
+          })
       }
   },
 };

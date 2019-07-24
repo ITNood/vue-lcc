@@ -10,5 +10,7 @@ export default {
 </script>
 
 <style>
-
+/* #app{
+  font-family: number;
+} */
 </style>

@@ -13,7 +13,7 @@
                 <el-radio label="1" border>English</el-radio>
                 <el-radio label="2" border>简体中文</el-radio>
             </el-radio-group>
-            <el-button class="submit" style="margin-top:120px;">确认</el-button>
+            <!-- <el-button class="submit" style="margin-top:120px;">确认</el-button> -->
         </div>
     </div>
   </div>
@@ -31,11 +31,17 @@ export default {
       message: "切换语言",
       href: "",
       classIcon: "",
-      radio1:'1',
+      radio1:'',
     };
   },
   mounted() {
-      
+      let lang=window.localStorage.getItem('lang')
+      console.log(lang)
+      if(lang==='cn'){
+        this.radio1='2'
+      }else if(lang==='en') {
+        this.radio1='1'
+      }
   },
   methods: {
       changeRadio(){
@@ -45,9 +51,11 @@ export default {
          if(number==1){
              window.localStorage.setItem("lang", 'en');
              this.$i18n.locale = "en"
+             this.radio1='1'
          }else{
             window.localStorage.setItem("lang", 'cn');
             this.$i18n.locale = "cn";
+            this.radio1='2'
          }
       }
   },

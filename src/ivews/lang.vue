@@ -30,15 +30,16 @@ export default {
       radio1:'1'
     };
   },
+  mounted() {
+    let lang=window.localStorage.getItem('lang')
+      console.log(lang)
+      if(lang==='cn'){
+        this.radio1='2'
+      }else if(lang==='en') {
+        this.radio1='1'
+      }
+  },
   methods: {
-    // changEn() {
-    //   window.localStorage.setItem("lang", 'en');
-    //   this.$i18n.locale = "en"
-    // },
-    // changCn() {
-    //   window.localStorage.setItem("lang", 'cn');
-    //   this.$i18n.locale = "cn";
-    // }
     changeRadio(){
          console.log(this.radio1)
          let that=this
@@ -46,16 +47,18 @@ export default {
          if(number==1){
              window.localStorage.setItem("lang", 'en');
              this.$i18n.locale = "en"
+             this.radio1='1'
          }else{
             window.localStorage.setItem("lang", 'cn');
             this.$i18n.locale = "cn";
+            this.radio1='2'
          }
-      }
+    }
   },
   created(){
         let that = this;
         localStorage.lang == undefined ? 'cn':localStorage.lang
-    }
+  }
 };
 </script>
 

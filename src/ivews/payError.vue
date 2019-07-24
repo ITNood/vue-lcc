@@ -39,7 +39,12 @@ export default {
       error:'',
      
     };
-  }
+  },
+  mounted() {
+    let that=this
+    let msg=window.localStorage.getItem('errorMsg')
+    that.error=msg
+  },
 };
 </script>
 

@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import api from '../API/index'
 import Top from "../components/top";
 export default {
   components: {
@@ -32,9 +33,26 @@ export default {
       message: "关于我们",
       href: "",
       classIcon: "",
-      code:require('../assets/img/code.jpg')
+      code:''
     };
-  }
+  },
+  mounted() {
+    this.getData()
+  },
+  methods: {
+    getData(){
+      let that=this
+      api.minicart.template.choices('uploadAddress').then(result=>{
+        if(result.status==200){
+          that.code=result.res.img
+        }else if(result.status==400){
+          that.$message.error(result.msg)
+        }
+      }).catch(err=>{
+        that.$message.error('错误!')
+      })
+    }
+  },
 };
 </script>
 
