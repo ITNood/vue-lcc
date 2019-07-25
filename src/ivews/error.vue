@@ -40,6 +40,10 @@ export default {
       error:''
     };
   },
+  mounted() {
+    let msg=window.localStorage.getItem('error')
+    this.error=msg
+  },
   
 };
 </script>

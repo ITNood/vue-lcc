@@ -47,6 +47,7 @@
 <script>
 import Top from "../components/top";
 import Clipboard from "clipboard";
+import api from '../API/index'
 export default {
   components: {
     Top
@@ -57,12 +58,29 @@ export default {
       message: "区链充值",
       href: "",
       classIcon: "",
-      cut: "RESS333",
-      codeUrl: require("../assets/img/logo.png"),
-      address: "15651546"
+      cut: "",
+      codeUrl: '',
+      address: ""
     };
   },
+  mounted() {
+    this.getData()
+  },
   methods: {
+    getData(){
+      let that=this
+      api.minicart.template.choices('rechargeUsdtAddress').then(result=>{
+        if(result.status==200){
+          that.cut=result.res.type
+          that.codeUrl=result.res.img
+          that.address=result.res.address
+        }else if(result.status==400){
+          that.$message.error(result.msg)
+        }
+      }).catch(err=>{
+        that.$message.error('错误!')
+      })
+    },
     hold() {
       //console.log('下载图片')
       let a = document.createElement("a");

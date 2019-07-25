@@ -57,6 +57,7 @@
 <script>
 export default {
   name: "Buy",
+  //props:['num'],
   data() {
     return {
       num: 1,

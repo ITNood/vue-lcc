@@ -38,20 +38,19 @@
             <ul class="histryList">
                 <li v-for="(item,index) in items" :key="index">
                     <p>{{item.date}}</p>
-                    <h5>{{item.text}}</h5>
+                    <h5>{{item.detail}}</h5>
                     <span>{{item.amount}}</span>
                 </li>
             </ul>
         </div>
       </div>
-
-      
     </div>
   </div>
 </template>
 
 <script>
 import Top from "../components/top";
+import api from '../API/index'
 export default {
   components: {
     Top
@@ -83,7 +82,25 @@ export default {
       ],
       items:[]
     };
-  }
+  },
+  mounted() {
+    this.getData()
+  },
+  methods: {
+    getData(){
+      let that=this
+      api.minicart.template.choices('balanceRecord',{id:1}).then(result=>{
+        if(result.status==200){
+          that.usdt=result.res.usdt
+          that.items=that.items.concat(result.res.data)
+        }else if(result.status==400){
+          that.$message.error(result.msg)
+        }
+      }).catch(err=>{
+        that.$message.error('错误!')
+      })
+    }
+  },
 };
 </script>
 

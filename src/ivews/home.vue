@@ -8,19 +8,19 @@
       </el-row>
     </div>
     <div class="total">
-      <p>我的总值</p>
+      <p>{{$t('message.value')}}</p>
       <h1><span>$</span>{{account}}<i class="icon-ziyuanldpi icon iconfont"></i></h1>
     </div>
 
     <div class="money">
-      <p>我的持币</p>
+      <p>{{$t('message.coins')}}</p>
       <el-row :gutter="15">
         <el-col :span="12">
           <div class="list">
             <p>FC</p>
             <h5><span>$</span>{{lcc}}</h5>
             <p>0.001</p>
-            <router-link to="/lcc">操作管理</router-link>
+            <router-link to="/lcc">{{$t('message.operation')}}</router-link>
             <i class="lcc"></i>
           </div>
         </el-col>
@@ -29,7 +29,7 @@
             <p>USDT</p>
             <h5><span>$</span>{{usdt}}</h5>
             <p>0.001</p>
-            <router-link to="/usdt">操作管理</router-link>
+            <router-link to="/usdt">{{$t('message.operation')}}</router-link>
             <i class="usdt"></i>
           </div>
         </el-col>
@@ -37,7 +37,7 @@
     </div>
 
     <div class="finance">
-      <p>私人财务</p>
+      <p>{{$t('message.finance')}}</p>
       <ul class="financeList">
         <li v-for="(list,index) in lists" :key="index">
           <router-link :to="list.url">
@@ -70,20 +70,20 @@ export default {
       lists:[
         {
           url:'/assets',
-          title:'钱包资产',
-          text:'我的钱包列表',
+          title:this.$t('message.wallet'),
+          text:this.$t('message.baglist'),
           classIcon:'icon-qianbao'
         },
         {
           url:'/finance',
-          title:'财务账单',
-          text:'会员财务账单',
+          title:this.$t('message.bill'),
+          text:this.$t('message.vip'),
           classIcon:'icon-caiwuguanlivg'
         },
         {
           url:'/news',
-          title:'私人信箱',
-          text:'私人通知信息',
+          title:this.$t('message.email'),
+          text:this.$t('message.notification'),
           classIcon:'icon-xiaoxi'
         }
       ]
@@ -106,10 +106,10 @@ export default {
           that.usdt=result.res.usdt
 
           if(result.res.levelState == 0){
-            that.text="购买配套>>"
+            that.text=this.$t('message.match')+">>"
             that.url="/buy"
           }else {
-            that.text="升级配套>>"
+            that.text=this.$t('message.upgrade')+">>"
             that.url="/update"
           }
 

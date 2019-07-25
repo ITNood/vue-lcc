@@ -27,10 +27,10 @@
 export default {
   data() {
     return {
-      radio1:'1'
+      radio1:'2'
     };
   },
-  mounted() {
+  updated() {
     let lang=window.localStorage.getItem('lang')
       console.log(lang)
       if(lang==='cn'){

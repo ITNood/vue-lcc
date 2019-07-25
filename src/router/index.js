@@ -347,6 +347,13 @@ export default new Router({
       component: () => {
         return import('../ivews/bagDetails')
       }
+    },
+    {
+      path: '/cashOrder',
+      name: 'cashOrder',
+      component: () => {
+        return import('../ivews/cashOrder')
+      }
     }
   ]
 })

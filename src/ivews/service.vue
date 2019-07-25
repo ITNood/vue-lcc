@@ -44,12 +44,11 @@
                         <div class="status">
                             <h5>{{item.amount}}Usdt</h5>
                             <div class="orderStauts">
-                                <span v-if="item.state==1">匹配中</span>
+                                <span v-if="item.state==1">待匹配</span>
                                 <span v-else-if="item.state==2">进行中</span>
-                                <span v-else-if="item.state==3"></span>
-                                <span v-else-if="item.state==4"></span>
-                                <span v-else-if="item.state==5"></span>
-                                <span v-else-if="item.state==6"></span>
+                                <span v-else-if="item.state==3">已完成</span>
+                                <span v-else-if="item.state==4">已取消</span>
+                                <span v-else-if="item.state==5">进行中</span>
                                 <i class="el-icon-arrow-right"></i>
                             </div>
                         </div>

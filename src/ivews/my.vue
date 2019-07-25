@@ -19,10 +19,10 @@
      <div class="container" style="margin-top:0">
          <el-row :gutter="15" class="sign">
              <el-col :span="12">
-                 <router-link to="/sign"><i class="icon iconfont icon-hezuohuobantianchong"></i>签约管理</router-link>
+                 <router-link to="/sign"><i class="icon iconfont icon-hezuohuobantianchong"></i>{{$t('message.siged')}}</router-link>
              </el-col>
              <el-col :span="12">
-                 <router-link to="/partner" style="background:#1d4cd3"><i class="icon iconfont icon-zhucetianjiahaoyou"></i>签约合伙人</router-link>
+                 <router-link to="/partner" style="background:#1d4cd3"><i class="icon iconfont icon-zhucetianjiahaoyou"></i>{{$t('message.partner')}}</router-link>
              </el-col>
          </el-row>
          <div class="myList">
@@ -31,7 +31,7 @@
                 <li v-show="show">
                     <router-link to="/report">
                         <i class="icon iconfont icon-dingdanwancheng"></i>
-                        <div class="listText">报单中心<span class="el-icon-arrow-right"></span></div>
+                        <div class="listText">{{$t('message.report')}}<span class="el-icon-arrow-right"></span></div>
                     </router-link>
                 </li>
                 <li v-for="(item,index) in items" :key="index">
@@ -67,7 +67,7 @@ export default {
       img:require('../assets/img/photo.png'),
       username:'',
       id:'',
-      show:false,
+      show:true,
       items:[
         //   {
         //       url:'/report',
@@ -77,39 +77,39 @@ export default {
           {
               url:'/service',
               font:'icon-fuwuleixing',
-              text:'服务中心'
+              text:this.$t('message.service')
           },
           {
               url:'/shopCenter',
               font:'icon-shangjia',
-              text:'商家中心'
+              text:this.$t('message.shoper')
           }
       ],
       todos:[
           {
               url:'/takeWay',
               font:'icon-meiyuanbizhuanyongzhanghu',
-              text:'收款方式'
+              text:this.$t('message.takeWay')
           },
           {
               url:'/mobile',
               font:'icon-mobile',
-              text:'手机号码'
+              text:this.$t('message.telphone')
           },
           {
               url:'/password',
               font:'icon-password',
-              text:'安全密码'
+              text:this.$t('message.password')
           },
           {
               url:'/language',
               font:'icon-diqiu',
-              text:'切换语言'
+              text:this.$t('message.language')
           },
           {
               url:'/about',
               font:'icon-guanyu',
-              text:'关于我们'
+              text:this.$t('message.about')
           }
       ]
   }
@@ -127,11 +127,11 @@ export default {
                  that.img=result.res.avatar           //头像
                  
                  //报单中心
-                if (result.res.isFeedback == 0) {
-                    that.show=false
-                } else if (result.res.isFeedback == 1) {
-                    that.show=true
-                }
+                // if (result.res.isFeedback == 0) {
+                //     that.show=false
+                // } else if (result.res.isFeedback == 1) {
+                //     that.show=true
+                // }
              }
          }).catch(err=>{
              that.$message.error('错误!')

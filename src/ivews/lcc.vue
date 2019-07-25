@@ -14,8 +14,10 @@
              <el-col :span="12"><el-button class="submit" @click="btn1()" style="background:#e43c1d">买入</el-button></el-col>
              <el-col :span="12"><el-button class="submit" @click="btn2()" style="background:#05cf7f">出售</el-button></el-col>
          </el-row>
-         <Buy  @btn1="btn1" ref="child1" :dialogVisible="show"/>
+         <Buy  @btn1="btn1" ref="child1" :dialogVisible="show2" :num="number"/>
          <Sell @btn2="btn2" ref="child2" :centerDialogVisible="show1"/>
+          <!--密码组件-->
+  <Pin @submit="submit" ref="child" :centerDialogVisible="show" />
      </div>
  </div>
 </template>
@@ -26,12 +28,14 @@ import Echarts from '../components/echarts'
 import Buy from '../components/lcc/buy'
 import Sell from '../components/lcc/sell'
 import api from '../API/index'
+import Pin from '../components/pin'
 export default {
     components:{
         Top,
         Echarts,
         Buy,
-        Sell
+        Sell,
+        Pin
      },
  data() {
   return {
@@ -41,10 +45,12 @@ export default {
       classIcon: "icon-erweima icon iconfont",
       lcc:'0.00',
       number:'100',
-      show:false,
+      show2:false,
       show1:false,
+      number:1,
       date:'',
-      data:''
+      data:'',
+      show:false
   }
  },
  mounted() {
@@ -65,8 +71,12 @@ export default {
              that.$message.error('错误!')
          })
      },
+     submit(){
+
+     },
      btn1(data){
-         this.$refs.child1.buy(this.show);
+        // this.$refs.child.open(this.show);
+         this.$refs.child1.buy(this.show2);
      },
      btn2(data){
          this.$refs.child2.sell(this.show1); 

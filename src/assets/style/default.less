@@ -816,6 +816,7 @@ img {
             .el-input__inner {
                 border: none;
                 background: transparent;
+                color: @fontcolor
             }
         }
 
@@ -2900,6 +2901,15 @@ img {
         min-height: 150px !important;
         padding: 10px;
     }
+
+    .el-input__inner{
+        background: transparent;
+        border:none;
+        border-bottom: 1px solid @border;
+        padding:0;
+        color: @fontcolor;
+        font-size:12px;
+    }
 }
 
 .downloadImg {
@@ -2915,6 +2925,9 @@ img {
         position: absolute;
         top: 0;
         left: 0;
+    }
+    img{
+        height: 150px;
     }
 
     .uploadText {
@@ -3481,7 +3494,6 @@ strong {
         background: @background;
         border-top: 2px solid @blue;
 
-        .buyContent {}
 
     }
 

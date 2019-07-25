@@ -55,6 +55,8 @@
 
 <script>
 import Top from "../components/top";
+import api from "../API/index";
+import jsBridge from '../assets/js/jsbridge-mini.js'
 export default {
   components: {
     Top
@@ -68,16 +70,48 @@ export default {
       dollar: 0,
       rmb: 0,
       data: 0,
-      week: 0
+      week: 0,
     };
   },
+  mounted() {
+    this.getData();
+  },
   methods: {
+    getData() {
+      let that = this;
+      api.minicart.template
+        .choices("cashWithdrwaRecord")
+        .then(result => {
+          if (result.status == 200) {
+            that.dollar = result.res.balance;
+            that.rmb = result.res.yuan;
+            that.data = result.res.today;
+            that.week = result.res.week;
+          } else if (result.status == 400) {
+            that.$message.error(result.msg);
+          }
+        })
+        .catch(err => {
+          that.$message.error("错误!");
+        });
+    },
     scan() {
-
+      jsBridge.scan(
+        {
+          needResult: true //默认为false，扫描结果由App处理；true则直接返回扫描结果
+        },
+        function(code) {
+          if (code) {
+            window.localStorage.setItem("code", code);
+            this.$router.push('/takeMoney')
+          } else {
+            alert("扫码失败或取消了扫码");
+          }
+        }
+      );
     }
   }
 };
-
 </script>
 
 <style scoped>

@@ -7,32 +7,56 @@
       :font="classIcon"
     />
     <div class="container">
-        <div class="work">
-            <div class="workContent">
-                <li v-for="(item,index) in items" :key="index">
-                    <p>{{item.date}}</p>
-                    <div class="workbg">
-                        <h5>{{item.title}}<i class="icon iconfont icon-huixingzhen" @click="look($event)" v-if="item.state==1"></i></h5>
-                        <input type="hidden" :value="item.img">
-                        <p>{{item.text}}</p>
-                    </div>
-                </li>
+      <div class="work">
+        <div class="workContent">
+          <li
+            v-for="(item,index) in items"
+            :key="index"
+          >
+            <p>{{item.date}}</p>
+            <div class="workbg">
+              <h5>{{item.title}}<i
+                  class="icon iconfont icon-huixingzhen"
+                  @click="look($event)"
+                  v-if="item.pic"
+                ></i></h5>
+              <input
+                type="hidden"
+                :value="item.pic"
+              >
+              <p>{{item.detail}}</p>
             </div>
+          </li>
         </div>
+      </div>
     </div>
     <div id="bottom">
-        <el-row>
-            <el-col :span="6"><el-button class="solve">已解决</el-button></el-col>
-            <el-col :span="18"><el-button class="reply" @click="reply()">回 复</el-button></el-col>
-        </el-row>
+      <el-row>
+        <el-col :span="6">
+          <el-button class="solve">{{status}}</el-button>
+        </el-col>
+        <el-col :span="18">
+          <el-button
+            class="reply"
+            @click="reply()"
+            :disabled="disabled"
+          >{{$t('message.reply')}}</el-button>
+        </el-col>
+      </el-row>
     </div>
-    <el-dialog :visible.sync="centerDialogVisible" width="80%" center class="openDialog">
-        <span><img :src="img"></span>
+    <el-dialog
+      :visible.sync="centerDialogVisible"
+      width="80%"
+      center
+      class="openDialog"
+    >
+      <span><img :src="pic"></span>
     </el-dialog>
   </div>
 </template>
 
 <script>
+import api from "../API/index";
 import Top from "../components/top";
 export default {
   components: {
@@ -41,39 +65,64 @@ export default {
   data() {
     return {
       url: "/report",
-      message: "工单详情",
+      message: this.$t('message.reportDetails'),
       href: "",
       classIcon: "",
-      centerDialogVisible:false,
-      items:[
-          {
-              state:1,
-              date:'2018/07/19',
-              title:'标题',
-              text:'文本',
-              img:require('../assets/img/1.png')
-          }
-      ],
-      img:''
+      centerDialogVisible: false,
+      items: [],
+      pic: "",
+      status: "",
+      disabled: false
     };
   },
+  mounted() {
+    this.getData();
+  },
   methods: {
-    look(ev){
-      console.log(ev)
-      console.log(ev.target.parentNode.parentNode.children[1].defaultValue)
-      let img=ev.target.parentNode.parentNode.children[1].defaultValue
-      this.img=img
-      this.centerDialogVisible=true
+    getData() {
+      let that = this;
+      let id = that.$route.query.id;
+      api.minicart.template
+        .choices("feedbackDetail", { id: id })
+        .then(result => {
+          if (result.status == 200) {
+            if (result.res.state == 1) {
+              that.status = this.$t('message.wait');
+              that.disabled = false;
+            } else if (result.state == 2) {
+              that.status = "处理中";
+              that.disabled = false;
+            } else if (result.state == 3) {
+              that.status = "已完成";
+              that.disabled = true;
+            }
+            that.items=that.items.concat(result.res.data)
+          } else if (result.status == 400) {
+            that.$message.error(result.msg);
+          }
+        })
+        .catch(err => {
+          that.$message.error("错误!");
+        });
     },
-    reply(ev){
+    look(ev) {
+      let img = this.pic;
+      if (img) {
+        console.log(ev);
+        console.log(ev.target.parentNode.parentNode.children[1].defaultValue);
+        let img = ev.target.parentNode.parentNode.children[1].defaultValue;
+        this.img = img;
+        this.centerDialogVisible = true;
+      }
+    },
+    reply(ev) {
       let id = this.$route.query.id;
       console.log(id);
       this.$router.push("/reply?id=" + id + "");
     }
-  },
+  }
 };
 </script>
 
 <style scoped>
-
 </style>

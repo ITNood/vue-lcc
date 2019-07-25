@@ -38,7 +38,11 @@ export default {
       classIcon: "",
       amount:100
     };
-  }
+  },
+  mounted() {
+    let msg=window.localStorage.getItem('success')
+    this.amount=msg
+  },
 };
 </script>
 

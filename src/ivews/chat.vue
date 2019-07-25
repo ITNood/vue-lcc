@@ -5,10 +5,10 @@
       id="top"
     >
       <el-col :span="6">
-        <router-link
-          to=""
+        <a
+        @click="back()"
           class="el-icon-arrow-left back"
-        ></router-link>
+        ></a>
       </el-col>
       <el-col :span="12">
         <h5 style="height:50px;">{{title}}</h5>
@@ -143,6 +143,9 @@ export default {
   },
 
   methods: {
+    back() {
+      this.$router.go(-1);
+    },
     //滚动条到底部
     scrollToBottom() {
       this.$nextTick(() => {

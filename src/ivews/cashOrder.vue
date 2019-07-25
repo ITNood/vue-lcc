@@ -73,8 +73,8 @@ export default {
   },
   data() {
     return {
-      url: "/outRecharge",
-      message: "充值订单",
+      url: "/cash",
+      message: "提现订单",
       href: "/chat",
       classIcon: "el-icon-chat-dot-square",
       amount: '',
@@ -112,7 +112,7 @@ export default {
     submit(pwd){
         let that=this
         let id=that.$route.query.id
-        api.minicart.template.choices('serviceCompleteRecharge',{id:id,security:pwd}).then(result=>{
+        api.minicart.template.choices('completeWithdraw',{id:id,security:pwd}).then(result=>{
             if(result.status==200){
                 that.$message.success(result.msg)
                 setTimeout(() => {
@@ -136,7 +136,7 @@ export default {
     chat() {
       let that = this;
       let id = that.$route.query.id;
-      that.$router.push("/chat?id=" + id + "&type=1");
+      that.$router.push("/chat?id=" + id + "&type=2");
     }
   }
 };
