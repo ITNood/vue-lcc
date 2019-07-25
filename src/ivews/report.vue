@@ -9,16 +9,16 @@
     <div class="container">
       <div class="reportList">
         <div class="reportContent">
-          <div class="noReport" v-if="items==0">当前没有已添加的工单</div>
+          <div class="noReport" v-if="items==0">{{$t('message.none')}}</div>
           <ul class="hasReport" v-else>
               <li v-for="(item,index) in items" :key="index">
                   <router-link :to="{path:'/reportDetails',query:{id:item.id}}">
                       <h5>{{item.title}}</h5>
                       <p>{{item.date}}</p>
                       <div class="reportStauts">
-                         <span v-if="item.state==1" :style="{color:(item.state==1?'#e53c1d':'')}">待处理</span>
-                         <span v-if="item.state==2" :style="{color:(item.state==2?'#3eb36f':'')}">处理中</span>
-                         <span v-if="item.state==3" :style="{color:(item.state==3?'#999':'')}">已完成</span>
+                         <span v-if="item.state==1" :style="{color:(item.state==1?'#e53c1d':'')}">{{$t('message.wait')}}</span>
+                         <span v-if="item.state==2" :style="{color:(item.state==2?'#3eb36f':'')}">{{$t('message.Processing')}}</span>
+                         <span v-if="item.state==3" :style="{color:(item.state==3?'#999':'')}">{{$t('message.end')}}</span>
                          <i class="el-icon-arrow-right"></i>
                       </div>
                   </router-link>
@@ -27,7 +27,7 @@
         </div>
       </div>
     </div>
-    <router-link class="subReport" to="/reply">提交新的工单</router-link>
+    <router-link class="subReport" to="/reply">{{$t('message.submitReport')}}</router-link>
   </div>
 </template>
 
@@ -41,7 +41,7 @@ export default {
   data() {
     return {
       url: "/my",
-      message: "报单中心",
+      message: this.$t('message.report'),
       href: "",
       classIcon: "",
       items:[]

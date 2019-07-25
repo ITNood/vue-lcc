@@ -1,6 +1,15 @@
 import zhLocale from 'element-ui/lib/locale/lang/zh-CN' //引入element语言包
 const cn = {
     message: {
+        'post':'后重新发送',
+        'enterbankcard':'请输入银行卡号',
+        'enterbank':'请输入银行名称',
+        'enterReal':'请输入您的真实姓名',
+        'edit':'编辑',
+        'enterAmount':'请输入提现金额',
+        'sweepFail': '扫码失败或取消了扫码',
+        'error':'错误',
+        'matched': '待匹配',
         'operation':'操作管理',
         'user': '用户名',
         'enter': '请输入用户名',
@@ -20,7 +29,7 @@ const cn = {
         'britain': '英国 +44',
         'phone': '电话号码',
         'code': '图形验证码',
-        'send': '发送',
+        'send': '发送验证码',
         'value': '我的总值',
         'update': '升级',
         'coins': '我的持币',
@@ -200,7 +209,7 @@ const cn = {
         'language': '切换语言',
         'about': '关于我们',
         'none': '当前没有已添加的工单',
-        'newreply': '新回复',
+        'Processing': 'Processing',
         'processed': '已处理',
         'wait': '待处理',
         'submitReport': '提交新的工单',

@@ -13,7 +13,7 @@
                 <img src="../assets/img/about.png">
                 <p>After one hundred, when art historians research in the 21st century, in the currency of the encryption image is likely to be an integral part of their discussion. In the discussion, the currency and its ubiquitous icon will become an important topic. The COINS to the encrypted currency world, basic equivalent to $to the mainstream of the global economic system.</p>
                 <div class="downloadCode"><img :src="code" ></div>
-                <div class="codefont">扫一扫，下载FC TOKEN</div>
+                <div class="codefont">{{$t('message.downloadFc')}}</div>
             </div>
         </div>
     </div>
@@ -30,11 +30,14 @@ export default {
   data() {
     return {
       url: "/my",
-      message: "关于我们",
+      message: '',
       href: "",
       classIcon: "",
       code:''
     };
+  },
+  updated() {
+    this.message=this.$t('message.about')
   },
   mounted() {
     this.getData()

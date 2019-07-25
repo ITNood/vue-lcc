@@ -8,24 +8,24 @@
       style="background:transparent"
     />
     <el-tabs v-model="activeName" id="tabs">
-        <el-tab-pane label="商户现金提现" name="first">
+        <el-tab-pane :label="$t('message.shopcash')" name="first">
              <ul class="outside">
             <li>
-                <p>我的商户现金</p>
+                <p>{{$t('message.mycash')}}</p>
                 <h5>${{usdt}}</h5>
             </li>
             <li>
-                <p>提现金额</p>
-                <el-input v-model="amount" v-on:input="change()" placeholder="请输入提现金额"></el-input>
+                <p>{{$t('message.cashAmount')}}</p>
+                <el-input v-model="amount" v-on:input="change()" :placeholder="$t('message.enterAmount')"></el-input>
             </li>
             <li>
-                <p>提现到账</p>
+                <p>{{$t('message.cashAccount')}}</p>
                 <h5>${{dollar}} / ￥{{rmb}}</h5>
             </li>
         </ul>
-        <el-button class="submit" @click="submit1($event)">确认</el-button>
+        <el-button class="submit" @click="submit1($event)">{{$t('message.confirm')}}</el-button>
         </el-tab-pane>
-        <el-tab-pane label="提现订单" name="second">
+        <el-tab-pane :label="$t('message.cashorder')" name="second">
              <div class="pubilcOrder">
             <ul class="orderList">
                 <li v-for="(item,index) in items" :key="index">
@@ -33,24 +33,24 @@
                         <div class="status">
                             <h5>{{item.amount}}Usdt</h5>
                             <div class="orderStauts">
-                                <span v-if="item.state==1">待匹配</span>
-                                <span v-else-if="item.state==2">进行中</span>
-                                <span v-else-if="item.state==3">已完成</span>
-                                <span v-else-if="item.state==4">已取消</span>
-                                <span v-else-if="item.state==5">进行中</span>
+                                <span v-if="item.state==1">{{$t('message.matched')}}</span>
+                                <span v-else-if="item.state==2">{{$t('message.ing')}}</span>
+                                <span v-else-if="item.state==3">{{$t('message.end')}}</span>
+                                <span v-else-if="item.state==4">{{$t('message.cancel')}}</span>
+                                <span v-else-if="item.state==5">{{$t('message.ing')}}</span>
                                 <i class="el-icon-arrow-right"></i>
                             </div>
                         </div>
                         <el-row :gutter="15">
                             <el-col :span="12">
                                 <div class="orderContent">
-                                    <p>时间</p>
+                                    <p>{{$t('message.time')}}</p>
                                     <dd>{{item.date}}</dd>
                                 </div>
                             </el-col>
                             <el-col :span="12">
                                 <div class="orderContent textRight">
-                                    <p>提现总额Usdt / Rmb</p>
+                                    <p>{{$t('message.totalRec')}}Usdt / Rmb</p>
                                     <dd>${{item.dollar}} / ￥{{item.yuan}}</dd>
                                 </div>
                             </el-col>
@@ -78,7 +78,7 @@ export default {
   data() {
     return {
       url: "/shopCenter",
-      message: "提现",
+      message: this.$t('message.shopcash'),
       href: "",
       classIcon: "",
       activeName:'first',
@@ -110,7 +110,7 @@ export default {
                   that.$message.error(result.msg)
               }
           }).catch(err=>{
-              that.$message.error('错误!')
+              that.$message.error(this.$t('message.error'))
           })
       },
       change(val){
@@ -130,7 +130,7 @@ export default {
                  that.$message.error(result.msg)
              }
          }).catch(err=>{
-             that.$message.error('错误!')
+             that.$message.error(this.$t('message.error'))
          })
          
       },
@@ -140,7 +140,7 @@ export default {
          if(number){
          that.$refs.child.open(that.show);
          }else{
-             that.$message.warning('请输入提现金额！')
+             that.$message.warning(this.$t('message.enterAmount'))
          }
       }
   },

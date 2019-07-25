@@ -9,7 +9,7 @@
 
     <div class="container" style="margin-bottom:0;">
       <el-form :model="form" ref="form" >
-          <el-form-item label="当前手机号码" prop="mobile"  class="login">
+          <el-form-item :label="$t('message.nowphone')" prop="mobile"  class="login">
               <el-input v-model="form.mobile"></el-input>
           </el-form-item>
 
@@ -18,27 +18,27 @@
               <img src="http://www.hxfc.com/getVerifyCode" id="code" onclick="this.src='http://www.hxfc.com/getVerifyCode?d='+Math.random();">
           </el-form-item> -->
 
-          <el-form-item label="短信验证码" prop="oldCode"  class="login">
-              <el-input placeholder="请输入短信验证码" v-model="form.oldCode"></el-input>
+          <el-form-item :label="$t('message.newCode')" prop="oldCode"  class="login">
+              <el-input :placeholder="$t('message.enterPhoneCode')" v-model="form.oldCode"></el-input>
               <el-button class="send" @click="send()" :disabled="disabled">{{text}}{{text2}}</el-button>
           </el-form-item>
 
-          <el-form-item label="新手机号码"  class="login selectcountry">
+          <el-form-item :label="$t('message.newtelphonenumber')"  class="login selectcountry">
             <el-select v-model="form.value" @change="change()">
                 <el-option v-for="item in items" :key="item.value" :label="item.label" :value="item.value"></el-option>
             </el-select>
              <!-- <el-select v-model="form.value" @change="change()" >
                         <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
                   </el-select> -->
-            <el-input placeholder="请输入新手机号码" v-model="form.newMobile" class="mobile"></el-input>
+            <el-input :placeholder="$t('message.enternewnumber')" v-model="form.newMobile" class="mobile"></el-input>
           </el-form-item>
 
-          <el-form-item label="短信验证码" prop="newCode"  class="login">
-              <el-input placeholder="请输入短信验证码" v-model="form.newCode"></el-input>
+          <el-form-item :label="$t('message.newCode')" prop="newCode"  class="login">
+              <el-input :placeholder="$t('message.enterPhoneCode')" v-model="form.newCode"></el-input>
               <el-button class="send" @click="newSend()" :disabled="disabled2">{{newText}}{{newText2}}</el-button>
           </el-form-item>
       </el-form>
-      <el-button @click="mobile()" class="submit">确认</el-button>
+      <el-button @click="mobile()" class="submit">{{$t('message.confirm')}}</el-button>
     </div>
   </div>
 </template>
@@ -53,13 +53,13 @@ export default {
   data() {
     return {
       url: "/my",
-      message: "手机号码",
+      message: this.$t('message.telphone'),
       href: "",
       classIcon: "",
       text: "",
-      text2: "发送验证码",
+      text2: this.$t('message.send'),
       disabled:false,
-      newText2:'发送验证码',
+      newText2:this.$t('message.send'),
       newText:'',
       disabled2:false,
       form:{
@@ -71,35 +71,35 @@ export default {
       items:[
           {
               value:'1',
-              label:'中国 +86'
+              label:this.$t('message.china')
           },
           {
               value:'2',
-              label:'新加坡 +65'
+              label:this.$t('message.singapore')
           },
           {
               value:'3',
-              label:'泰国 +66'
+              label:this.$t('message.thailand')
           },
           {
               value:'4',
-              label:'马来西亚 +60'
+              label:this.$t('message.malaysia')
           },
           {
               value:'5',
-              label:'日本 +81'
+              label:this.$t('message.japan')
           },
           {
               value:'6',
-              label:'韩国 +82'
+              label:this.$t('message.korea')
           },
           {
               value:'7',
-              label:'美国 +1'
+              label:this.$t('message.usa')
           },
           {
               value:'8',
-              label:'英国 +44'
+              label:this.$t('message.britain')
           },
       ]
     };
@@ -117,7 +117,7 @@ export default {
           that.$message.error(result.msg)
         }
       }).catch(err=>{
-        that.$message.error('错误!')
+        that.$message.error(this.$t('message.error'))
       })
     },
     change(){
@@ -133,7 +133,7 @@ export default {
             if (!that.timer) {
               that.disabled=true
               that.text = TIME_COUNT;
-              that.text2 = "s后重新发送";
+              that.text2 = "s"+this.$t('message.post');
               that.timer = setInterval(() => {
                 if (that.text > 0 && that.text <= TIME_COUNT) {
                   that.text--;
@@ -141,7 +141,7 @@ export default {
                   that.disabled=false
                   clearInterval(that.timer);
                   that.timer = null;
-                  that.text = "重新发送";
+                  that.text = this.$t('message.post');
                   that.text2 = "";
                 }
               }, 1000);
@@ -150,7 +150,7 @@ export default {
           that.$message.error(result.msg)
         }
       }).catch(err=>{
-        that.$message.error('错误！')
+        that.$message.error(this.$t('message.error'))
       })
     },
 
@@ -164,7 +164,7 @@ export default {
             if (!that.timer) {
               that.disabled2=true
               that.newText = TIME_COUNT;
-              that.newText2 = "s后重新发送";
+              that.newText2 = "s"+this.$t('message.post');
               that.timer = setInterval(() => {
                 if (that.newText > 0 && that.newText <= TIME_COUNT) {
                   that.newText--;
@@ -172,7 +172,7 @@ export default {
                   that.disabled2=false
                   clearInterval(that.timer);
                   that.timer = null;
-                  that.newText = "重新发送";
+                  that.newText = this.$t('message.post');
                   that.newText2 = "";
                 }
               }, 1000);
@@ -181,7 +181,7 @@ export default {
           that.$message.error(result.msg)
         }
       }).catch(err=>{
-        that.$message.error('错误！')
+        that.$message.error(this.$t('message.error'))
       })
     },
 
@@ -199,7 +199,7 @@ export default {
           that.$message.error(result.msg)
         }
       }).catch(err=>{
-        that.$message.error('错误!')
+        that.$message.error(this.$t('message.error'))
       })
     }
   },

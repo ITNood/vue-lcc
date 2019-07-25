@@ -31,7 +31,7 @@ export default {
   data() {
     return {
       url: "/shopCenter",
-      message: "现金账单",
+      message: this.$t('message.cashbill'),
       href: "",
       classIcon: "",
       items:[]
@@ -50,7 +50,7 @@ export default {
           that.$message.error(result.msg)
         }
       }).catch(err=>{
-        that.$message.error('错误！')
+        that.$message.error(this.$t('message.error'))
       })
     }
   },

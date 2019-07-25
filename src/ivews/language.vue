@@ -8,7 +8,7 @@
     />
     <div class="container">
         <div class="selectLang">
-            <p>当前语言</p>
+            <p>{{$t('message.nowlang')}}</p>
             <el-radio-group v-model="radio1" @change="changeRadio()">
                 <el-radio label="1" border>English</el-radio>
                 <el-radio label="2" border>简体中文</el-radio>
@@ -28,13 +28,16 @@ export default {
   data() {
     return {
       url: "/my",
-      message: "切换语言",
+      message: '',
       href: "",
       classIcon: "",
       radio1:'',
     };
   },
   updated() {
+    this.message=this.$t('message.language')
+  },
+  mounted() {
      let lang=window.localStorage.getItem('lang')
       console.log(lang)
       if(lang==='cn'){

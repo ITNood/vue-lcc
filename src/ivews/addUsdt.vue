@@ -8,12 +8,12 @@
     />
     <div class="container">
         <el-form :model="form" ref="form" class="addPublic">
-            <el-form-item label="USDT地址" prop="usdt">
-                <el-input type="textarea" v-model="form.usdt" placeholder="请输入或长按粘贴您的USDT地址"></el-input>
+            <el-form-item :label="$t('message.usdtAddress')" prop="usdt">
+                <el-input type="textarea" v-model="form.usdt" :placeholder="$t('message.paste')"></el-input>
             </el-form-item>
         </el-form>
-        <el-button class="submit" @click="submit()" v-if="show">确认</el-button>
-        <el-button class="submit" @click="edit()" v-else>确认</el-button>
+        <el-button class="submit" @click="submit()" v-if="show">{{$t('message.confirm')}}</el-button>
+        <el-button class="submit" @click="edit()" v-else>{{$t('message.confirm')}}</el-button>
     </div>
   </div>
 </template>
@@ -62,7 +62,7 @@ export default {
                   that.$message.error(result.msg)
               }
           }).catch(err=>{
-              that.$message.error('错误！')
+              that.$message.error(this.$t('message.error'))
           })
       },
       edit(){
@@ -80,7 +80,7 @@ export default {
                   that.$message.error(result.msg)
               }
           }).catch(err=>{
-              that.$message.error('错误!')
+              that.$message.error(this.$t('message.error'))
           })
       },
       getData(){
@@ -93,7 +93,7 @@ export default {
                   that.$message.error(result.msg)
               }
           }).catch(err=>{
-              that.$message.error('错误!')
+              that.$message.error(this.$t('message.error'))
           })
       }
   },

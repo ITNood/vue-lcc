@@ -30,7 +30,7 @@ export default {
       radio1:'2'
     };
   },
-  updated() {
+  mounted() {
     let lang=window.localStorage.getItem('lang')
       console.log(lang)
       if(lang==='cn'){

@@ -9,7 +9,7 @@
     />
     <div class="shop">
       <div class="shopCash">
-        <p>我的商户现金</p>
+        <p>{{$t('message.mycash')}}</p>
         <h5><span>$</span>{{dollar}}</h5>
         <p>￥{{rmb}}</p>
       </div>
@@ -19,14 +19,14 @@
           class="cashList"
         >
           <h6>${{data}}</h6>
-          <p>今日收入</p>
+          <p>{{$t('message.dayincome')}}</p>
         </el-col>
         <el-col
           :span="12"
           class="cashList"
         >
           <h6>${{week}}</h6>
-          <p>本周收入</p>
+          <p>{{$t('message.weekincome')}}</p>
         </el-col>
       </el-row>
     </div>
@@ -35,18 +35,18 @@
         <a @click="scan()">
           <i class="icon iconfont icon-saoyisao"></i>
           <span class="el-icon-arrow-right"></span>
-          扫一扫收款
+          {{$t('message.clean')}}
         </a>
         <router-link to="/cash">
           <i class="icon iconfont icon-qianbao2"></i>
           <span class="el-icon-arrow-right"></span>
-          商户现金提现
+          {{$t('message.shopcash')}}
         </router-link>
 
         <router-link to="/cashBill">
           <i class="icon iconfont icon-zhangdan"></i>
           <span class="el-icon-arrow-right"></span>
-          商户现金账单
+          {{$t('message.cashbill')}}
         </router-link>
       </div>
     </div>
@@ -64,7 +64,7 @@ export default {
   data() {
     return {
       url: "/my",
-      message: "商家中心",
+      message: this.$t('message.shoper'),
       href: "",
       classIcon: "",
       dollar: 0,
@@ -92,7 +92,7 @@ export default {
           }
         })
         .catch(err => {
-          that.$message.error("错误!");
+          that.$message.error(this.$t('message.error'));
         });
     },
     scan() {
@@ -105,7 +105,7 @@ export default {
             window.localStorage.setItem("code", code);
             this.$router.push('/takeMoney')
           } else {
-            alert("扫码失败或取消了扫码");
+            alert(this.$t('message.sweepFail'));
           }
         }
       );

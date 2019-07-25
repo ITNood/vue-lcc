@@ -2,6 +2,9 @@ import axios from 'axios'
 import { Loading, Message } from 'element-ui'
 import json_response_codes from './codes'
 import config from '../config'
+import Vue from 'vue'
+import Router from 'vue-router'
+Vue.use(Router)
 
 // 创建axios实例
 //let token = window.localStorage.getItem("token") 
@@ -56,7 +59,7 @@ Axios.interceptors.response.use(
         if (net_response.data.status === 500) {
             alert(net_response.data.msg)
             window.localStorage.removeItem('token')
-           // window.location.href="/login"
+           //window.location.href="/login"
            this.$router.push('/login')
         } else if (net_response.data.status === 400) {
            // alert(net_response.data.msg)

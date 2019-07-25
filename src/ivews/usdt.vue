@@ -34,7 +34,7 @@
 
         <!--钱包记录-->
         <div class="histry">
-            <p>钱包记录</p>
+            <p>{{$t('message.bagHistry')}}</p>
             <ul class="histryList">
                 <li v-for="(item,index) in items" :key="index">
                     <p>{{item.date}}</p>
@@ -67,17 +67,17 @@ export default {
         {
           url: "/recharge",
           classIcon: "icon-qingyingyongxuanzhong",
-          title: "区链充值"
+          title: this.$t('message.zone')
         },
         {
           url: "/outRecharge",
           classIcon: "icon-zichan-quanbushebei",
-          title: "场外充值"
+          title: this.$t('message.outRecharge')
         },
         {
           url: "/transfer",
           classIcon: "icon-zhuanhuan",
-          title: "资产转账"
+          title: this.$t('message.assets')
         }
       ],
       items:[]
@@ -97,7 +97,7 @@ export default {
           that.$message.error(result.msg)
         }
       }).catch(err=>{
-        that.$message.error('错误!')
+        that.$message.error(this.$t('message.error'))
       })
     }
   },

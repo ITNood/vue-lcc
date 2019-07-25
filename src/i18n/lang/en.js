@@ -2,6 +2,15 @@
 import enLocale from 'element-ui/lib/locale/lang/en' //引入element语言包
 const en = {
     message: {
+        'post':'Post-Re-Send',
+        'enterbankcard': 'Please enter the bank card number',
+        'enterbank': 'Please enter the name of the bank',
+        'enterReal': 'Please enter your real name',
+        'edit': 'edit',
+        'enterAmount': 'Please enter the amount of cash withdrawal',
+        'sweepFail':'Sweeping failed or cancelled',
+        'error': 'Error',
+        'matched': 'To be matched',
         'operation': 'operation',
         'user': 'User',
         'enter': 'Enter User',
@@ -21,7 +30,7 @@ const en = {
         'britain': 'Britain +44',
         'phone': 'Phone number',
         'code': 'Verification Code',
-        'send': 'Send',
+        'send': 'Send Code',
         'value': 'My value',
         'update': 'Upgrade',
         'coins': 'My coins',
@@ -202,7 +211,7 @@ const en = {
         'about': 'About us',
         'none': 'No additional work orders are currently available',
         'newreply': 'New reply',
-        'processed': 'Processed',
+        'processed': 'Processing',
         'wait': 'To be processed',
         'submitReport': 'Submit new work orders',
         'reportDetails': 'Work order details',

@@ -8,24 +8,24 @@
     />
     <div class="container">
         <el-form :model="form" ref="form" class="addPublic">
-            <el-form-item label="真实姓名" prop="truename">
-                <el-input  v-model="form.truename" placeholder="请输入您的真实姓名"></el-input>
+            <el-form-item :label="$t('message.real')" prop="truename">
+                <el-input  v-model="form.truename" :placeholder="$t('message.enterReal')"></el-input>
             </el-form-item>
 
-            <el-form-item label="银行名称" prop="bankName">
-                <el-input  v-model="form.bankName" placeholder="请输入银行名称"></el-input>
+            <el-form-item :label="$t('message.bank')" prop="bankName">
+                <el-input  v-model="form.bankName" :placeholder="$t('message.enterbank')"></el-input>
             </el-form-item>
 
-             <el-form-item label="银行卡号" prop="bankAccount">
-                <el-input  v-model="form.bankAccount" placeholder="请输入银行卡号"></el-input>
+             <el-form-item :label="$t('message.bankCard')" prop="bankAccount">
+                <el-input  v-model="form.bankAccount" :placeholder="$t('message.enterbankcard')"></el-input>
             </el-form-item>
 
-            <el-form-item label="开户支行" prop="bankBranch">
-                <el-input  v-model="form.bankBranch" placeholder="请输入开户支行"></el-input>
+            <el-form-item :label="$t('message.openbank')" prop="bankBranch">
+                <el-input  v-model="form.bankBranch" :placeholder="$t('message.bankname')"></el-input>
             </el-form-item>
         </el-form>
-        <el-button class="submit" @click="edit()" v-if="show">确认</el-button>
-        <el-button class="submit" @click="bank()" v-else>确认</el-button>
+        <el-button class="submit" @click="edit()" v-if="show">{{$t('message.confirm')}}</el-button>
+        <el-button class="submit" @click="bank()" v-else>{{$t('message.confirm')}}</el-button>
     </div>
   </div>
 </template>
@@ -78,7 +78,7 @@ export default {
                   that.$message.error(result.msg)
               }
           }).catch(err=>{
-              that.$message.error('错误！')
+              that.$message.error(this.$t('message.error'))
           })
       },
       //编辑bank
@@ -98,7 +98,7 @@ export default {
                   that.$message.error(result.msg)
               }
           }).catch(err=>{
-              that.$message.error('错误!')
+              that.$message.error(this.$t('message.error'))
           })
       },
       getData(){
@@ -114,7 +114,7 @@ export default {
                   that.$messge.error(result.msg)
               }
           }).catch(err=>{
-              that.$message.error('错误!')
+              that.$message.error(this.$t('message.error'))
           })
       }
   },
