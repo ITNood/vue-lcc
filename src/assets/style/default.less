@@ -427,6 +427,7 @@ img {
     position: fixed;
     width: 100%;
     bottom: 0;
+    z-index: 99;
 
     a {
         display: block;
@@ -1080,7 +1081,7 @@ img {
         background: @background;
         padding: 15px;
         overflow: auto;
-        height: calc(100vh - 457px);
+        height: calc(100vh - 405px);
 
         li {
             position: relative;
@@ -2902,13 +2903,13 @@ img {
         padding: 10px;
     }
 
-    .el-input__inner{
+    .el-input__inner {
         background: transparent;
-        border:none;
+        border: none;
         border-bottom: 1px solid @border;
-        padding:0;
+        padding: 0;
         color: @fontcolor;
-        font-size:12px;
+        font-size: 12px;
     }
 }
 
@@ -2926,7 +2927,8 @@ img {
         top: 0;
         left: 0;
     }
-    img{
+
+    img {
         height: 150px;
     }
 
@@ -2964,7 +2966,7 @@ img {
             float: left;
             text-align: center;
             color: @fontcolor;
-            padding:0 8px;
+            padding: 0 8px;
         }
     }
 
@@ -3498,4 +3500,59 @@ strong {
 
     }
 
+}
+
+
+/*
+*
+*
+*
+*--------------------------myOrder-------------------------------
+*
+*
+*/
+.buyOrder {
+    overflow: hidden;
+
+    .buylist {
+        height: calc(100vh - 124px);
+        overflow-y: auto;
+    }
+}
+
+#walletTab {
+    .el-tabs__item {
+        background: @background;
+        border-radius: 20px;
+        margin: 0 5%;
+        width: 40% !important;
+        padding: 0;
+    }
+
+    .el-tabs__item.is-active {
+        background: @blue;
+    }
+
+    .el-tabs__active-bar {
+        display: none
+    }
+}
+
+.sellOrder {
+    overflow: hidden;
+
+    .sellList {
+        height: calc(100vh - 178px);
+    }
+}
+
+.voucher{
+    background: @background;
+    padding:15px;
+    min-height: 120px;
+    img{
+        width: 80px;
+        display: block;
+        margin: 0 auto;
+    }
 }

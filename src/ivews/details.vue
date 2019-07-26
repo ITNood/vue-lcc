@@ -30,7 +30,7 @@ export default {
  data() {
   return {
       url: "/news",
-      message: "私人信箱",
+      message: this.$t('message.email'),
       href: "",
       classIcon: "",
       date:'',
@@ -45,7 +45,7 @@ export default {
      getData(){
          let that=this
          let id=that.$route.query.id
-         api.minicart.template.choices('noticeDetail',{id:id}).then(result=>{
+         api.minicart.template.choices('messageDetail',{id:id}).then(result=>{
              if(result.status==200){
                  that.date=result.res.date
                  that.title=result.res.title
@@ -54,7 +54,7 @@ export default {
                  that.$message.error(result.msg)
              }
          }).catch(err=>{
-             that.$message.error('错误!')
+             that.$message.error(this.$t('message.error'))
          })
      }
  },

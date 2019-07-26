@@ -10,11 +10,12 @@
 <script>
 export default {
   name: "Echarts",
-  props:['time','data'],
+  props:['time','data','min','max'],
   data() {
     return {};
   },
-  mounted() {
+  watch: {
+    time: function (newtime, oldtime) {
     let myChart = this.$echarts.init(document.getElementById("myCharts"));
     const option = {
       tooltip: {
@@ -31,6 +32,8 @@ export default {
       },
       yAxis: {
         type: "value",
+        min: this.min,
+        max:this.max,
         splitLine: {
           show: false
         },
@@ -57,6 +60,11 @@ export default {
       ]
     };
     myChart.setOption(option);
+    }
+  },  
+  mounted() {
+
+   
   }
 };
 </script>

@@ -8,14 +8,13 @@
     />
     <div class="container" style="margin-bottom:0;">
         <div class="news">
-            <ul class="newsList">
-                <li v-for="(item,index) in items" :key="index">
-                    <router-link :to="{path:'/details',query:{id:item.id}}">
-                       <p>{{item.date}}</p>
-                       <div class="newsText">{{item.title}}<i class="el-icon-arrow-right"></i></div>
-                    </router-link>
-                </li>
-            </ul>
+            <div class="newsList">
+                <div class="newsTitle">
+                    <p>{{date}}</p>
+                    <h5>{{title}}</h5>
+                </div>
+                <div class="newsFont" v-html="details">{{details}}</div>
+            </div>
         </div>
     </div>
  </div>
@@ -30,11 +29,13 @@ export default {
   },
  data() {
   return {
-      url: "/home",
-      message: this.$t('message.email'),
+      url: "/notice",
+      message: this.$t('message.notice'),
       href: "",
       classIcon: "",
-      items:[]
+      date:'',
+      title:'',
+      details:''
   }
  },
  mounted() {
@@ -43,9 +44,12 @@ export default {
  methods: {
      getData(){
          let that=this
-         api.minicart.template.choices('getMessage').then(result=>{
+         let id=that.$route.query.id
+         api.minicart.template.choices('noticeDetail',{id:id}).then(result=>{
              if(result.status==200){
-                 that.items=that.items.concat(result.res)
+                 that.date=result.res.date
+                 that.title=result.res.title
+                 that.details=result.res.detail
              }else if(result.status==400){
                  that.$message.error(result.msg)
              }

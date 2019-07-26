@@ -10,7 +10,7 @@
         <div class="news">
             <ul class="newsList">
                 <li v-for="(item,index) in items" :key="index">
-                    <router-link :to="{path:'/details',query:{id:item.id}}">
+                    <router-link :to="{path:'/noticeDetails',query:{id:item.id}}">
                        <p>{{item.date}}</p>
                        <div class="newsText">{{item.title}}<i class="el-icon-arrow-right"></i></div>
                     </router-link>
@@ -31,7 +31,7 @@ export default {
  data() {
   return {
       url: "/home",
-      message: this.$t('message.email'),
+      message: this.$t('message.notice'),
       href: "",
       classIcon: "",
       items:[]
@@ -43,7 +43,7 @@ export default {
  methods: {
      getData(){
          let that=this
-         api.minicart.template.choices('getMessage').then(result=>{
+         api.minicart.template.choices('getNotice').then(result=>{
              if(result.status==200){
                  that.items=that.items.concat(result.res)
              }else if(result.status==400){

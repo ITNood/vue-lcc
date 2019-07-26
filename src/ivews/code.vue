@@ -11,16 +11,15 @@
       style="margin-top:70px;"
     >
       <div class="codeContent">
-        <h5>向商家付款<i class="one"></i><i class="two"></i></h5>
+        <h5>{{$t('message.payment')}}<i class="one"></i><i class="two"></i></h5>
         <img :src="code">
-        <p>扫一扫，即可付款</p>
+        <p>{{$t('message.sweep')}}</p>
         <ul
           class="know"
           style="margin-top:50px;"
         >
-          <p>温馨提示：</p>
-          <li>本二维码在一分钟内有效，请将此二维码给予商家扫描。</li>
-          <li>付款后将自动扣除等值FC</li>
+          <p>{{$t('message.reminder')}}：</p>
+          <li>{{$t('message.minute')}}</li>
         </ul>
       </div>
     </div>
@@ -37,7 +36,7 @@ export default {
   data() {
     return {
       url: "/lcc",
-      message: "二维码付款",
+      message: this.$t('message.codePay'),
       href: "",
       classIcon: "",
       code: ""
@@ -59,7 +58,7 @@ export default {
           }
         })
         .catch(err => {
-          that.$message.error("错误!");
+          that.$message.error(this.$t('message.error'));
         });
     },
     //-----------------------------------------------

@@ -1,18 +1,17 @@
 <template>
   <div>
     <el-dialog
-      :visible.sync="centerDialogVisible"
+      :visible.sync="centerDialogVisible1"
       width="85%"
       center
       :close-on-click-modal="false"
       class="lccOpen"
     >
-      <p>您将委托平台出售FC</p>
-      <p>交易完成将扣除5%作为手续费</p>
+      <p>{{$t('message.fee')}}</p>
       <b></b>
       <ul class="lccList">
         <li>
-          <p>交易份额</p>
+          <p>{{$t('message.share')}}</p>
           <el-input-number
             v-model="num1"
             @change="handleChange1"
@@ -20,30 +19,30 @@
           ></el-input-number>
         </li>
         <li>
-          买入单价：
+          {{$t('message.sellPrice')}}：
           <span style="right:8px">${{price1}}</span>
         </li>
         <li>
-          买入总额：
+          {{$t('message.sellTotal')}}：
           <span style="right:8px">${{total1}}</span>
         </li>
       </ul>
       
       <div class="selectsell">
-        <p style="margin-bottom:10px;">收款方式:</p>
-        <el-radio v-model="radio" label="1" border><i class="icon iconfont icon-yinhangqia"></i>场外收款</el-radio>
-        <el-radio v-model="radio" label="2" border><i class="icon iconfont icon-meiyuan8"></i>收款</el-radio>
+        <p style="margin-bottom:10px;">{{$t('message.takeWay')}}:</p>
+        <el-radio v-model="radio" label="1" border><i class="icon iconfont icon-yinhangqia"></i>{{$t('message.site')}}</el-radio>
+        <el-radio v-model="radio" label="2" border><i class="icon iconfont icon-meiyuan8"></i>{{$t('message.usdt')}}</el-radio>
       </div>
       <el-button
         class="submit"
         style="background:#05cf7f"
-        @click="sell()"
-      >买入</el-button>
+        @click="newsell()"
+      >{{$t('message.sellOut')}}</el-button>
       <ul class="know">
-        <p>交易须知</p>
-        <li>*提交后由平台进行撮合式交易</li>
-        <li>*卖出根据等价值兴源通宝</li>
-        <li>*其中一份兴源通宝等于50美金</li>
+        <p>{{$t('message.tips')}}</p>
+        <li>*{{$t('message.submission')}}</li>
+        <li>*{{$t('message.sell')}}</li>
+        <li>*{{$t('message.one')}}</li>
       </ul>
       <!-- <span
         slot="footer"
@@ -56,30 +55,82 @@
         >确 定</el-button>
       </span> -->
     </el-dialog>
-
+<Pin @submit="submit" ref="child" :centerDialogVisible="show" />
   </div>
 </template>
 
 <script>
+import Pin from '../pin'
+import api from '../../API/index'
 export default {
+  components:{Pin},
   name: "Sell",
   //props: ['centerData'],
   data() {
     return {
-      centerDialogVisible:false,
+      show:false,
+      centerDialogVisible1:false,
       num1: 1,
       price1: "0.00",
       total1: "0.00",
-      radio:'2'
+      radio:'',
+      tongbaoPrice:''
     };
   },
+  mounted() {
+    this.getData()
+  },
+  updated() {
+    let that=this
+    that.total1=(Math.floor(that.num1*that.tongbaoPrice/that.price1*100)/100).toFixed(2)
+  },
   methods: {
+    getData(){
+      let that=this
+      api.minicart.template.choices('tongzhengRecord').then(result=>{
+        if(result.status==200){
+          that.price1=result.res.price
+          that.tongbaoPrice=result.res.tongbaoPrice
+        }else if(result.status==400){
+          that.$message.error(result.msg)
+        }
+      }).catch(err=>{
+        that.$message.error(this.$t('message.error'))
+      })
+    },
     handleChange1(value) {
       console.log(value);
     },
     sell(flag){
-      this.centerDialogVisible=!this.centerDialogVisible
-    }
+      this.centerDialogVisible1=!this.centerDialogVisible1
+    },
+    submit(pwd){
+      let that=this
+      let number=that.num1
+      let type=that.radio
+      if(type){
+          api.minicart.template.choices('tongzhengSell',{type:type,number:number,security:pwd}).then(result=>{
+            if(result.status==200){
+              that.$message.success(result.msg)
+              setTimeout(() => {
+                window.location.reload()
+              }, 1000);
+            }else if(result.status==400){
+              that.$message.error(result.msg)
+            }
+          }).catch(err=>{
+            that.$message.error(this.$t('message.error'))
+          })
+      }else {
+        that.$message.warning('请选择收款方式！')
+      }
+      
+    },
+    newsell(){
+      this.sell();
+      this.$refs.child.open();
+
+    },
   },
 };
 </script>

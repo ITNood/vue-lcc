@@ -7,12 +7,11 @@
       :close-on-click-modal="false"
       class="lccOpen"
     >
-      <p>您将委托平台购买FC</p>
-      <p>买入无需手续费</p>
+      <p>{{$t('message.buy')}}</p>
       <b></b>
       <ul class="lccList">
         <li>
-          <p>交易份额</p>
+          <p>{{$t('message.share')}}</p>
           <el-input-number
             v-model="num"
             @change="handleChange"
@@ -20,24 +19,24 @@
           ></el-input-number>
         </li>
         <li>
-          买入单价：
+          {{$t('message.buyPrice')}}：
           <span style="right:8px">${{price}}</span>
         </li>
         <li>
-          买入总额：
+          {{$t('message.buyTotal')}}：
           <span style="right:8px">${{total}}</span>
         </li>
       </ul>
       <el-button
         class="submit"
         style="background:#e43c1d"
-        @click="buy()"
-      >买入</el-button>
+        @click="newbuy()"
+      >{{$t('message.purch')}}</el-button>
       <ul class="know">
-        <p>交易须知</p>
-        <li>*提交后由平台进行撮合式交易</li>
-        <li>*买入支付方式暂时仅限兴源通宝</li>
-        <li>*买入份额根据等价值兴源通宝</li>
+        <p>{{$t('message.tips')}}</p>
+        <li>*{{$t('message.submission')}}</li>
+        <li>*{{$t('message.tb')}}</li>
+        <li>*{{$t('message.based')}}</li>
       </ul>
       <!-- <span
         slot="footer"
@@ -50,29 +49,75 @@
         >确 定</el-button>
       </span> -->
     </el-dialog>
-
+    <Pin @submit="submit" ref="child" :centerDialogVisible="show" />
   </div>
 </template>
 
 <script>
+import Pin from '../pin'
+import api from '../../API/index'
 export default {
+  components:{Pin},
   name: "Buy",
   //props:['num'],
   data() {
     return {
+      show:false,
       num: 1,
       dialogVisible:false,
       price: "0.00",
-      total: "0.00"
+      total: "0.00",
+      tongbaoPrice:''
     };
   },
+  mounted() {
+    this.getData()
+  },
+  updated() {
+    let that=this
+    that.total=(Math.floor(that.num*that.tongbaoPrice/that.price*100)/100).toFixed(2)
+  },
   methods: {
+    getData(){
+      let that=this
+      api.minicart.template.choices('tongzhengbuyView').then(result=>{
+        if(result.status==200){
+          that.price=result.res.price
+          that.tongbaoPrice=result.res.tongbaoPrice
+        }else if(result.status==400){
+          that.$message.error(result.msg)
+        }
+      }).catch(err=>{
+        that.$message.error(this.$t('message.error'))
+      })
+    },
     handleChange(value) {
       console.log(value);
     },
+    submit(pwd){
+      let that=this
+      let amount=that.num
+      api.minicart.template.choices('tongzhengCreate',{number:amount,security:pwd}).then(result=>{
+        if(result.status==200){
+          that.$message.success(result.msg)
+          setTimeout(() => {
+            window.location.reload()
+          }, 1000);
+        }else if(result.status==400){
+          that.$message.error(result.msg)
+        }
+      }).catch(err=>{
+        that.$message.error(this.$t('message.error'))
+      })
+     },
     buy(flag){
-        this.dialogVisible=!this.dialogVisible
-    }
+         this.dialogVisible=!this.dialogVisible
+    },
+    newbuy(){
+      this.buy();
+      this.$refs.child.open();
+
+    },
   }
 };
 </script>

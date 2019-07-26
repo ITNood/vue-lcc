@@ -85,6 +85,12 @@ export default {
           title:this.$t('message.email'),
           text:this.$t('message.notification'),
           classIcon:'icon-xiaoxi'
+        },
+        {
+          url:'/notice',
+          title:this.$t('message.notice'),
+          text:this.$t('message.noticeText'),
+          classIcon:'icon-gonggao'
         }
       ]
     };

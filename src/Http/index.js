@@ -58,9 +58,11 @@ Axios.interceptors.response.use(
         //判断登录状态，跳转路由
         if (net_response.data.status === 500) {
             alert(net_response.data.msg)
+            console.log(window.location.host+"/login")
             window.localStorage.removeItem('token')
            //window.location.href="/login"
-           this.$router.push('/login')
+            window.location.href = window.location.origin + "#/login"
+        //    this.$router.push('/login')
         } else if (net_response.data.status === 400) {
            // alert(net_response.data.msg)
         }

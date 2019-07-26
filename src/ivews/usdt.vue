@@ -74,11 +74,11 @@ export default {
           classIcon: "icon-zichan-quanbushebei",
           title: this.$t('message.outRecharge')
         },
-        {
-          url: "/transfer",
-          classIcon: "icon-zhuanhuan",
-          title: this.$t('message.assets')
-        }
+        // {
+        //   url: "/transfer",
+        //   classIcon: "icon-zhuanhuan",
+        //   title: this.$t('message.assets')
+        // }
       ],
       items:[]
     };

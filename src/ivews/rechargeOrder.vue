@@ -56,7 +56,10 @@
           <li>
             会员昵称<span>{{username}}</span>
           </li>
-          <li>
+           <li>
+            打款类型<span>银行卡</span>
+          </li>
+          <!-- <li>
             打款类型
             <span>
               <el-select
@@ -73,11 +76,10 @@
                 ></el-option>
               </el-select>
             </span>
-          </li>
+          </li> -->
         </ul>
         <ul
           class="public"
-          v-if="show1"
         >
           <li>
             开户姓名<span>{{name}}</span>
@@ -92,12 +94,7 @@
             银行支行<span>{{bankAddress}}</span>
           </li>
         </ul>
-        <ul
-          class="public"
-          v-else
-        >
-          <li>USDT地址<span>{{usdtAddress}}</span></li>
-        </ul>
+       
       </div>
 
       <!--上传凭证-->
@@ -176,9 +173,7 @@ export default {
       img: "",
       disabled: true,
       usdtAddress: "",
-      show1: true,
       type: 1,
-      show: false
     };
   },
   mounted() {
@@ -227,16 +222,6 @@ export default {
           that.$message.error("错误!");
         });
     },
-    change(val) {
-      console.log(val);
-      let that = this;
-      that.type = val;
-      if (val == 1) {
-        that.show1 = true;
-      } else {
-        that.show1 = false;
-      }
-    },
 
     uploadChange(ev) {
       //上传凭证
@@ -275,7 +260,7 @@ export default {
           }
         })
         .catch(err => {
-          that.$message.error("错误!");
+          that.$message.error(this.$t('message.error'));
         });
     },
     submit1(){

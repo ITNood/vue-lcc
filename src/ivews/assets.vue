@@ -161,7 +161,7 @@ export default {
                   that.$message.error(result.msg)
               }
           }).catch(err=>{
-              that.$message.error('错误!')
+              that.$message.error(this.$t('message.error'))
           })
       },
       handleChange1(){

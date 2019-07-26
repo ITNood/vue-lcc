@@ -13,7 +13,7 @@
     >
       <!--登录密码-->
       <el-tab-pane
-        label="登录密码"
+        :label="$t('message.loginpwd')"
         name="first"
       >
         <el-form
@@ -26,12 +26,12 @@
           <el-form-item
             class="text public login"
             prop="oldPwd"
-            label="原登录密码"
+            :label="$t('message.original')"
           >
             <el-input
               class="registry"
               v-model="ruleForm.oldPwd"
-              placeholder="请输入原登陆密码"
+              :placeholder="$t('message.originalPwd')"
               type="password"
             ></el-input>
           </el-form-item>
@@ -39,12 +39,12 @@
           <el-form-item
             class="text public login"
             prop="pwd"
-            label="新登录密码"
+            :label="$t('message.newPwd')"
           >
             <el-input
               class="registry"
               v-model="ruleForm.pwd"
-              placeholder="请输入新登录密码"
+              :placeholder="$t('message.enternewPwd')"
               type="password"
             ></el-input>
           </el-form-item>
@@ -52,12 +52,12 @@
           <el-form-item
             class="text public login"
             prop="confirmPwd"
-            label="确认新登录密码"
+            :label="$t('message.confirmnewPwd')"
           >
             <el-input
               class="registry"
               v-model="ruleForm.confirmPwd"
-              placeholder="请确认新登录密码"
+              :placeholder="$t('message.confirmLogin')"
               type="password"
             ></el-input>
           </el-form-item>
@@ -65,12 +65,12 @@
         <el-button
           class="submit"
           @click="loginPassword('ruleForm')"
-        >确认</el-button>
+        >{{$t('message.confirm')}}</el-button>
       </el-tab-pane>
 
       <!--PIN密码-->
       <el-tab-pane
-        label="PIN安全码"
+        :label="$t('message.pincode')"
         name="second"
       >
         <div class="pay-tool">
@@ -141,7 +141,7 @@ export default {
   data() {
     var validatePass = (rule, value, callback) => {
       if (value === "") {
-        callback(new Error("请输入密码"));
+        callback(new Error(this.$t('message.inputpwd')));
       } else {
         if (this.ruleForm.confirmPwd !== "") {
           this.$refs.ruleForm.validateField("confirmPwd");
@@ -151,20 +151,20 @@ export default {
     };
     var validatePass2 = (rule, value, callback) => {
       if (value === "") {
-        callback(new Error("请再次输入密码"));
+        callback(new Error(this.$t('message.again')));
       } else if (value !== this.ruleForm.pwd) {
-        callback(new Error("两次输入密码不一致!"));
+        callback(new Error(this.$t('message.disaccord')));
       } else {
         callback();
       }
     };
     return {
       url: "/my",
-      message: "安全密码",
+      message: this.$t('message.password'),
       href: "",
       classIcon: "",
       activeName: "first",
-      tips: "请设置PIN密码",
+      tips: this.$t('message.setPwd'),
       a: 1,
       ruleForm: {
         oldPwd: "",
@@ -173,7 +173,7 @@ export default {
       },
       rules: {
         oldPwd: [
-          { required: true, message: "请输入新登录密码", trigger: "blur" }
+          { required: true, message: this.$t('message.enternewPwd'), trigger: "blur" }
         ],
         pwd: [{ required: true, validator: validatePass, trigger: "blur" }],
         confirmPwd: [
@@ -215,7 +215,7 @@ export default {
               }
             })
             .catch(err => {
-              that.$message.error("错误!");
+              that.$message.error(this.$t('message.error'));
             });
         }
       });
@@ -230,10 +230,10 @@ export default {
           if (response.status == 200) {
             console.log(response);
             if (response.res == true) {
-              that.tips = "请输入原PIN密码";
+              that.tips = this.$t('message.oldPin');
               that.a = 1;
             } else if (response.res == false) {
-              that.tips = "请设置PIN密码";
+              that.tips = this.$t('message.setPwd');
               that.a = 2;
             }
           } else if (response.status == 400) {
@@ -268,14 +268,14 @@ export default {
           that.ruleForm2.oldPwd = oldPwd;
           this.clearPasswordHandle();
           this.a = 2;
-          that.tips = "请设置PIN新密码";
+          that.tips = this.$t('message.setnewPin');
         } else if (this.a == 2) {
           let pwd = parseInt(this.password.join(" ").replace(/\s/g, ""));
           console.log(pwd);
           that.ruleForm2.pwd = pwd;
           this.clearPasswordHandle();
           this.a = 3;
-          that.tips = "请确认PIN新密码";
+          that.tips = this.$t('message.confirmpin');
         } else if (this.a == 3) {
           let confirmPwd = parseInt(this.password.join(" ").replace(/\s/g, ""));
           console.log(confirmPwd);

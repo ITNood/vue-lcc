@@ -6,7 +6,7 @@
     >
       <el-row>
         <el-col :span="6"></el-col>
-        <el-col :span="12">市场</el-col>
+        <el-col :span="12">{{$t('message.market')}}</el-col>
         <el-col :span="6"><i
             class="icon iconfont icon-about_line"
             @click="centerDialogVisible=true"
@@ -19,7 +19,7 @@
       center
       class="marketDialog"
     >
-      <span>本行情数据来源于</span>
+      <span>{{$t('message.form')}}</span>
       <span>www.okcoin.com</span>
       <span
         slot="footer"
@@ -28,7 +28,7 @@
         <el-button
         class="submit"
           @click="centerDialogVisible = false"
-        >确 认</el-button>
+        >{{$t('message.confirm')}}</el-button>
       </span>
     </el-dialog>
     <Bottom />
@@ -38,12 +38,12 @@
                 <i><img :src="item.img"></i>
                 <el-row class="bagContent">
                     <el-col :span="12">
-                        <h5>{{item.title}}</h5>
+                        <h5>{{item.name}}</h5>
                         <p>{{item.text}}</p>
                     </el-col>
                     <el-col class="text-right" :span="12">
-                        <h5>${{item.amount}}</h5>
-                        <p :style="{color:(item.state==1?'#05ce7e':'#e53c1d')}">{{item.state==1?'+':'-'}}{{item.price}}%</p>
+                        <h5>${{item.price}}</h5>
+                        <p :style="{color:(item.percent>=0?'#05ce7e':'#e53c1d')}">{{item.percent>=0 ?'+':''}}{{item.price}}%</p>
                     </el-col>
                 </el-row>
             </li>
@@ -54,6 +54,7 @@
 
 <script>
 import Bottom from "../components/bottom";
+import api from '../API/index'
 export default {
   components: {
     Bottom
@@ -61,26 +62,26 @@ export default {
   data() {
     return {
         centerDialogVisible:false,
-        items:[
-            {
-                img:require('../assets/img/market1.png'),
-                title:'FC',
-                text:'FnCun Token',
-                amount:100,
-                state:1,
-                price:7.25
-            },
-            {
-                img:require('../assets/img/market1.png'),
-                title:'FC',
-                text:'FnCun Token',
-                amount:100,
-                state:2,
-                price:7.25
-            }
-        ]
+        items:[]
     };
-  }
+  },
+  mounted() {
+    this.getData()
+  },
+  methods: {
+    getData(){
+      let that=this
+      api.minicart.template.choices('coinMarket/index').then(result=>{
+        if(result.status==200){
+          that.items=that.items.concat(result.res)
+        }else if(result.status==400){
+          that.$message.error(result.msg)
+        }
+      }).catch(err=>{
+        that.$message.error(this.$t('message.error'))
+      })
+    }
+  },
 };
 </script>
 
