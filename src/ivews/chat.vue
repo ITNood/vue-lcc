@@ -14,7 +14,7 @@
         <h5 style="height:50px;">{{title}}</h5>
       </el-col>
       <el-col :span="6">
-        <el-button class="observation">申述</el-button>
+        <el-button class="observation" @click="appeal()">{{$t('message.represent')}}</el-button>
       </el-col>
     </el-header>
     <!--申诉-->
@@ -22,7 +22,7 @@
       :visible.sync="centerDialogVisible"
       width="80%"
     >
-      <span>是否发起申诉？</span>
+      <span>{{$t('message.complaint')}}？</span>
       <span
         slot="footer"
         class="dialog-footer"
@@ -31,7 +31,7 @@
         <el-button
           type="primary"
           @click="appeal()"
-        >确 定</el-button>
+        >{{$t('message.confirm')}}</el-button>
       </span>
     </el-dialog>
 
@@ -57,7 +57,7 @@
             v-else
             class="appealed"
           >
-            <span>{{item.username}}发起申诉，客服人员即将介入处理，请耐心等候。</span>
+            <span>{{item.username}}{{$t('message.patiently')}}。</span>
           </div>
         </li>
       </ul>
@@ -86,7 +86,7 @@
           >
             <el-input
               v-model="ruleForm.content"
-              placeholder="输入您的对话..."
+              :placeholder="$t('message.dialog')+'...'"
             ></el-input>
           </el-form-item>
         </el-form>
@@ -94,7 +94,7 @@
         <div
           id="send"
           @click="send1()"
-        >发送</div>
+        >{{$t('message.send1')}}</div>
       </div>
     </div>
 
@@ -139,7 +139,7 @@ export default {
   },
   //数据更新后滚动
   updated() {
-    //this.scrollToBottom();
+    this.scrollToBottom();
   },
 
   methods: {
@@ -181,44 +181,44 @@ export default {
     },
 
     //申诉
-    // appeal() {
-    //   this.centerDialogVisible = false;
-    //   let id = this.$route.query.id;
-    //   api.minicart.template
-    //     .choices("chat/complaint", { id: id })
-    //     .then(result => {
-    //       if (result.status == 200) {
-    //         alert(result.msg);
-    //       } else if (result.status == 400) {
-    //         alert(resulr.msg);
-    //       }
-    //     })
-    //     .catch(err => {
-    //       alert(err.msg);
-    //     });
-    // },
+    appeal() {
+      this.centerDialogVisible = false;
+      let id = this.$route.query.id;
+      api.minicart.template
+        .choices("chat/complaint", { id: id })
+        .then(result => {
+          if (result.status == 200) {
+            alert(result.msg);
+          } else if (result.status == 400) {
+            alert(resulr.msg);
+          }
+        })
+        .catch(err => {
+          alert(err.msg);
+        });
+    },
 
     //发送
-    // send1() {
-    //   let that = this;
-    //   that.ruleForm.id = this.$route.query.id;
-    //   let data = that.ruleForm;
-    //   api.minicart.template
-    //     .choices("chat/reply", data)
-    //     .then(result => {
-    //       if (result.status == 200) {
-    //         that.ruleForm.content = "";
-    //         that.ruleForm.img = "";
-    //         this.$refs.pathClear.value = "";
-    //       } else if (result.status == 400) {
-    //         alert(result.msg);
-    //       }
-    //     })
-    //     .catch(err => {
-    //       alert(err.msg);
-    //     });
-    // },
-    //
+    send1() {
+      let that = this;
+      that.ruleForm.id = this.$route.query.id;
+      let data = that.ruleForm;
+      api.minicart.template
+        .choices("chat/reply", data)
+        .then(result => {
+          if (result.status == 200) {
+            that.ruleForm.content = "";
+            that.ruleForm.img = "";
+            this.$refs.pathClear.value = "";
+          } else if (result.status == 400) {
+            alert(result.msg);
+          }
+        })
+        .catch(err => {
+          alert(err.msg);
+        });
+    },
+    
 
     //长连接
     WebSocketTest() {

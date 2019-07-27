@@ -64,12 +64,12 @@
             <el-form-item
               class="text"
               prop="nickname"
-              label="会员昵称(2~6位)"
+              :label="$t('message.name')"
             >
               <el-input
                 class="set"
                 v-model="ruleForm.nickname"
-                placeholder="请输入用户名"
+                :placeholder="$t('message.enter')"
               >
               </el-input>
               <!-- <img
@@ -83,7 +83,7 @@
           <el-button
             class="submit"
             @click="submitName('ruleForm')"
-          >确认</el-button>
+          >{{$t('message.confirm')}}</el-button>
         </div>
       </div>
     </div>
@@ -97,7 +97,7 @@ export default {
   data() {
     return {
       url:'/my',
-      message:'个性设置',
+      message:this.$t('message.set'),
       href:'',
       classIcon:'',
       id: "",
@@ -122,7 +122,7 @@ export default {
       },
       rules: {
         username: [
-          { required: true, message: "请输入用户名", trigeger: "blur" }
+          { required: true, message: this.$t('message.enter'), trigeger: "blur" }
         ]
       }
     };

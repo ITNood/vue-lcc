@@ -12,29 +12,29 @@
                 <ul class="dataList" style="border-bottom:1px solid #313743;padding-bottom:25px;">
                     <li>
                         <h5>{{partner}}</h5>
-                        <p>直邀伙伴</p>
+                        <p>{{$t('message.invited')}}</p>
                     </li>
                     <li>
                         <h5>{{total}}</h5>
-                        <p>综合伙伴</p>
+                        <p>{{$t('message.integ')}}</p>
                     </li>
                     <li>
                         <h5>{{left}}</h5>
-                        <p>左区业绩</p>
+                        <p>{{$t('message.left')}}</p>
                     </li>
                 </ul>
                 <ul class="dataList" style="padding:20px 0 10px;">
                     <li>
                         <h5>{{line}}</h5>
-                        <p>直邀业绩</p>
+                        <p>{{$t('message.direct')}}</p>
                     </li>
                     <li>
                         <h5>{{all}}</h5>
-                        <p>综合业绩</p>
+                        <p>{{$t('message.performane')}}</p>
                     </li>
                     <li>
                         <h5>{{right}}</h5>
-                        <p>右区业绩</p>
+                        <p>{{$t('message.right')}}</p>
                     </li>
                 </ul>
             </div>
@@ -42,7 +42,7 @@
 
         <!--直邀伙伴-->
         <div class="Invitation">
-            <p>直邀伙伴</p>
+            <p>{{$t('message.invited')}}</p>
             <div class="inviteList">
                 <ul class="inviteContent">
                     <li v-for="(item,index) in items" :key="index">
@@ -70,7 +70,7 @@ export default {
  data() {
   return {
       url:'/my',
-      message:'签约管理',
+      message:this.$t('message.siged'),
       href:'',
       classIcon:'',
       partner:0,

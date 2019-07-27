@@ -13,11 +13,11 @@
                 <i></i>
                 <div class="payContent">
                     <span class="el-icon-close" style="background:#d44328"></span>
-                    <p>支付失败</p>
+                    <p>{{$t('message.payfail')}}</p>
                     <div class="amount"></div>
                     <p>{{error}}</p>
                 </div>
-                <router-link to="/code" class="over">完成</router-link>
+                <router-link to="/code" class="over">{{$t('message.complete')}}</router-link>
             </div>
         </div>
     </div>

@@ -13,11 +13,11 @@
                 <i></i>
                 <div class="payContent">
                     <span class="el-icon-check"></span>
-                    <p>支付成功</p>
+                    <p>{{$t('message.successful')}}</p>
                     <div class="amount">- {{amount}}</div>
-                    <p>兴源通证</p>
+                    <p>{{$t('message.pass')}}</p>
                 </div>
-                <router-link to="/code" class="over">完成</router-link>
+                <router-link to="/code" class="over">{{$t('message.complete')}}</router-link>
             </div>
         </div>
     </div>

@@ -155,6 +155,7 @@
 
 <script>
 import Top from "../components/top";
+import api from '../API/index'
 export default {
   components: {
     Top
@@ -167,35 +168,30 @@ export default {
       classIcon: "",
       activeName: "first",
       currentName: "first",
-      items: [
-        {
-          amount: 100,
-          date: "2019/07/26",
-          dollar: 100,
-          rmb: 100
-        }
-      ],
-      todos: [
-        {
-          amount: 100,
-          date: "2019/07/26",
-          dollar: 100,
-          rmb: 100,
-          state: 2,
-          id: 2
-        }
-      ],
-      lists: [
-        {
-          amount: 100,
-          date: "2019/07/26",
-          dollar: 100,
-          rmb: 100,
-          state: 1
-        }
-      ]
+      items: [],
+      todos: [],
+      lists: []
     };
-  }
+  },
+  mounted() {
+    this.getData()
+  },
+  methods: {
+    getData(){
+      let that=this
+      api.minicart.template.choices('myOrder/index').then(result=>{
+        if(result.status==200){
+          that.items=that.items.concat(result.res.buy)
+          that.todos=that.todos.concat(result.res.withdraw)
+          that.lists=that.lists.concat(result.res.usdt)
+        }else if(result.status==400){
+          that.$message.error(result.msg)
+        }
+      }).catch(err=>{
+        that.$message.error(this.$t('message.error'))
+      })
+    }
+  },
 };
 </script>
 

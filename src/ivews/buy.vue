@@ -2,7 +2,7 @@
   <div>
     <Top :pathUrl="url" :title="message" :appUrl="href" :font="classIcon" />
     <div class="container" style="margin-bottom:20px;">
-      <div class="buyTips">每个用户只限购买一份配套, 配套只允许一次升级机会，请慎重选择。</div>
+      <div class="buyTips">{{$t('message.buyone')}}</div>
       <ul id="buyList">
         <li
           v-for="(item,index) in items"
@@ -21,7 +21,7 @@
                 :value="item.id"
                 :number="item.invest"
                 @click="buy($event)"
-              >购买</el-button>
+              >{{$t('message.purchase')}}</el-button>
             </el-col>
           </el-row>
           <el-row>
@@ -30,14 +30,14 @@
                 class="rightList"
                 style="border-right:1px solid #999;"
               >
-                <li>周薪资:<span>{{item.week_dividend}}</span></li>
-                <li>周封顶:<span>{{item.week_cap}}</span></li>
+                <li>{{$t('message.salary')}}:<span>{{item.week_dividend}}</span></li>
+                <li>{{$t('message.weekCap')}}:<span>{{item.week_cap}}</span></li>
               </ul>
             </el-col>
             <el-col :span="12">
               <ul class="rightList">
-                <li>配套金额:<span>{{item.given_amount}}</span></li>
-                <li>售价:<span style="color:#2059ff">{{item.invest}}积分</span></li>
+                <li>{{$t('message.matchAmount')}}:<span>{{item.given_amount}}</span></li>
+                <li>{{$t('message.listPrice')}}:<span style="color:#2059ff">{{item.invest}}{{$t('message.integral')}}</span></li>
               </ul>
             </el-col>
           </el-row>
@@ -52,10 +52,10 @@
       :close-on-click-modal="false"
       id="open"
     >
-      <span>您将购买一级权益卡，需支付 {{invest}} 积分</span>
+      <span>{{$t(message.needpay2)}}{{card}}，{{$t('message.needpay3')}} {{invest}} {{$t('message.needPoint')}}</span>
       <div class="pay">
-          <p>支付方式</p>
-          <el-select v-model="type" class="paySelect" placeholder="请选择" @change="change($event)">
+          <p>{{$t('message.payway')}}</p>
+          <el-select v-model="type" class="paySelect" :placeholder="$t('message.selectpayway')" @change="change($event)">
               <el-option v-for="item in options" :key="item.value" :label="item.name" :value="item.id"></el-option>
           </el-select>
       </div>
@@ -66,7 +66,7 @@
         <el-button
         class="submit"
           @click="submit1()"
-        >确 定</el-button>
+        >{{$t('message.confirm')}}</el-button>
       </span>
     </el-dialog>
  <!--密码组件-->
@@ -88,14 +88,15 @@ export default {
       centerDialogVisible: false,
       type:'',
       url: "/home",
-      message: "购买配套",
+      message: this.$t('message.match'),
       href: "",
       classIcon: "",
       items: [],
       options:[],
       id:'',
       show:false,
-      invest:''
+      invest:'',
+      card:''
     };
   },
   mounted() {
@@ -125,6 +126,7 @@ export default {
         if(result.id==that.id){
           console.log(result)
           that.invest=result.invest
+          that.card=result.name
         }
       })
     },

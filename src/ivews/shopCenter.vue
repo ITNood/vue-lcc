@@ -44,7 +44,7 @@
         </router-link>
 
         <router-link to="/cashBill">
-          <i class="icon iconfont icon-zhangdan"></i>
+          <i class="icon iconfont icon-zhangdan1"></i>
           <span class="el-icon-arrow-right"></span>
           {{$t('message.cashbill')}}
         </router-link>

@@ -8,11 +8,11 @@
     />
     <div class="container">
         <el-form :model="form" ref="form">
-            <el-form-item label="合伙人账号" prop="username" class="signed">
-                <el-input v-model="form.username" placeholder="请输入您需邀请的合伙人账号"></el-input>
+            <el-form-item :label="$t('message.useraccount')" prop="username" class="signed">
+                <el-input v-model="form.username" :placeholder="$t('message.neeInvite')"></el-input>
             </el-form-item>
             
-            <p style="color:white">合伙人手机号码</p>
+            <p style="color:white">{{$t('message.mobile')}}</p>
             <div class="custom">
                 <el-form-item class="custom-one">
                     <el-select v-model="form.value" @change="change()" >
@@ -20,21 +20,21 @@
                     </el-select>
                 </el-form-item>
                 <el-form-item prop="mobile" class="signed custom-two">
-                    <el-input v-model="form.mobile" placeholder="请输入您合伙人的手机号码"></el-input>
+                    <el-input v-model="form.mobile" :placeholder="$t('message.enterMobile')"></el-input>
                 </el-form-item>
             </div>
-            <p style="color:white">签约合伙人</p>
+            <p style="color:white">{{$t('message.partner')}}</p>
             <el-form-item class="signed">
                 <el-select v-model="form.type" placeholder="" class="special" @change="selected()">
                     <el-option v-for="list in lists" :key="list.value" :label="list.label" :value="list.value"></el-option>
                 </el-select>
             </el-form-item>
 
-            <el-form-item label="安置用户" prop="account" class="signed">
-                <el-input v-model="form.pUser" :disabled="disabled" placeholder="请输入安置人账号"></el-input>
+            <el-form-item :label="$t('message.users')" prop="account" class="signed">
+                <el-input v-model="form.pUser" :disabled="disabled" :placeholder="$t('message.reset')"></el-input>
             </el-form-item>
         </el-form>
-        <el-button class="submit" @click="submit()">确认</el-button>
+        <el-button class="submit" @click="submit()">{{$t('message.confirm')}}</el-button>
     </div>
   </div>
 </template>
@@ -49,60 +49,60 @@ export default {
   data() {
     return {
       url:'/my',
-      message:'签约合伙人',
+      message:this.$t('message.partner'),
       href:'',
       classIcon:'',
       user:'',
       disabled:false,
       form:{
           username:'',
-          value:1,
+          value:'1',
           type:1,
           pUser:'',
           mobile:''
       },
       options:[
           {
-              value:1,
-              label:'中国 +86'
+              value:'1',
+              label:this.$t('message.china')
           },
           {
-              value:2,
-              label:'新加坡 +65'
+              value:'2',
+              label:this.$t('message.singapore')
           },
           {
-              value:3,
-              label:'泰国 +66'
+              value:'3',
+              label:this.$t('message.thailand')
           },
           {
-              value:4,
-              label:'马来西亚 +60'
+              value:'4',
+              label:this.$t('message.malaysia')
           },
           {
-              value:5,
-              label:'日本 +81'
+              value:'5',
+              label:this.$t('message.japan')
           },
           {
-              value:6,
-              label:'韩国 +82'
+              value:'6',
+              label:this.$t('message.korea')
           },
           {
-              value:7,
-              label:'美国 +1'
+              value:'7',
+              label:this.$t('message.usa')
           },
           {
-              value:8,
-              label:'英国 +44'
-          }
+              value:'8',
+              label:this.$t('message.britain')
+          },
       ],
       lists:[
           {
               value:1,
-              label:'自动小区深度'
+              label:this.$t('message.depth')
           },
           {
               value:2,
-              label:'自行输入用户'
+              label:this.$t('message.self')
           }
       ]
     };

@@ -21,19 +21,19 @@
         >
           <el-input
             v-model="loginForm.username"
-            placeholder="请输入用户名"
+            :placeholder="$t('message.enter')"
           ></el-input>
         </el-form-item>
 
         <el-form-item
           prop="password"
-          label="账号密码"
+          :label="$t('message.pwd')"
           class="login"
         >
           <el-input
             v-model="loginForm.password"
             type="password"
-            placeholder="请输入账号密码"
+            :placeholder="$t('message.enterPwd')"
           ></el-input>
         </el-form-item>
 
@@ -41,7 +41,7 @@
           <router-link
             to="/forget"
             class="forgetPassword"
-          >忘记密码</router-link>
+          >{{$t('message.forgetPwd')}}</router-link>
           <el-button
             class="login-btn"
             @click="login('loginForm')"
@@ -51,7 +51,7 @@
       <router-link
         to=""
         class="rules"
-      >隐私政策条款</router-link>
+      >{{$t('message.pro')}}</router-link>
     </div>
   </div>
 </template>
@@ -71,9 +71,9 @@ export default {
       classIcon: "",
       rules: {
         username: [
-          { required: true, message: "用户名不能为空", trigger: "blur" }
+          { required: true, message: this.$t('message.usernull'), trigger: "blur" }
         ],
-        password: [{ required: true, message: "密码不能为空", trigger: "blur" }]
+        password: [{ required: true, message: this.$t('message.pwdnull'), trigger: "blur" }]
       },
       loginForm: {
         username: "",
