@@ -45,7 +45,7 @@ export default {
       },
       series: [
         {
-          data:this.data,
+          data:eval(this.data),
           type: "line",
           smooth: true,
           itemStyle: {

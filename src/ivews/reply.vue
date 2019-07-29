@@ -29,21 +29,21 @@
         class="submitReport"
       >
         <el-form-item
-          label="标题"
+          :label="$t('message.title')"
           prop="title"
         >
           <el-input
-            placeholder="请输入标题"
+            :placeholder="$t('message.thetitle')"
             v-model="form.title"
           ></el-input>
         </el-form-item>
         <el-form-item
-          label="问题描述"
+          :label="$t('message.problem')"
           prop="detail"
         >
           <el-input
             type="textarea"
-            placeholder="请输入您的问题描述"
+            :placeholder="$t('message.question')"
             v-model="form.detail"
           ></el-input>
         </el-form-item>
@@ -62,14 +62,14 @@
             v-else
           >
             <i class="el-icon-plus"></i>
-            <p>上传截图</p>
+            <p>{{$t('message.download')}}</p>
           </div>
         </div>
       </el-form>
       <el-button
         class="submit"
         @click="submit()"
-      >确认</el-button>
+      >{{$t('message.download')}}</el-button>
     </div>
   </div>
 </template>
@@ -92,9 +92,9 @@ export default {
   mounted() {
     let id = this.$route.query.id;
     if (id) {
-      this.title = "工单回复";
+      this.title = this.$t('message.workreply');
     } else {
-      this.title = "提交工单";
+      this.title =this.$t('message.work');
     }
   },
   methods: {
@@ -132,7 +132,7 @@ export default {
           }
         })
         .catch(err => {
-          that.$message.error("错误!");
+          that.$message.error(that.$t('message.error'));
         });
     }
   }

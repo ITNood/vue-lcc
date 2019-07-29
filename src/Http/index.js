@@ -40,7 +40,7 @@ var loadinginstace;
 Axios.interceptors.request.use(
     config => {
         // element ui Loading方法
-        loadinginstace = Loading.service({ fullscreen: true, text: '加载中，请稍等...' })
+        loadinginstace = Loading.service({ fullscreen: true, text: 'Loading...' })
         return config;
     },
     error => {
@@ -73,7 +73,8 @@ Axios.interceptors.response.use(
         }
 
         Message({
-            message: json_response.message || '服务器接口异常', type: 'error', duration: 5 * 1000
+            //请求超时时间
+            message: json_response.message || this.$t('message.interface'), type: 'error', duration: 30 * 1000
         });
 
         return Promise.reject(net_response);

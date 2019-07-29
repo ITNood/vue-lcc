@@ -17,36 +17,36 @@
         <el-col :span="6">
           <router-link to="/points">
             <i class="icon iconfont icon-zhuanhuan"></i>
-            <p>转账</p>
+            <p>{{$t('message.transfer')}}</p>
           </router-link>
         </el-col>
         <el-col :span="6">
           <router-link to="/exchange">
             <i class="icon iconfont icon-duihuan"></i>
-            <p>兑换</p>
+            <p>{{$t('message.exchange')}}</p>
           </router-link>
         </el-col>
         <el-col :span="6">
           <a @click="dialog=true">
             <i class="icon iconfont icon-gouwuche1"></i>
-            <p>买入通宝</p>
+            <p>{{$t('message.buyTb')}}</p>
           </a>
         </el-col>
         <el-col :span="6">
           <router-link to="/salary">
             <i class="icon iconfont icon-qiandai"></i>
-            <p>薪酬</p>
+            <p>{{$t('message.pay')}}</p>
           </router-link>
         </el-col>
       </el-row>
       <div class="purse">
-        <p>钱包资产</p>
+        <p>{{$t('message.wallet')}}</p>
         <ul class="purseList">
           <li>
             <img src="../assets/img/ctp.png">
             <div class="purseText">
               <h5>CTP</h5>
-              <p>通行积分</p>
+              <p>{{$t('message.point')}}</p>
             </div>
             <b>{{ctp}}</b>
           </li>
@@ -54,7 +54,7 @@
             <img src="../assets/img/cash.png">
             <div class="purseText">
               <h5>CASH</h5>
-              <p>现金积分</p>
+              <p>{{$t('message.cash')}}</p>
             </div>
             <b>{{cash}}</b>
           </li>
@@ -62,7 +62,7 @@
             <img src="../assets/img/xtb.png">
             <div class="purseText">
               <h5>XTB</h5>
-              <p>兴源通宝</p>
+              <p>{{$t('message.tbs')}}</p>
             </div>
             <b>{{ctp}}</b>
           </li>
@@ -70,7 +70,7 @@
             <img src="../assets/img/ccf.png">
             <div class="purseText">
               <h5>CCF</h5>
-              <p>通证基金</p>
+              <p>{{$t('message.fund')}}</p>
             </div>
             <b>{{ctp}}</b>
           </li>
@@ -87,15 +87,15 @@
     >
     <ul class="lccList">
         <li>
-            <p>我的现金积分</p>
+            <p>{{$t('message.cashPoint')}}</p>
             <div>{{cashPoints}}</div>
         </li>
         <li>
-            <p>兴源通宝单价</p>
+            <p>{{$t('message.tbPrice')}}</p>
             <div>${{price}}</div>
         </li>
         <li>
-          <p>交易份额</p>
+          <p>{{$t('message.share')}}</p>
           <el-input-number
             v-model="number"
             @change="handleChange1"
@@ -103,11 +103,11 @@
           ></el-input-number>
         </li>
         <li>
-            <p>应付现金积分</p>
+            <p>{{$t('message.payable')}}</p>
             <div>${{points}}</div>
         </li>
       </ul>
-      <el-button class="submit" @click="submit1()">确认</el-button>
+      <el-button class="submit" @click="submit1()">{{$t('message.confirm')}}</el-button>
     </el-dialog>
   <!--密码组件-->
   <Pin @submit="submit" ref="child" :centerDialogVisible="show" />
@@ -126,7 +126,7 @@ export default {
   data() {
     return {
       url: "/home",
-      message: "钱包资产",
+      message: this.$t('message.wallet'),
       href: "",
       classIcon: "",
       ctp: "0.00",
@@ -198,7 +198,7 @@ export default {
           that.$message.error(result.msg)
         }
       }).catch(err=>{
-        that.$message.error('错误!')
+        that.$message.error(this.$t('message.error'))
       })
     }
   }

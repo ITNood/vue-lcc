@@ -26,28 +26,28 @@
       <div class="orderText">
         <ul class="public">
           <li>
-            订单号<span>{{order}}</span>
+            {{$t('message.orderNo')}}<span>{{order}}</span>
           </li>
           <li>
-            订单时间<span>{{date}}</span>
+            {{$t('message.orderTime')}}<span>{{date}}</span>
           </li>
           <li>
-            会员昵称<span>{{nickname}}</span>
+            {{$t('message.username')}}<span>{{nickname}}</span>
           </li>
           <li>
-            提现数量<span>{{number}}</span>
+            {{$t('message.cashamount')}}<span>{{number}}</span>
           </li>
           <li>
-            应付金额<span>{{amount}}</span>
+            {{$t('message.payable')}}<span>{{amount}}</span>
           </li>
           <li>
-            银行名称<span>{{bank}}</span>
+            {{$t('message.bank')}}<span>{{bank}}</span>
           </li>
           <li>
-            银行账号<span>{{account}}</span>
+            {{$t('message.bankaccount')}}<span>{{account}}</span>
           </li>
           <li>
-            开户支行<span>{{address}}</span>
+            {{$t('message.openbank')}}<span>{{address}}</span>
           </li>
         </ul>
       </div>
@@ -70,12 +70,12 @@
           >
             <div style="margin:0 auto;">
               <i class="el-icon-plus"></i>
-              <p>上传凭证</p>
+              <p>{{$t('message.vouchers')}}</p>
             </div>
           </div>
         </div>
       </div>
-      <el-button class="submit" @click="submit1()">确认付款</el-button>
+      <el-button class="submit" @click="submit1()">{{$t('message.thepay')}}</el-button>
     </div>
     <!--密码组件-->
     <Pin
@@ -95,8 +95,8 @@ export default {
   },
   data() {
     return {
-      pathUrl: "/outRecharge",
-      title: "提现订单",
+      pathUrl: "/service",
+      title: this.$t('message.cashorder'),
       font: "el-icon-chat-dot-square",
       show: false,
       order: "",
@@ -110,6 +110,9 @@ export default {
       img:''
     };
   },
+  mounted() {
+    this.getData()
+  },
   methods: {
       getData(){
           let that=this
@@ -121,13 +124,14 @@ export default {
                   that.nickname=result.res.truename
                   that.number=result.res.amount
                   that.bank=result.res.bankName
+                  that.amount=result.res.usdt
                   that.account=result.res.bankAccount
                   that.address=result.res.bankBranch
               }else if(result.status==400){
                   that.$message.error(result.msg)
               }
           }).catch(err=>{
-              that.$message.error('错误！')
+              that.$message.error(this.$t('message.error'))
           })
       },
       uploadChange(ev) {
@@ -158,7 +162,7 @@ export default {
                 that.$message.error(result.msg)
             }
         }).catch(err=>{
-            that.$message.error('错误!')
+            that.$message.error(this.$t('message.error'))
         })
     },
     submit1(){

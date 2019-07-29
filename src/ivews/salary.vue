@@ -11,7 +11,7 @@
       id="tabs"
     >
       <el-tab-pane
-        label="薪酬"
+        :label="$t('message.pay')"
         name="first"
       >
         <div class="maxSalary">
@@ -26,47 +26,47 @@
             ></el-progress>
             <div class="progressText">
               <h5>{{percent}}%</h5>
-              <p>距离封顶</p>
+              <p>{{$t('message.cap')}}</p>
             </div>
           </div>
           <el-row class="salaryList">
             <el-col :span="8">
               <div class="salaryContent">
                 <h5>{{total}}</h5>
-                <p>封顶金额/周</p>
+                <p>{{$t('message.capweek')}}</p>
               </div>
             </el-col>
             <el-col :span="8">
               <div class="salaryContent">
                 <h5>{{amount}}</h5>
-                <p>本周收益/周</p>
+                <p>{{$t('message.earning')}}</p>
               </div>
             </el-col>
             <el-col :span="8">
               <div class="salaryContent">
                 <h5>{{wages}}</h5>
-                <p>绩效工资卡</p>
+                <p>{{$t('message.payCard')}}</p>
               </div>
             </el-col>
           </el-row>
         </div>
         <ul class="getSalary">
           <li>
-            <p>取出数量</p>
+            <p>{{$t('message.getNumebr')}}</p>
             <div class="get-out">
               <el-input
                 v-model="value"
                 v-on:input="change"
-                placeholder="请输入您需要取出的数量"
+                :placeholder="$t('message.please')"
               ></el-input>
               <el-button
                 class="take"
                 @click="get()"
-              >全部取出</el-button>
+              >{{$t('message.getAll')}}</el-button>
             </div>
           </li>
           <li>
-            手续费<i>{{fee}}</i>
+            {{$t('message.charge')}}<i>{{fee}}</i>
           </li>
           <li
             v-for="(todo,index) in todos"
@@ -81,10 +81,10 @@
         <el-button
           class="submit"
           @click="submit1()"
-        >确认</el-button>
+        >{{$t('message.confirm')}}</el-button>
       </el-tab-pane>
       <el-tab-pane
-        label="取出记录"
+        :label="$t('message.getHistry')"
         name="second"
       >
         <div class="transfer">
@@ -122,7 +122,7 @@ export default {
   data() {
     return {
       url: "/assets",
-      message: "薪酬",
+      message: this.$t('message.pay'),
       href: "",
       classIcon: "",
       activeName: "first",
@@ -160,7 +160,7 @@ export default {
           }
         })
         .catch(err => {
-          that.$message.error("错误!");
+          that.$message.error(this.$t('message.error'));
         });
     },
     //全部取出
@@ -181,7 +181,7 @@ export default {
       if (value) {
         that.$refs.child.open(that.show);
       }else{
-          that.$message.error('请输入取出数量！')
+          that.$message.error(this.$t('message.please'))
       }
     },
     submit(pwd) {
@@ -194,7 +194,7 @@ export default {
                 that.$message.error(result.msg)
             }
         }).catch(err=>{
-            that.$message.error('错误!')
+            that.$message.error(this.$t('message.error'))
         })
     }
   }

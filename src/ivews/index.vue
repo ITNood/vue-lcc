@@ -41,8 +41,16 @@
 <script>
 export default {
   data() {
-    return {};
-  }
+    return {
+
+    };
+  },
+  mounted() {
+    let token=window.localStorage.getItem('token')
+    if(token){
+      this.$router.push('/home')
+    }
+  },
 };
 </script>
 

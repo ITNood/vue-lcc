@@ -1,30 +1,45 @@
 <template>
   <div>
-    <Top
-      :pathUrl="url"
-      :title="message"
-      :appUrl="href"
-      :font="classIcon"
-    />
+   <el-header
+      height="50px"
+      id="top"
+    >
+      <el-col :span="6">
+        <a
+        @click="back()"
+          class="el-icon-arrow-left back"
+        ></a>
+      </el-col>
+      <el-col :span="12">
+        <h5>{{title}}</h5>
+      </el-col>
+      <el-col :span="6">
+        <a
+          @click="chat()"
+          class="iconRight"
+          :class="font"
+        ></a>
+      </el-col>
+    </el-header>
     <div class="container">
       <!--订单详情-->
       <div class="cashbg">
         <div class="orderText">
           <ul class="public">
             <li>
-              订单编号<span>{{order}}</span>
+              {{$t('message.orderNo')}}<span>{{order}}</span>
             </li>
             <li>
-              订单时间<span>{{date}}</span>
+              {{$t('message.orderTime')}}<span>{{date}}</span>
             </li>
             <li>
-              会员昵称<span>{{username}}</span>
+              {{$t('message.username')}}<span>{{username}}</span>
             </li>
             <li>
-              充值数量<span>{{number}}</span>
+              {{$t('message.cashamount')}}<span>{{number}}</span>
             </li>
             <li>
-              付款金额<span>{{amount}}</span>
+              {{$t('message.takeAmont')}}<span>{{amount}}</span>
             </li>
           </ul>
         </div>
@@ -36,10 +51,14 @@
         class="cash-btn"
       >
         <el-col :span="7">
-          <el-button @click="look()">查看凭证</el-button>
+          <el-button @click="look()">{{$t('message.view')}}</el-button>
         </el-col>
         <el-col :span="17">
-          <el-button class="pay-btn" @click="submit1()">确认收款</el-button>
+          <el-button
+            class="pay-btn"
+            @click="submit1()"
+            :disabled="disabled"
+          >{{$t('message.confirmtake')}}</el-button>
         </el-col>
       </el-row>
     </div>
@@ -57,15 +76,19 @@
       >
       </span>
     </el-dialog>
-     <!--密码组件-->
-  <Pin @submit="submit" ref="child" :centerDialogVisible="show" />
+    <!--密码组件-->
+    <Pin
+      @submit="submit"
+      ref="child"
+      :centerDialogVisible="show"
+    />
   </div>
 </template>
 
 <script>
-import api from '../API/index'
+import api from "../API/index";
 import Top from "../components/top";
-import Pin from '../components/pin'
+import Pin from "../components/pin";
 export default {
   components: {
     Top,
@@ -73,11 +96,10 @@ export default {
   },
   data() {
     return {
-      url: "/cash",
-      message: "提现订单",
+      title: this.$t("message.cashorder"),
       href: "/chat",
-      classIcon: "el-icon-chat-dot-square",
-      amount: '',
+      font: "el-icon-chat-dot-square",
+      amount: "",
       date: "",
       order: "",
       username: "",
@@ -85,53 +107,76 @@ export default {
       value: "",
       img: "",
       centerDialogVisible: false,
-      show:false
+      show: false,
+      disabled:false
     };
   },
+  mounted() {
+    this.getData();
+  },
   methods: {
-    getData(){
-        let that=this
-        let id=that.$route.query.id
-        api.minicart.template.choices('withdrawDetail',{id:id}).then(result=>{
-            if(result.status==200){
-                that.order=result.res.orderNo
-                that.number=result.res.amount
-                that.username=result.res.truename
-                that.date=result.res.date
-                that.amount=result.res.payment
-                if(result.res.img){
-                    that.img=result.res.img
-                }
-            }else if(result.status==400){
-                that.$message.error(result.msg)
+    getData() {
+      let that = this;
+      let id = that.$route.query.id;
+      api.minicart.template
+        .choices("withdrawDetail", { id: id })
+        .then(result => {
+          if (result.status == 200) {
+            that.order = result.res.orderNo;
+            that.number = result.res.amount;
+            that.username = result.res.truename;
+            that.date = result.res.date;
+            that.amount = result.res.payment;
+            if (result.res.img) {
+              that.img = result.res.img;
             }
-        }).catch(err=>{
-            that.$message.error('错误!')
-        })
-    },
-    submit(pwd){
-        let that=this
-        let id=that.$route.query.id
-        api.minicart.template.choices('completeWithdraw',{id:id,security:pwd}).then(result=>{
-            if(result.status==200){
-                that.$message.success(result.msg)
-                setTimeout(() => {
-                    window.location.reload()
-                }, 1000);
-            }else if(result.status==400){
-                that.$message.error(result.msg)
+            if(result.res.state==2){
+              that.disabled=false
+            }else {
+              that.disabled=true
             }
-        }).catch(err=>{
-            that.$message.error('错误!')
+          } else if (result.status == 400) {
+            that.$message.error(result.msg);
+          }
         })
+        .catch(err => {
+          that.$message.error(this.$t("message.error"));
+        });
     },
-    submit1(){
-        let that=this
-        that.$refs.child.open(that.show);
-     },
+    submit(pwd) {
+      let that = this;
+      let id = that.$route.query.id;
+      api.minicart.template
+        .choices("completeWithdraw", { id: id, security: pwd })
+        .then(result => {
+          if (result.status == 200) {
+            that.$message.success(result.msg);
+            setTimeout(() => {
+              window.location.reload();
+            }, 1000);
+          } else if (result.status == 400) {
+            that.$message.error(result.msg);
+          }
+        })
+        .catch(err => {
+          that.$message.error(this.$t("message.error"));
+        });
+    },
+    submit1() {
+      let that = this;
+      that.$refs.child.open(that.show);
+    },
     look() {
       let that = this;
-      that.centerDialogVisible = true;
+      let img = that.img;
+      if (img) {
+        that.centerDialogVisible = true;
+      }else{
+        that.$message.info(this.$t('message.yet'))
+      }
+    },
+    back(){
+      this.$router.go(-1)
     },
     chat() {
       let that = this;
@@ -143,5 +188,4 @@ export default {
 </script>
 
 <style scoped lang="less">
-
 </style>

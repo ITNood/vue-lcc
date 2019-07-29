@@ -1,45 +1,107 @@
 <template>
   <div>
-    <Top :pathUrl="url" />
+    <Top
+      :pathUrl="url"
+      :title="message"
+      :appUrl="href"
+      :font="classIcon"
+    />
     <div id="login">
-      <h5>忘记密码</h5>
-      <el-form :model="form" ref="form" >
-          <el-form-item label="用户名" prop="username"  class="login">
-              <el-input placeholder="请输入用户名" v-model="form.username"></el-input>
-          </el-form-item>
+      <h5>{{$t('message.forgetPwd')}}</h5>
+      <el-form
+        :model="form"
+        ref="form"
+      >
+        <el-form-item
+          :label="$t('message.user')"
+          prop="username"
+          class="login"
+        >
+          <el-input
+            :placeholder="$t('message.enter')"
+            v-model="form.username"
+          ></el-input>
+        </el-form-item>
 
-          <el-form-item label="手机号码" prop="mobile"  class="login selectcountry">
-            <el-select v-model="form.country">
-                <el-option v-for="item in items" :key="item.value" :label="item.label" :value="item.value"></el-option>
-            </el-select>
-            <el-input placeholder="请输入用户名" v-model="form.mobile" class="mobile"></el-input>
-          </el-form-item>
+        <el-form-item
+          :label="$t('message.telphone')"
+          prop="mobile"
+          class="login"
+        >
+          <!-- <el-select v-model="value">
+                <el-option v-for="item in items" :key="item.value" :label="item.label" :value="item.id"></el-option>
+            </el-select> -->
+          <el-input
+            :placeholder="$t('message.enterPhone')"
+            v-model="form.mobile"
+            class="mobile"
+          ></el-input>
+        </el-form-item>
 
-          <el-form-item label="图形验证码" prop="code"  class="login">
-              <el-input placeholder="请输入验证码" v-model="form.code"></el-input>
-              <img src="../assets/img/code.png" id="code">
-          </el-form-item>
+        <el-form-item
+          :label="$t('message.code')"
+          prop="code"
+          class="login"
+        >
+          <el-input
+            :placeholder="$t('message.enterCode')"
+            v-model="form.code"
+          ></el-input>
+          <img
+            src="../assets/img/code.png"
+            id="code"
+          >
+        </el-form-item>
 
-          <el-form-item label="短信验证码" prop="mobileCode"  class="login">
-              <el-input placeholder="请输入短信验证码" v-model="form.mobileCode"></el-input>
-              <el-button class="send">发送</el-button>
-          </el-form-item>
+        <el-form-item
+          :label="$t('message.newCode')"
+          prop="mobildCode"
+          class="login"
+        >
+          <el-input
+            :placeholder="$t('message.enterPhoneCode')"
+            v-model="form.mobildCode"
+          ></el-input>
+          <el-button
+            class="send"
+            @click="send()"
+            :disabled="disabled"
+          >{{text}}{{text2}}</el-button>
+        </el-form-item>
 
-          <el-form-item label="新登录密码" prop="password"  class="login">
-              <el-input placeholder="请输入新的登录密码" v-model="form.password"></el-input>
-          </el-form-item>
+        <el-form-item
+          :label="$t('message.newPwd')"
+          prop="password"
+          class="login"
+        >
+          <el-input
+            :placeholder="$t('message.enternewPwd')"
+            v-model="form.password"
+          ></el-input>
+        </el-form-item>
 
-          <el-form-item label="确认新登录密码" prop="password"  class="login">
-              <el-input placeholder="请确认新的登录密码" v-model="form.password"></el-input>
-          </el-form-item>
+        <el-form-item
+          :label="$t('message.confirmnewPwd')"
+          prop="confirmPwd"
+          class="login"
+        >
+          <el-input
+            :placeholder="$t('message.confirmLogin')"
+            v-model="form.confirmPwd"
+          ></el-input>
+        </el-form-item>
       </el-form>
-      <el-button @click="forget()" class="submit">确认</el-button>
+      <el-button
+        @click="forget()"
+        class="submit"
+      >{{$t('message.confirm')}}</el-button>
     </div>
   </div>
 </template>
 
 <script>
 import Top from "../components/top";
+import api from "../API/index";
 export default {
   components: {
     Top
@@ -47,50 +109,69 @@ export default {
   data() {
     return {
       url: "/login",
-      form:{
-          country:'1',
-          username:'',
-          mobile:'',
-          code:'',
-          mobileCode:'',
-          password:'',
+      message: "",
+      href: "",
+      classIcon: "",
+      form: {
+        username: "",
+        mobile: "",
+        code: "",
+        mobileCode: "",
+        password: ""
       },
-      items:[
-          {
-              value:'1',
-              label:'中国 +86'
-          },
-          {
-              value:'2',
-              label:'新加坡 +65'
-          },
-          {
-              value:'3',
-              label:'泰国 +66'
-          },
-          {
-              value:'4',
-              label:'马来西亚 +60'
-          },
-          {
-              value:'5',
-              label:'日本 +81'
-          },
-          {
-              value:'6',
-              label:'韩国 +82'
-          },
-          {
-              value:'7',
-              label:'美国 +1'
-          },
-          {
-              value:'8',
-              label:'英国 +44'
-          },
-      ]
+      text:'',
+      text2:this.$t('message.send'),
+      disabled:false
     };
   },
+  methods: {
+    send() {
+      let that = this;
+      let data = that.form;
+      api.minicart.template
+        .choices("getResetPhoneCode", data)
+        .then(result => {
+          if (result.status == 200) {
+            const TIME_COUNT = 60;
+            if (!that.timer) {
+              that.disabled = true;
+              that.text = TIME_COUNT;
+              that.text2 = "s" + this.$t("message.post");
+              that.timer = setInterval(() => {
+                if (that.text > 0 && that.text <= TIME_COUNT) {
+                  that.text--;
+                } else {
+                  that.disabled = false;
+                  clearInterval(that.timer);
+                  that.timer = null;
+                  that.text = this.$t("message.post");
+                  that.text2 = "";
+                }
+              }, 1000);
+            }
+          } else if (result.status == 400) {
+            that.$message.error(result.msg);
+          }
+        })
+        .catch(err => {
+          that.$message.error(that.$t("message.error"));
+        });
+    },
+    forget(){
+        let that=this
+        let data=that.form
+        api.minicart.template.choices('resetPwd',data).then(result=>{
+            if(result.status==200){
+                that.$message.success(result.msg)
+                that.$router.push('/login')
+            }else if(result.status==400){
+                that.$message.error(result.msg)
+            }
+        }).catch(err=>{
+            that.$message.error(that.$t('message.error'))
+        })
+    }
+  }
 };
 </script>
 

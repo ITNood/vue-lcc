@@ -33,7 +33,7 @@ export default {
   data() {
     return {
       url: "/lcc",
-      message: "钱包记录",
+      message: this.$t('message.bagHistry'),
       href: "",
       classIcon: "",
       items:''
@@ -53,7 +53,7 @@ export default {
                   that.$message.error(result.msg)
               }
           }).catch(err=>{
-              that.$message.error('错误!')
+              that.$message.error(this.$t('message.error'))
           })
       }
   },

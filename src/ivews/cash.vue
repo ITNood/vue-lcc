@@ -29,7 +29,7 @@
              <div class="pubilcOrder">
             <ul class="orderList">
                 <li v-for="(item,index) in items" :key="index">
-                    <router-link :to="item.state==1 || item.state==3  || item.state==4 ? '':{path:'/serviceRecharge',query:{id:item.id}}">
+                    <router-link :to="item.state==1 || item.state==3  || item.state==4 ? '':{path:'/cashOrder',query:{id:item.id}}">
                         <div class="status">
                             <h5>{{item.amount}}Usdt</h5>
                             <div class="orderStauts">

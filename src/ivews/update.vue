@@ -51,9 +51,9 @@
       :close-on-click-modal="false"
       id="open"
     >
-      <span>升级需支付 {{point}} 积分</span>
+      <span>{{$t('message.for')}} {{point}} {{$t('message.integral')}}</span>
       <div class="pay">
-          <p>支付方式</p>
+          <p>{{$t('message.payway')}}</p>
           <el-select v-model="type" class="paySelect" placeholder="请选择" @change="change($event)">
               <el-option v-for="item in todos" :key="item.value" :label="item.name" :value="item.id"></el-option>
           </el-select>
@@ -65,7 +65,7 @@
         <el-button
         class="submit"
           @click="submit1()"
-        >确 定</el-button>
+        >{{$t('message.confirm')}}</el-button>
       </span>
     </el-dialog>
       <!--密码组件-->
@@ -156,7 +156,7 @@ export default {
                  that.$message.error(result.msg)
              }
          }).catch(err=>{
-             that.$message.error('错误!')
+             that.$message.error(this.$t('message.error'))
          })
      },
      submit2(){
@@ -165,7 +165,7 @@ export default {
          if(id){
             this.centerDialogVisible=true
          }else {
-            that.$message.error('请选择升级级别！')
+            that.$message.error(this.$t('message.selectLevel'))
          }
          
      },
@@ -176,7 +176,7 @@ export default {
              that.$refs.child.open(that.show);
              that.centerDialogVisible=false
          }else {
-            that.$message.error('请选择支付方式！')
+            that.$message.error(this.$t('message.method'))
          }
      }
  },

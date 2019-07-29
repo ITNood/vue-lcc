@@ -11,34 +11,34 @@
       id="tabs"
     >
       <el-tab-pane
-        label="Usdt充值"
+        :label="$t('message.usdtRec')"
         name="first"
       >
         <ul class="outside">
           <li>
-            <p>我的Usdt</p>
+            <p>{{$t('message.myusdt')}}</p>
             <h5>{{usdt}}</h5>
           </li>
           <li>
-            <p>充值数量</p>
+            <p>{{$t('message.numberRec')}}</p>
             <el-input
               v-model="amount"
               v-on:input="change"
-              placeholder="请输入充值数量"
+              :placeholder="$t('message.enternumberRec')"
             ></el-input>
           </li>
           <li>
-            <p>需支付Usd / Rmb</p>
+            <p>{{$t('message.needpay')}}</p>
             <h5><span>$</span>{{dollar}} / <span>￥</span>{{rmb}}</h5>
           </li>
         </ul>
         <el-button
           class="submit"
           @click="submit1()"
-        >确认</el-button>
+        >{{$t('message.confirm')}}</el-button>
       </el-tab-pane>
       <el-tab-pane
-        label="充值订单"
+        :label="$t('message.recOrder')"
         name="second"
       >
         <div class="pubilcOrder">
@@ -51,24 +51,24 @@
                 <div class="status">
                   <h5>{{item.amount}}Usdt</h5>
                   <div class="orderStauts">
-                    <span v-if="item.state==1">待匹配</span>
-                    <span v-else-if="item.state==2">进行中</span>
-                    <span v-else-if="item.state==3">已完成</span>
-                    <span v-else-if="item.state==4">取消</span>
-                    <span v-else-if="item.state==5">进行中</span>
-                    <i class="el-icon-arrow-right"></i>
+                      <span v-if="item.state==1">{{$t('message.matched')}}</span>
+                      <span v-else-if="item.state==2">{{$t('message.ing')}}</span>
+                      <span v-else-if="item.state==3">{{$t('message.end')}}</span>
+                      <span v-else-if="item.state==4">{{$t('message.cancel')}}</span>
+                      <span v-else-if="item.state==5">{{$t('message.ing')}}</span>
+                      <i class="el-icon-arrow-right"></i>
                   </div>
                 </div>
                 <el-row :gutter="15">
                   <el-col :span="12">
                     <div class="orderContent">
-                      <p>时间</p>
+                      <p>{{$t('message.time')}}</p>
                       <dd>{{item.date}}</dd>
                     </div>
                   </el-col>
                   <el-col :span="12">
                     <div class="orderContent textRight">
-                      <p>充值总额Usdt / Rmb</p>
+                      <p>{{$t('message.totalRec')}}Usdt / Rmb</p>
                       <dd>${{item.dollar}} / ￥{{item.yuan}}</dd>
                     </div>
                   </el-col>
@@ -102,7 +102,7 @@ export default {
   data() {
     return {
       url: "/usdt",
-      message: "场外充值",
+      message: this.$t('message.outRecharge'),
       href: "",
       classIcon: "",
       activeName: "first",
@@ -135,7 +135,7 @@ export default {
           }
         })
         .catch(err => {
-          that.$message.error("错误!");
+          that.$message.error(this.$t('message.error'));
         });
     },
     change() {
@@ -160,7 +160,7 @@ export default {
           }
         })
         .catch(err => {
-          that.$message.error("错误!");
+          that.$message.error(this.$t('message.error'));
         });
     },
     submit1() {
@@ -169,7 +169,7 @@ export default {
       if (number > 0) {
         that.$refs.child.open(that.show);
       } else {
-        that.$message.warning("取出信用额度不能为0！");
+        that.$message.warning(this.$t('message.should'));
       }
     }
   }

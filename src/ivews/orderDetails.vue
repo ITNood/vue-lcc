@@ -27,7 +27,7 @@
           <li>
             <router-link to=''>
               <div class="status">
-                <h5>{{amount}}Usdt</h5>
+                <h5>{{amount}}FC</h5>
               </div>
               <el-row :gutter="15">
                 <el-col :span="12">
@@ -48,62 +48,132 @@
         </ul>
       </div>
       <div class="orderText">
-          <ul class="public">
-            <li>
-              订单编号<span>{{order}}</span>
-            </li>
-            <li>
-              会员昵称<span>{{username}}</span>
-            </li>
-            <li>
-              打款类型<span>{{takeWay}}</span>
-            </li>
-          </ul>
+        <ul class="public">
+          <li>
+            {{$t('message.orderNo')}}<span>{{order}}</span>
+          </li>
+          <li>
+            {{$t('message.username')}}<span>{{username}}</span>
+          </li>
+          <li>
+            {{$t('message.bank')}}<span>{{bank}}</span>
+          </li>
+          <li>
+            {{$t('message.bankaccount')}}<span>{{bankname}}</span>
+          </li>
+          <li>
+            {{$t('message.bankbranch')}}<span>{{bankaddress}}</span>
+          </li>
+        </ul>
       </div>
       <div class="voucher">
-          <img :src="imgSrc" @click="look()">
+        <img
+          :src="imgSrc"
+          @click="look()"
+        >
       </div>
-      <el-button class="submit">确认收款</el-button>
+      <el-button
+        class="submit"
+        @click="submit()"
+        v-show="show"
+      >{{$t('message.confirmtake')}}</el-button>
       <!--查看凭证-->
-    <el-dialog
-      :visible.sync="centerDialogVisible"
-      width="80%"
-      class="dialogbg"
-      center
-    >
-      <img :src="imgSrc">
-      <span
-        slot="footer"
-        class="dialog-footer"
+      <el-dialog
+        :visible.sync="centerDialogVisible"
+        width="80%"
+        class="dialogbg"
+        center
       >
-      </span>
-    </el-dialog>
+        <img :src="imgSrc">
+        <span
+          slot="footer"
+          class="dialog-footer"
+        >
+        </span>
+      </el-dialog>
     </div>
   </div>
 </template>
 
 <script>
+import api from "../API/index";
 export default {
   data() {
     return {
       pathUrl: "/myOrder",
-      title: "订单详情",
+      title: this.$t('message.od'),
       font: "el-icon-chat-dot-square",
-      amount: 100,
-      date: "2019/07/26",
-      dollar: 100,
-      rmb: 100,
-      order:'22222',
-      username:'李四',
-      takeWay:'银行卡',
-      imgSrc:require('../assets/img/about.jpg'),
-      centerDialogVisible:false
+      amount: "",
+      date: "",
+      dollar:"",
+      rmb: "",
+      order:"",
+      username: "",
+      takeWay: "",
+      imgSrc: "",
+      bank: "",
+      bankname: "",
+      bankaddress: "",
+      centerDialogVisible: false,
+      show:false
     };
   },
+  mounted() {
+    this.getdata();
+  },
   methods: {
-      look(){
-          this.centerDialogVisible=true
-      },
+    getdata() {
+      let that = this;
+      let id = that.$route.query.id;
+      api.minicart.template
+        .choices("withdrawDetail", { id: id })
+        .then(result => {
+          if (result.status == 200) {
+            that.amount = result.res.amount;
+            that.date = result.res.date;
+            that.dollar = result.res.usdt;
+            that.rmb = result.res.rmb;
+            that.order = result.res.orderNo;
+            that.username = result.res.truename;
+            that.bank=result.res.bankName
+            that.bankname=result.res.bankAccount
+            that.bankaddress=result.res.bankBranch
+            that.imgSrc = result.res.img;
+            if(result.res.state==2){
+              that.show=true
+            }else{
+              that.disabled=false
+            }
+          } else if (result.status == 400) {
+            that.$message.error(result.msg);
+          }
+        })
+        .catch(err => {
+          that.$message.error(this.$t("message.error"));
+        });
+    },
+    submit() {
+      let that = this;
+      let id = that.$route.query.id;
+      api.minicart.template
+        .choices("completeWithdraw", { id: id })
+        .then(result => {
+          if (result.status == 200) {
+            that.$message.success(result.msg);
+            setTimeout(() => {
+              window.location.reload();
+            }, 1000);
+          } else if (result.status == 400) {
+            that.$message.error(result.msg);
+          }
+        })
+        .catch(err => {
+          that.$message.error(this.$t("message.error"));
+        });
+    },
+    look() {
+      this.centerDialogVisible = true;
+    },
     chat() {
       let that = this;
       let id = that.$route.query.id;

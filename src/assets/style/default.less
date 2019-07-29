@@ -46,6 +46,10 @@ img {
     background: #1a202e
 }
 
+// .el-loading-mask{
+//     background-color: rgba(255, 255, 255, .5);
+// }
+
 .cashbg {
     background: @background;
     padding: 20px;
@@ -1260,6 +1264,8 @@ img {
                         margin: 0;
                         font-size: 14px;
                         line-height: 25px;
+                        font-family: number;
+                        font-weight: normal;
                     }
 
                     .orderStauts {
@@ -1463,6 +1469,10 @@ img {
     background: #45464a;
     display: inline-block;
     margin-top: 5px;
+}
+
+.actived>h5 {
+    margin: 0
 }
 
 .newContent>span>img,
@@ -2534,7 +2544,7 @@ img {
 
     .reportContent {
         height: calc(100vh - 140px;
-        );
+            );
         overflow-y: auto;
 
         .noReport {
@@ -2776,12 +2786,12 @@ img {
     border-radius: 50%;
     overflow: hidden;
     margin: 0 auto;
+    border-radius: 50%;
 }
 
 .selectPhoto>img {
     border-radius: 50%;
     width: 75px;
-    height: 75px;
 }
 
 .picter-list {
@@ -3546,13 +3556,24 @@ strong {
     }
 }
 
-.voucher{
+.voucher {
     background: @background;
-    padding:15px;
+    padding: 15px;
     min-height: 120px;
-    img{
+
+    img {
         width: 80px;
         display: block;
         margin: 0 auto;
     }
+}
+
+.pay-btn.is-disabled,
+.submit.is-disabled {
+    background-color: #EBEEF5;
+    color: #C0C4CC
+}
+
+.el-loading-mask{
+    background-color: transparent
 }

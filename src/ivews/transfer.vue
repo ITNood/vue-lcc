@@ -7,24 +7,24 @@
       :font="classIcon"
     />
     <el-tabs v-model="activeName" id="tabs">
-        <el-tab-pane label="资产转账" name="first">
+        <el-tab-pane :label="$t('message.assets')" name="first">
              <ul class="outside">
             <li>
-                <p>我的Usdt</p>
+                <p>{{$t('message.myusdt')}}</p>
                 <h5>{{usdt}}</h5>
             </li>
             <li>
-                <p>会员账号</p>
-                <el-input v-model="username" placeholder="请输入会员账号"></el-input>
+                <p>{{$t('message.vipAccount')}}</p>
+                <el-input v-model="username" :placeholder="$t('message.membership')"></el-input>
             </li>
             <li>
-                <p>转出数量</p>
-                <el-input v-model="amount" placeholder="请输入转出数量"></el-input>
+                <p>{{$t('message.transfernumber')}}</p>
+                <el-input v-model="amount" :placeholder="$t('message.entertranNumber')"></el-input>
             </li>
         </ul>
-        <el-button class="submit" @click="submit()">确认</el-button>
+        <el-button class="submit" @click="submit()">{{$t('message.confirm')}}</el-button>
         </el-tab-pane>
-        <el-tab-pane label="转账记录" name="second">
+        <el-tab-pane :label="$t('message.transferHistry')" name="second">
             <div class="transfer">
                 <ul class="transferHistry">
                    <li v-for="(item,index) in items" :key="index" >
@@ -48,20 +48,14 @@ export default {
  data() {
   return {
       url:'/usdt',
-      message:'资产转账',
+      message:this.$t('message.assets'),
       href:'',
       classIcon:'',
       activeName:'first',
       usdt:'0.00',
       username:'',
       amount:'',
-      items:[
-          {
-              date:'2018/07/17',
-              text:'兑换',
-              amount:'200.00注册积分'
-          }
-      ]
+      items:[]
   }
  }
 }

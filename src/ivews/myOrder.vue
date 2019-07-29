@@ -24,7 +24,7 @@
                 >
                   <a>
                     <div class="status">
-                      <h5>{{item.amount}}Usdt</h5>
+                      <h5>{{item.fc}}Usdt</h5>
                       <div class="orderStauts">
                         <span>{{$t('message.successed')}}</span>
                         <!-- <span v-if="item.state==1">{{$t('message.matched')}}</span>
@@ -44,8 +44,8 @@
                       </el-col>
                       <el-col :span="14">
                         <div class="orderContent textRight">
-                          <p>{{$t('message.totalRec')}}Usdt / Rmb</p>
-                          <dd>${{item.dollar}} / ￥{{item.rmb}}</dd>
+                          <p>{{$t('message.buyTotal')}}</p>
+                          <dd>${{item.tb}}TB</dd>
                         </div>
                       </el-col>
                     </el-row>
@@ -77,7 +77,7 @@
                     >
                       <router-link :to="item.state==1 || item.state==3 || item.state==4 ? '':{path:'/orderDetails',query:{id:item.id}}">
                         <div class="status">
-                          <h5>{{item.amount}}Usdt</h5>
+                          <h5>{{item.fc}}FC</h5>
                           <div class="orderStauts">
                             <span v-if="item.state==1">{{$t('message.matched')}}</span>
                             <span v-else-if="item.state==2">{{$t('message.ing')}}</span>
@@ -96,8 +96,8 @@
                           </el-col>
                           <el-col :span="14">
                             <div class="orderContent textRight">
-                              <p>{{$t('message.totalRec')}}Usdt / Rmb</p>
-                              <dd>${{item.dollar}} / ￥{{item.rmb}}</dd>
+                              <p>{{$t('message.sellTotal')}}Usdt / Rmb</p>
+                              <dd>${{item.usdt}} / ￥{{item.rmd}}</dd>
                             </div>
                           </el-col>
                         </el-row>
@@ -120,7 +120,7 @@
                     >
                       <a>
                         <div class="status">
-                          <h5>{{item.amount}}Usdt</h5>
+                          <h5>{{item.fc}}FC</h5>
                           <div class="orderStauts">
                             <span>{{items.state==1 ? $t('message.wait'):$t('message.processed')}}</span>
                           </div>
@@ -134,8 +134,8 @@
                           </el-col>
                           <el-col :span="14">
                             <div class="orderContent textRight">
-                              <p>{{$t('message.totalRec')}}Usdt / Rmb</p>
-                              <dd>${{item.dollar}} / ￥{{item.rmb}}</dd>
+                              <p>{{$t('message.sellTotal')}}Usdt / Rmb</p>
+                              <dd>${{item.usdt}} / ￥{{item.rmb}}</dd>
                             </div>
                           </el-col>
                         </el-row>

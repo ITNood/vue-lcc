@@ -13,7 +13,7 @@
                 <img :src="imgSrc">
             </div>
             <div class="moneyInput">
-                <p>收款金额</p>
+                <p>{{$t('message.takeAmont')}}</p>
                 <div class="amount"><span>$</span>{{amount}}</div>
             </div>
         </div>
@@ -31,7 +31,7 @@
                 <span class="el-icon-back"></span>
             </li>
         </ul>
-        <el-button class="submit" style="width:85%;margin:30px auto;display:block" @click="submit()">确认</el-button>
+        <el-button class="submit" style="width:85%;margin:30px auto;display:block" @click="submit()">{{$t('messageconfirm')}}</el-button>
     </div>
   </div>
 </template>
@@ -48,7 +48,7 @@ export default {
   data() {
     return {
       url: "/shopCenter",
-      message: "收款",
+      message: this.$t('message.takeMoney'),
       href: "",
       classIcon: "",
       imgSrc:require('../assets/img/photo.png'),
@@ -71,7 +71,7 @@ export default {
           that.$message.error(result.msg)
         }
       }).catch(err=>{
-        that.$message.error('错误!')
+        that.$message.error(this.$t('message.error'))
       })
     },
     submit(){
@@ -86,7 +86,7 @@ export default {
           that.$router.push('/error')
         }
       }).catch(err=>{
-        that.$message.error('错误!')
+        that.$message.error(this.$t('message.error'))
       })
     },
       handlekeys(ev){

@@ -1,30 +1,45 @@
 <template>
   <div>
-    <Top
-      :pathUrl="url"
-      :title="message"
-      :appUrl="href"
-      :font="classIcon"
-    />
+    <el-header
+      height="50px"
+      id="top"
+    >
+      <el-col :span="6">
+        <router-link
+          :to="pathUrl"
+          class="el-icon-arrow-left back"
+        ></router-link>
+      </el-col>
+      <el-col :span="12">
+        <h5>{{title}}</h5>
+      </el-col>
+      <el-col :span="6">
+        <a
+          @click="chat()"
+          class="iconRight"
+          :class="font"
+        ></a>
+      </el-col>
+    </el-header>
     <div class="container">
       <!--订单详情-->
       <div class="cashbg">
         <div class="orderText">
           <ul class="public">
             <li>
-              订单编号<span>{{order}}</span>
+              {{$t('message.orderNo')}}<span>{{order}}</span>
             </li>
             <li>
-              订单时间<span>{{date}}</span>
+              {{$t('message.orderTime')}}<span>{{date}}</span>
             </li>
             <li>
-              会员昵称<span>{{username}}</span>
+              {{$t('message.username')}}<span>{{username}}</span>
             </li>
             <li>
-              充值数量<span>{{number}}</span>
+              {{$t('message.numberRec')}}<span>{{number}}</span>
             </li>
             <li>
-              付款金额<span>{{amount}}</span>
+              {{$t('message.payamount')}}<span>{{amount}}</span>
             </li>
           </ul>
         </div>
@@ -36,10 +51,10 @@
         class="cash-btn"
       >
         <el-col :span="7">
-          <el-button @click="look()">查看凭证</el-button>
+          <el-button @click="look()">{{$t('message.view')}}</el-button>
         </el-col>
         <el-col :span="17">
-          <el-button class="pay-btn" @click="submit1()">确认收款</el-button>
+          <el-button class="pay-btn" @click="submit1()" :disabled="disabled">{{$t('message.confirmtake')}}</el-button>
         </el-col>
       </el-row>
     </div>
@@ -73,10 +88,9 @@ export default {
   },
   data() {
     return {
-      url: "/outRecharge",
-      message: "充值订单",
-      href: "/chat",
-      classIcon: "el-icon-chat-dot-square",
+       pathUrl: "/service",
+      title: this.$t('message.recOrder'),
+      font: "el-icon-chat-dot-square",
       amount: '',
       date: "",
       order: "",
@@ -85,8 +99,12 @@ export default {
       value: "",
       img: "",
       centerDialogVisible: false,
-      show:false
+      show:false,
+      disabled:false,
     };
+  },
+  mounted() {
+    this.getData()
   },
   methods: {
     getData(){
@@ -102,11 +120,16 @@ export default {
                 if(result.res.img){
                     that.img=result.res.img
                 }
+                if(result.res.state==2){
+                  that.disabled=false
+                }else{
+                  that.disabled=true
+                }
             }else if(result.status==400){
                 that.$message.error(result.msg)
             }
         }).catch(err=>{
-            that.$message.error('错误!')
+            that.$message.error(this.$t('message.error'))
         })
     },
     submit(pwd){
@@ -122,7 +145,7 @@ export default {
                 that.$message.error(result.msg)
             }
         }).catch(err=>{
-            that.$message.error('错误!')
+            that.$message.error(this.$t('message.error'))
         })
     },
     submit1(){
@@ -131,7 +154,13 @@ export default {
      },
     look() {
       let that = this;
-      that.centerDialogVisible = true;
+      let img=that.img
+      if(img){
+        that.centerDialogVisible = true;
+      }else{
+        that.$message.info(this.$t('message.yet'))
+      }
+      
     },
     chat() {
       let that = this;

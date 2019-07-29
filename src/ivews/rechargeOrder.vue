@@ -32,13 +32,13 @@
               <el-row :gutter="15">
                 <el-col :span="12">
                   <div class="orderContent">
-                    <p>时间</p>
+                    <p>{{$t('message.time')}}</p>
                     <dd>{{date}}</dd>
                   </div>
                 </el-col>
                 <el-col :span="12">
                   <div class="orderContent textRight">
-                    <p>充值总额Usdt / Rmb</p>
+                    <p>{{$t('message.totalRec')}}Usdt / Rmb</p>
                     <dd>${{dollar}} / ￥{{rmb}}</dd>
                   </div>
                 </el-col>
@@ -51,13 +51,13 @@
       <div class="orderText">
         <ul class="public">
           <li>
-            订单编号<span>{{order}}</span>
+            {{$t('message.orderNo')}}<span>{{order}}</span>
           </li>
           <li>
-            会员昵称<span>{{username}}</span>
+            {{$t('message.username')}}<span>{{username}}</span>
           </li>
            <li>
-            打款类型<span>银行卡</span>
+            {{$t('message.payclass')}}<span>{{$t('message.bankCard')}}</span>
           </li>
           <!-- <li>
             打款类型
@@ -82,16 +82,16 @@
           class="public"
         >
           <li>
-            开户姓名<span>{{name}}</span>
+            {{$t('message.truename')}}<span>{{name}}</span>
           </li>
           <li>
-            银行名称<span>{{bank}}</span>
+            {{$t('message.bank')}}<span>{{bank}}</span>
           </li>
           <li>
-            银行账号<span>{{account}}</span>
+            {{$t('message.bankaccount')}}<span>{{account}}</span>
           </li>
           <li>
-            银行支行<span>{{bankAddress}}</span>
+            {{$t('message.bankbranch')}}<span>{{bankAddress}}</span>
           </li>
         </ul>
        
@@ -115,7 +115,7 @@
           >
             <div style="margin:0 auto;">
               <i class="el-icon-plus"></i>
-              <p>上传凭证</p>
+              <p>{{$t('message.vouchers')}}</p>
             </div>
           </div>
         </div>
@@ -124,7 +124,7 @@
         class="submit"
         :disabled="disabled"
         @click="submit1()"
-      >确认打款</el-button>
+      >{{$t('message.confirmPay')}}</el-button>
     </div>
     <!--密码组件-->
     <Pin
@@ -147,7 +147,7 @@ export default {
   data() {
     return {
       pathUrl: "/outRecharge",
-      title: "充值订单",
+      title: this.$t('message.recOrder'),
       font: "el-icon-chat-dot-square",
       amount: "",
       date: "",
@@ -155,10 +155,11 @@ export default {
       rmb: 0,
       order: "",
       username: "",
+      show:false,
       options: [
         {
           value: 1,
-          label: "银行卡"
+          label: this.$t('message.bankCard')
         }
         // {
         //     value:2,
@@ -196,13 +197,10 @@ export default {
             that.username = result.res.truename;
 
             //银行卡
-            that.name = result.res.bank.truename;
-            that.bank = result.res.bank.bank_name;
-            that.account = result.res.bank.address;
-            that.bankAddress = result.res.bank.bank_branch;
-
-            //usdt地址
-            that.usdtAddress = result.res.usdt.address;
+            that.name = result.res.truename;
+            that.bank = result.res.bankName;
+            that.account = result.res.bankAccount;
+            that.bankAddress = result.res.bankBranch;
 
             //按钮
             if (
@@ -219,7 +217,7 @@ export default {
           }
         })
         .catch(err => {
-          that.$message.error("错误!");
+          that.$message.error(this.$t('message.error'));
         });
     },
 

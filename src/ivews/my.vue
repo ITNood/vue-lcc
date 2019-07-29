@@ -89,6 +89,7 @@
 </template>
 
 <script>
+
 import api from "../API/index.js";
 import Bottom from "../components/bottom";
 export default {
@@ -103,23 +104,6 @@ export default {
       show: true,
       show1:false,
       show2:false,
-      items: [
-        //   {
-        //       url:'/report',
-        //       font:'icon-dingdanwancheng',
-        //       text:'报单中心'
-        //   },
-        // {
-        //   url: "/service",
-        //   font: "icon-fuwuleixing",
-        //   text: this.$t("message.service")
-        // },
-        // {
-        //   url: "/shopCenter",
-        //   font: "icon-shangjia",
-        //   text: this.$t("message.shoper")
-        // }
-      ],
       todos: [
         {
           url: "/takeWay",
@@ -153,6 +137,7 @@ export default {
     this.getData();
   },
   methods: {
+
     getData() {
       let that = this;
       api.minicart.template

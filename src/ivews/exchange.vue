@@ -7,18 +7,18 @@
       :font="classIcon"
     />
     <el-tabs v-model="activeName" id="tabs">
-        <el-tab-pane label="积分兑换" name="first">
+        <el-tab-pane :label="$t('message.pointEx')" name="first">
             <div class="pointsAccount">
                 <el-row>
                     <el-col :span="12">
                         <div class="bag" style="border-right:1px solid #313743">
-                            <p>现金积分</p>
+                            <p>{{$t('message.cash')}}</p>
                             <h5>{{cash}}</h5>
                         </div>
                     </el-col>
                     <el-col :span="12">
                         <div class="bag">
-                            <p>通行积分</p>
+                            <p>{{$t('message.point')}}</p>
                             <h5>{{number}}</h5>
                         </div>
                     </el-col>
@@ -27,19 +27,19 @@
             <ul class="outside">
                 
                 <li>
-                    <p>兑换类型</p>
-                    <el-select v-model="type" @change="select()" placeholder="请选择兑换积分类型" class="tranPoints">
+                    <p>{{$t('message.exchangeClass')}}</p>
+                    <el-select v-model="type" @change="select()" class="tranPoints">
                         <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.id"></el-option>
                     </el-select>
                 </li>
                 <li>
-                    <p>兑换数量</p>
-                    <el-input v-model="amount" placeholder="请输入兑换数量"></el-input>
+                    <p>{{$t('message.exchangeNumber')}}</p>
+                    <el-input v-model="amount" :placeholder="$t('message.enterExchangenumber')"></el-input>
                 </li>
             </ul>
-            <el-button class="submit" @click="submit1()">确认</el-button>
+            <el-button class="submit" @click="submit1()">{{$t('message.confirm')}}</el-button>
         </el-tab-pane>
-       <el-tab-pane label="转账记录" name="second">
+       <el-tab-pane :label="$t('message.transferHistry')" name="second">
             <div class="transfer">
                 <ul class="transferHistry">
                    <li v-for="(item,index) in items" :key="index" >
@@ -68,7 +68,7 @@ export default {
  data() {
   return {
       url:'/assets',
-      message:'兑换',
+      message:this.$t('message.exchange'),
       href:'',
       classIcon:'',
       activeName:'first',
@@ -77,7 +77,7 @@ export default {
       options:[
           {
               id:1,
-              label:'现金积分兑换通行积分'
+              label:this.$t('message.currentPoint')
           }
       ],
       items:[],
@@ -102,7 +102,7 @@ export default {
                  that.$message.error(result.msg)
              }
          }).catch(err=>{
-             that.$message.error('错误!')
+             that.$message.error(this.$t('message.error'))
          })
      },
      select(){
@@ -120,7 +120,7 @@ export default {
                  that.$message.error(result.msg)
              }
          }).catch(err=>{
-             that.$message.error('错误!')
+             that.$message.error(this.$t('message.error'))
          })
      },
      submit1(){
@@ -129,7 +129,7 @@ export default {
          if(number>0){
              that.$refs.child.open(that.show);
          }else {
-             that.$message.warning('兑换数量不能为0')
+             that.$message.warning(this.$t('message.cannot'))
          }
      }
  },

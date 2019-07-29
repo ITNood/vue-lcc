@@ -6,15 +6,18 @@
     >
       <el-col :span="6">
         <a
-        @click="back()"
+          @click="back()"
           class="el-icon-arrow-left back"
         ></a>
       </el-col>
       <el-col :span="12">
-        <h5 style="height:50px;">{{title}}</h5>
+        <h5 style="height:50px;"></h5>
       </el-col>
       <el-col :span="6">
-        <el-button class="observation" @click="appeal()">{{$t('message.represent')}}</el-button>
+        <el-button
+          class="observation"
+          @click="appeal()"
+        >{{$t('message.represent')}}</el-button>
       </el-col>
     </el-header>
     <!--申诉-->
@@ -27,7 +30,7 @@
         slot="footer"
         class="dialog-footer"
       >
-        <el-button @click="centerDialogVisible  = false">取 消</el-button>
+        <el-button @click="centerDialogVisible  = false">{{$t('message.cancel')}}</el-button>
         <el-button
           type="primary"
           @click="appeal()"
@@ -44,14 +47,17 @@
           v-for="(item,index) in items"
           :key="index"
         >
-          <p>{{item.date}}</p>
+          <p :style="{'text-align':item.role==1?'right':'left'}">{{item.date}}</p>
           <div
             :class="item.role==1 ? 'actived':'newContent'"
             v-if="item.is_system==0"
           >
             <img :src="item.avatar">
             <h5>{{item.username}}</h5>
-            <span>{{item.detail}}<img :src="item.img" @click="look($event)"></span>
+            <span>{{item.detail}}<img
+                :src="item.img"
+                @click="look($event)"
+              ></span>
           </div>
           <div
             v-else
@@ -98,28 +104,24 @@
       </div>
     </div>
 
-    <div
-      id="lookPicter"
-      v-show="show2"
+    <el-dialog
+      :visible.sync="centerDialogVisible"
+      width="80%"
+      class="dialogbg"
+      center
     >
-      <div class="center">
-        <div class="look-picter">
-          <img
-            :src="imageSrc"
-            alt=""
-          >
-          <div
-            class=" close-picter el-icon-close"
-            @click="show2=!show2"
-          ></div>
-        </div>
-      </div>
-    </div>
+      <img :src="imageSrc">
+      <span
+        slot="footer"
+        class="dialog-footer"
+      >
+      </span>
+    </el-dialog>
   </div>
 </template>
 
 <script>
-//import api from "../API/index.js";
+import api from "../API/index.js";
 export default {
   data() {
     return {
@@ -127,19 +129,21 @@ export default {
       ruleForm: {
         img: "",
         content: "",
-        id: ""
+        id: "",type:''
       },
       items: [],
-      imageSrc:'',
-      show2:false
+      imageSrc: "",
+      show2: false
     };
   },
   mounted() {
+   // console.log(11)
     this.WebSocketTest();
+     
   },
   //数据更新后滚动
   updated() {
-    this.scrollToBottom();
+   this.scrollToBottom();
   },
 
   methods: {
@@ -150,19 +154,20 @@ export default {
     scrollToBottom() {
       this.$nextTick(() => {
         let container = this.$el.querySelector("#wechat>li:last-child");
-        let height=this.$el.querySelector("#wechat>li:last-child").offsetHeight;
-        console.log(height)
-        container.scrollIntoView('+height')
+        let height = this.$el.querySelector("#wechat>li:last-child")
+          .offsetHeight;
+        //console.log(height);
+        container.scrollIntoView("+height");
       });
     },
 
     //查看图片
-    look(ev){
-      console.log(ev)
-      this.imageSrc=ev.target.currentSrc
-      this.show2=true
+    look(ev) {
+      console.log(ev);
+      this.imageSrc = ev.target.currentSrc;
+      this.show = true;
     },
-   
+
     uploadChange(ev) {
       // console.log(ev.target.files);
       var file = ev.target.files[0];
@@ -175,7 +180,7 @@ export default {
           // 图片base64
           // console.log(e.target.result);
           that.ruleForm.img = e.target.result;
-         // console.log(that.ruleForm.img);
+          // console.log(that.ruleForm.img);
         };
       }
     },
@@ -184,8 +189,9 @@ export default {
     appeal() {
       this.centerDialogVisible = false;
       let id = this.$route.query.id;
+      let type=this.$route.query.type
       api.minicart.template
-        .choices("chat/complaint", { id: id })
+        .choices("chat/complaint", { id: id,type:type })
         .then(result => {
           if (result.status == 200) {
             alert(result.msg);
@@ -201,7 +207,8 @@ export default {
     //发送
     send1() {
       let that = this;
-      that.ruleForm.id = this.$route.query.id;
+      that.ruleForm.id = that.$route.query.id;
+      that.ruleForm.type=that.$route.query.type
       let data = that.ruleForm;
       api.minicart.template
         .choices("chat/reply", data)
@@ -218,12 +225,12 @@ export default {
           alert(err.msg);
         });
     },
-    
 
     //长连接
     WebSocketTest() {
-      let id = this.$route.query.id;
       let that = this;
+      let id = that.$route.query.id;
+      let type = that.$route.query.type;
       if ("WebSocket" in window) {
         console.log("您的浏览器支持 WebSocket!");
         // 打开一个 web socket
@@ -233,8 +240,10 @@ export default {
           var json = JSON.stringify({
             token: window.localStorage.getItem("token"),
             id: id,
-            type: 1
+            type: 1,
+            type_id: type
           });
+          console.log(11)
           // Web Socket 已连接上，使用 send() 方法发送数据
           ws.send(json);
           var t1 = window.setInterval(function() {

@@ -62,7 +62,7 @@
                             <el-col :span="12">
                                 <div class="orderContent textRight">
                                     <p>{{$t('message.totalRec')}}Usdt / Rmb</p>
-                                    <dd>${{item.dollar}} / ￥{{item.rmb}}</dd>
+                                    <dd>${{item.usdt}} / ￥{{item.rmb}}</dd>
                                 </div>
                             </el-col>
                         </el-row>
@@ -74,10 +74,10 @@
             <el-tab-pane :label="$t('message.cashorder')" name="third">
                  <div class="pubilcOrder">
             <ul class="orderList">
-                <li v-for="(item,index) in items" :key="index">
+                <li v-for="(item,index) in todos" :key="index">
                     <router-link :to="item.state==1 || item.state==3 || item.state==4 ? '':{path:'/serviceCash',query:{id:item.id}}">
                         <div class="status">
-                            <h5>{{item.amount}}Usdt</h5>
+                            <h5>{{item.amount}}FC</h5>
                             <div class="orderStauts">
                                 <span v-if="item.state==1">{{$t('message.matched')}}</span>
                                 <span v-else-if="item.state==2">{{$t('message.ing')}}</span>
@@ -97,7 +97,7 @@
                             <el-col :span="12">
                                 <div class="orderContent textRight">
                                     <p>{{$t('message.totalRec')}}Usdt / Rmb</p>
-                                    <dd>${{item.dollar}} / ￥{{item.rmb}}</dd>
+                                    <dd>${{item.usdt}} / ￥{{item.rmb}}</dd>
                                 </div>
                             </el-col>
                         </el-row>
@@ -134,6 +134,7 @@ export default {
       rmb:0,
       amount:'',
       items:[],
+      todos:[],
       show:false
     };
   },
@@ -147,10 +148,12 @@ export default {
               if(result.status==200){
                   that.dollar=result.res.dollars
                   that.rmb=result.res.advance
-
                   //充值订单
                   if(result.res.rechargeOrder){
                       that.items=that.items.concat(result.res.rechargeOrder)
+                  }
+                  if(result.res.withdrawOrder){
+                      that.todos=that.todos.concat(result.res.withdrawOrder)
                   }
               }
           }).catch(err=>{

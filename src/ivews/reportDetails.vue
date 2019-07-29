@@ -90,10 +90,10 @@ export default {
               that.status = this.$t('message.wait');
               that.disabled = false;
             } else if (result.state == 2) {
-              that.status = "处理中";
+              that.status = that.$t('message.Processing');
               that.disabled = false;
             } else if (result.state == 3) {
-              that.status = "已完成";
+              that.status = that.$t('message.processed');
               that.disabled = true;
             }
             that.items=that.items.concat(result.res.data)
@@ -102,7 +102,7 @@ export default {
           }
         })
         .catch(err => {
-          that.$message.error("错误!");
+          that.$message.error(this.$t('message.error'));
         });
     },
     look(ev) {
