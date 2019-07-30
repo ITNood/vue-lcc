@@ -6,7 +6,7 @@
       :appUrl="href"
       :font="classIcon"
     />
-    <div class="container">
+    <div class="container" style="margin-bottom:0">
         <div class="transfer">
           <ul class="transferHistry">
             <li

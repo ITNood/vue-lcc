@@ -1,6 +1,8 @@
 import zhLocale from 'element-ui/lib/locale/lang/zh-CN' //引入element语言包
 const cn = {
     message: {
+        'check':'查看明细',
+        'change':'请选择',
         'it':'余额为0，请充值',
         'choose':'请选择收款方式',
         'title':'标题',
@@ -244,7 +246,7 @@ const cn = {
         'complete': '完成',
         'match': '购买配套',
         'equity': '权益配套',
-        'salary': '周薪资',
+        'salary': '日薪资',
         'weekCap': '周封顶',
         'matchAmount': '配套金额',
         'price': '售价(积分)',

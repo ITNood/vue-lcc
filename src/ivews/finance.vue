@@ -138,8 +138,12 @@ export default {
       let that=this
       api.minicart.template.choices('home/myInvest').then(result=>{
         if(result.status==200){
-          that.todos=that.todos.concat(result.res.order1)
-          that.items=that.items.concat(result.res.order2)
+          if(result.res.order1){
+            that.todos=that.todos.concat(result.res.order1)
+          }
+          if(result.res.order2){
+            that.items=that.items.concat(result.res.order2)
+          }
         }else if(result.status==400){
           alert(result.msg)
         }

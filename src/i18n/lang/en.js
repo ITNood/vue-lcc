@@ -1,7 +1,8 @@
-
 import enLocale from 'element-ui/lib/locale/lang/en' //引入element语言包
 const en = {
     message: {
+        'check':'Check the details',
+        'change':'Please choose',
         'it':'The balance is 0. Please recharge it',
         'choose': 'Please choose the method of collection',
         'title': 'Title',
@@ -245,7 +246,7 @@ const en = {
         'complete': 'complete',
         'match': 'Buy Matching',
         'equity': 'Equity Matching',
-        'salary': 'Weekly salary',
+        'salary': 'Day salary',
         'weekCap': 'Week of caps',
         'matchAmount': 'Amount',
         'price': 'Price (points)',

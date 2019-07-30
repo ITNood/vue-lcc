@@ -41,7 +41,7 @@
              </li>
          </ul>
          <el-button class="submit" @click="submit2()">{{$t('message.confirm')}}</el-button>
-         <div class="buyTips" style="text-align:center;color:#999">{{$t('message.chance')}}</div>
+         <!-- <div class="buyTips" style="text-align:center;color:#999">{{$t('message.chance')}}</div> -->
      </div>
      <!--支付方式-->
     <el-dialog
@@ -54,7 +54,7 @@
       <span>{{$t('message.for')}} {{point}} {{$t('message.integral')}}</span>
       <div class="pay">
           <p>{{$t('message.payway')}}</p>
-          <el-select v-model="type" class="paySelect" placeholder="请选择" @change="change($event)">
+          <el-select v-model="type" class="paySelect" :placeholder="$t('message.change')" @change="change($event)">
               <el-option v-for="item in todos" :key="item.value" :label="item.name" :value="item.id"></el-option>
           </el-select>
       </div>

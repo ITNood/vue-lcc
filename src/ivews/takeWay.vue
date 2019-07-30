@@ -13,7 +13,7 @@
                 <div class="carContent" v-if="account">
                     <p>{{name}}</p>
                     <h5>{{account}}</h5>
-                    <el-button class="edit" @click="bank()">{{$t('message.edit')}}</el-button>
+                    <!-- <el-button class="edit" @click="bank()">{{$t('message.edit')}}</el-button> -->
                 </div>
                 <router-link v-else class="addCar" to="/bank">
                     <i class="el-icon-plus"></i>
@@ -27,7 +27,7 @@
                 <div class="carContent" v-if="address">
                     <p>{{$t('message.usdtAddress')}}</p>
                     <h5 style="font-size:14px;">{{address}}</h5>
-                    <el-button class="edit" @click="usdt()">{{$t('message.edit')}}</el-button>
+                    <!-- <el-button class="edit" @click="usdt()">{{$t('message.edit')}}</el-button> -->
                 </div>
                  <router-link v-else class="addCar" to="/addUsdt">
                     <i class="el-icon-plus"></i>

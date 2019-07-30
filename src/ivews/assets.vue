@@ -22,7 +22,7 @@
         </el-col>
         <el-col :span="6">
           <router-link to="/exchange">
-            <i class="icon iconfont icon-duihuan"></i>
+            <i class="icon iconfont icon-jinbiduihuan"></i>
             <p>{{$t('message.exchange')}}</p>
           </router-link>
         </el-col>
@@ -50,7 +50,7 @@
             </div>
             <div class="floatright">
             <b>{{ctp}}</b>
-            <router-link :to="{path:'/wallet',query:{id:ctpid}}">查看明细</router-link>
+            <router-link :to="{path:'/wallet',query:{id:ctpid}}">{{$t('message.check')}}</router-link>
             </div>
           </li>
           <li>
@@ -61,7 +61,7 @@
             </div>
             <div class="floatright">
             <b>{{cash}}</b>
-            <router-link :to="{path:'/wallet',query:{id:cashid}}">查看明细</router-link>
+            <router-link :to="{path:'/wallet',query:{id:cashid}}">{{$t('message.check')}}</router-link>
             </div>
           </li>
           <li>
@@ -72,7 +72,7 @@
             </div>
             <div class="floatright">
             <b>{{xtb}}</b>
-            <router-link :to="{path:'/wallet',query:{id:xtbid}}">查看明细</router-link>
+            <router-link :to="{path:'/wallet',query:{id:xtbid}}">{{$t('message.check')}}</router-link>
             </div>
           </li>
           <li>
@@ -83,7 +83,7 @@
             </div>
             <div class="floatright">
             <b>{{ccf}}</b>
-            <router-link :to="{path:'/wallet',query:{id:ccfid}}">查看明细</router-link>
+            <router-link :to="{path:'/wallet',query:{id:ccfid}}">{{$t('message.check')}}</router-link>
             </div>
           </li>
         </ul>

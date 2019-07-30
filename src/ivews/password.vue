@@ -193,7 +193,7 @@ export default {
     };
   },
   mounted() {
-    //this.isSetPassword();
+    this.isSetPassword();
   },
   methods: {
     //修改登录密码
@@ -225,7 +225,7 @@ export default {
     isSetPassword() {
       let that = this;
       api.minicart.template
-        .choices("isSetSafePwd")
+        .choices("isSetPayPwd")
         .then(response => {
           if (response.status == 200) {
             console.log(response);
