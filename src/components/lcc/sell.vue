@@ -75,7 +75,7 @@ export default {
       price1: "0.00",
       total1: "0.00",
       radio:'',
-      tongbaoPrice:''
+      //tongbaoPrice:''
     };
   },
   mounted() {
@@ -83,20 +83,21 @@ export default {
   },
   updated() {
     let that=this
-    that.total1=(Math.floor(that.num1*that.tongbaoPrice/that.price1*100)/100).toFixed(2)
+    that.total1=(Math.floor(that.num1*that.price1*100)/100).toFixed(2)
+    console.log(that.radio)
   },
   methods: {
     getData(){
       let that=this
       api.minicart.template.choices('tongzhengRecord').then(result=>{
         if(result.status==200){
-          that.price1=result.res.price
-          that.tongbaoPrice=result.res.tongbaoPrice
+          that.price1=result.res.tongbaoPrice
+          //that.tongbaoPrice=result.res.tongbaoPrice
         }else if(result.status==400){
-          that.$message.error(result.msg)
+          alert(result.msg)
         }
       }).catch(err=>{
-        that.$message.error(this.$t('message.error'))
+        alert(this.$t('message.error'))
       })
     },
     handleChange1(value) {
@@ -109,28 +110,30 @@ export default {
       let that=this
       let number=that.num1
       let type=that.radio
-      if(type){
           api.minicart.template.choices('tongzhengSell',{type:type,number:number,security:pwd}).then(result=>{
             if(result.status==200){
-              that.$message.success(result.msg)
+              alert(result.msg)
               setTimeout(() => {
                 window.location.reload()
               }, 1000);
             }else if(result.status==400){
-              that.$message.error(result.msg)
+              alert(result.msg)
             }
           }).catch(err=>{
-            that.$message.error(this.$t('message.error'))
+            alert(this.$t('message.error'))
           })
-      }else {
-        that.$message.warning('请选择收款方式！')
-      }
       
     },
     newsell(){
-      this.sell();
-      this.$refs.child.open();
-
+      let type=this.radio
+      console.log(type)
+      if(type){
+         this.sell();
+         this.$refs.child.open();
+      }else{
+        alert(this.$t('message.choose'))
+      }
+      
     },
   },
 };

@@ -2,6 +2,8 @@
 import enLocale from 'element-ui/lib/locale/lang/en' //引入element语言包
 const en = {
     message: {
+        'it':'The balance is 0. Please recharge it',
+        'choose': 'Please choose the method of collection',
         'title': 'Title',
         'thetitle': 'Please enter the title',
         'workreply':'Work order reply',

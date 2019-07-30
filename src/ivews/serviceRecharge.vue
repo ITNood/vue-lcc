@@ -110,7 +110,7 @@ export default {
     getData(){
         let that=this
         let id=that.$route.query.id
-        api.minicart.template.choices('withdrawDetail',{id:id}).then(result=>{
+        api.minicart.template.choices('rechargeDetail',{id:id}).then(result=>{
             if(result.status==200){
                 that.order=result.res.orderNo
                 that.number=result.res.amount
@@ -126,10 +126,10 @@ export default {
                   that.disabled=true
                 }
             }else if(result.status==400){
-                that.$message.error(result.msg)
+                alert(result.msg)
             }
         }).catch(err=>{
-            that.$message.error(this.$t('message.error'))
+            alert(this.$t('message.error'))
         })
     },
     submit(pwd){
@@ -137,15 +137,15 @@ export default {
         let id=that.$route.query.id
         api.minicart.template.choices('serviceCompleteRecharge',{id:id,security:pwd}).then(result=>{
             if(result.status==200){
-                that.$message.success(result.msg)
+                alert(result.msg)
                 setTimeout(() => {
                     window.location.reload()
                 }, 1000);
             }else if(result.status==400){
-                that.$message.error(result.msg)
+                alert(result.msg)
             }
         }).catch(err=>{
-            that.$message.error(this.$t('message.error'))
+            alert(this.$t('message.error'))
         })
     },
     submit1(){
@@ -158,7 +158,7 @@ export default {
       if(img){
         that.centerDialogVisible = true;
       }else{
-        that.$message.info(this.$t('message.yet'))
+        alert(this.$t('message.yet'))
       }
       
     },

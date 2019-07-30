@@ -114,10 +114,10 @@ export default {
         if(result.status==200){
           that.mobile=result.res.mobile
         }else if(result.status==400){
-          that.$message.error(result.msg)
+          alert(result.msg)
         }
       }).catch(err=>{
-        that.$message.error(this.$t('message.error'))
+        alert(this.$t('message.error'))
       })
     },
     change(){
@@ -147,10 +147,10 @@ export default {
               }, 1000);
             }
         }else if(result.status==400){
-          that.$message.error(result.msg)
+          alert(result.msg)
         }
       }).catch(err=>{
-        that.$message.error(this.$t('message.error'))
+        alert(this.$t('message.error'))
       })
     },
 
@@ -178,10 +178,10 @@ export default {
               }, 1000);
             }
         }else if(result.status==400){
-          that.$message.error(result.msg)
+          alert(result.msg)
         }
       }).catch(err=>{
-        that.$message.error(this.$t('message.error'))
+        alert(this.$t('message.error'))
       })
     },
 
@@ -191,15 +191,15 @@ export default {
       let data=that.form
       api.minicart.template.choices('updatePhone',data).then(result=>{
         if(result.status==200){
-          that.$message.success(result.msg)
+          alert(result.msg)
           setTimeout(() => {
             that.$router.push('/my')
           }, 500);
         }else if(result.status==400){
-          that.$message.error(result.msg)
+          alert(result.msg)
         }
       }).catch(err=>{
-        that.$message.error(this.$t('message.error'))
+        alert(this.$t('message.error'))
       })
     }
   },

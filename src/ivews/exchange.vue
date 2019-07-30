@@ -99,10 +99,10 @@ export default {
                  that.number=result.res.passage
                  that.items=that.items.concat(result.res.record)
              }else if(rsult.status==400){
-                 that.$message.error(result.msg)
+                 alert(result.msg)
              }
          }).catch(err=>{
-             that.$message.error(this.$t('message.error'))
+             alert(this.$t('message.error'))
          })
      },
      select(){
@@ -112,15 +112,15 @@ export default {
          let that=this
          api.minicart.template.choices('changeBalance',{type:that.type,amount:that.amount,security:pwd}).then(result=>{
              if(result.status==200){
-                 that.$message.success(result.msg)
+                 alert(result.msg)
                  setTimeout(() => {
                      window.location.reload()
                  }, 1000);
              }else if(result.status==400){
-                 that.$message.error(result.msg)
+                 alert(result.msg)
              }
          }).catch(err=>{
-             that.$message.error(this.$t('message.error'))
+             alert(this.$t('message.error'))
          })
      },
      submit1(){
@@ -129,7 +129,7 @@ export default {
          if(number>0){
              that.$refs.child.open(that.show);
          }else {
-             that.$message.warning(this.$t('message.cannot'))
+             alert(this.$t('message.cannot'))
          }
      }
  },

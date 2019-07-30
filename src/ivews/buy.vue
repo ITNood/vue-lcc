@@ -110,10 +110,10 @@ export default {
           that.items=that.items.concat(result.res.nextLevel)
           that.options=that.options.concat(result.res.pay)
         }else if(result.status==400){
-          that.$message.error(result.msg)
+          alert(result.msg)
         }
       }).catch(err=>{
-        that.$message.error(this.$t('message.error'))
+        alert(this.$t('message.error'))
       })
     },
     buy(ev) {
@@ -137,15 +137,15 @@ export default {
       let that=this
       api.minicart.template.choices('home/createInvest',{id:that.id,payId:that.type,security:pwd}).then(result=>{
         if(result.status==200){
-          that.$message.success(result.msg)
+          alert(result.msg)
           setTimeout(() => {
             that.$router.push('/home')
           }, 500);
         }else if(result.status==400){
-          that.$message.error(result.msg)
+          alert(result.msg)
         }
       }).catch(err=>{
-        that.$message.error(this.$t('message.error'))
+        alert(this.$t('message.error'))
       })
     },
     submit1(){

@@ -19,7 +19,7 @@
           <div class="list">
             <p>FC</p>
             <h5><span>$</span>{{lcc}}</h5>
-            <p>0.001</p>
+            <p>{{lcc1}}</p>
             <router-link to="/lcc">{{$t('message.operation')}}</router-link>
             <i class="lcc"></i>
           </div>
@@ -28,7 +28,7 @@
           <div class="list">
             <p>USDT</p>
             <h5><span>$</span>{{usdt}}</h5>
-            <p>0.001</p>
+            <p>{{usdt1}}</p>
             <router-link to="/usdt">{{$t('message.operation')}}</router-link>
             <i class="usdt"></i>
           </div>
@@ -63,9 +63,11 @@ export default {
     return {
       url:'',
       text:'',
-      account:'0.00',
-      lcc:'0.00',
-      usdt:'0.00',
+      account:'',
+      lcc:'',
+      lcc1:'',
+      usdt:'',
+      usdt1:'',
       vip:'',
       lists:[
         {
@@ -107,9 +109,11 @@ export default {
 
           that.account=result.res.total
 
-          that.lcc=result.res.fc
+          that.lcc1=result.res.fc
+          that.lcc=result.res.fcUsdt
 
-          that.usdt=result.res.usdt
+          that.usdt=result.res.usdt2
+          that.usdt1=result.res.usdt
 
           if(result.res.levelState == 0){
             that.text=this.$t('message.match')+">>"

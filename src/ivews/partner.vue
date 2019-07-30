@@ -127,10 +127,10 @@ export default {
               if(result.status==200){
                   that.user=result.res.maxUser
               }else if(result.status==400){
-                  that.$message.error(result.msg)
+                  alert(result.msg)
               }
           }).catch(err=>{
-              that.$message.error('错误!')
+              alert(that.$t('message.error'))
           })
       },
       change(){
@@ -155,12 +155,12 @@ export default {
           let data=that.form
           api.minicart.template.choices('register',data).then(result=>{
               if(result.status==200){
-                  that.$message.success(result.msg)
+                  alert(result.msg)
               }else if(result.status==400){
-                  that.$message.error(result.msg)
+                  alert(result.msg)
               }
           }).catch(err=>{
-              that.$message.error('错误!')
+              alert(that.$t('message.error'))
           })
       }
   },

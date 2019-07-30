@@ -78,10 +78,10 @@ export default {
                       that.usdtID=result.res.usdt.id
                   }
               }else if(result.status==400){
-                  that.$message.error(result.msg)
+                  alert(result.msg)
               }
           }).catch(err=>{
-              that.$message.error(err.msg)
+              alert(err.msg)
           })
       },
       //编辑bank

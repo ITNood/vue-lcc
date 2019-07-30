@@ -48,7 +48,10 @@
               <h5>CTP</h5>
               <p>{{$t('message.point')}}</p>
             </div>
+            <div class="floatright">
             <b>{{ctp}}</b>
+            <router-link :to="{path:'/wallet',query:{id:ctpid}}">查看明细</router-link>
+            </div>
           </li>
           <li>
             <img src="../assets/img/cash.png">
@@ -56,7 +59,10 @@
               <h5>CASH</h5>
               <p>{{$t('message.cash')}}</p>
             </div>
+            <div class="floatright">
             <b>{{cash}}</b>
+            <router-link :to="{path:'/wallet',query:{id:cashid}}">查看明细</router-link>
+            </div>
           </li>
           <li>
             <img src="../assets/img/xtb.png">
@@ -64,7 +70,10 @@
               <h5>XTB</h5>
               <p>{{$t('message.tbs')}}</p>
             </div>
-            <b>{{ctp}}</b>
+            <div class="floatright">
+            <b>{{xtb}}</b>
+            <router-link :to="{path:'/wallet',query:{id:xtbid}}">查看明细</router-link>
+            </div>
           </li>
           <li>
             <img src="../assets/img/ccf.png">
@@ -72,7 +81,10 @@
               <h5>CCF</h5>
               <p>{{$t('message.fund')}}</p>
             </div>
-            <b>{{ctp}}</b>
+            <div class="floatright">
+            <b>{{ccf}}</b>
+            <router-link :to="{path:'/wallet',query:{id:ccfid}}">查看明细</router-link>
+            </div>
           </li>
         </ul>
       </div>
@@ -138,7 +150,11 @@ export default {
       points:0,
       price:0,
       cashPoints:0,
-      show:false
+      show:false,
+      ctpid:'',
+      cashid:'',
+      xtbid:'',
+      ccfid:''
     };
   },
   mounted() {
@@ -158,10 +174,10 @@ export default {
                   that.cashPoints=result.res.cash
                   that.price=result.res.price
               }else if(result.status==400){
-                  that.$message.error(result.msg)
+                  alert(result.msg)
               }
           }).catch(err=>{
-              that.$message.error(this.$t('message.error'))
+              alert(this.$t('message.error'))
           })
       },
       handleChange1(){
@@ -179,6 +195,10 @@ export default {
             that.cash = result.res.cash;
             that.xtb = result.res.xtb;
             that.ccf = result.res.ccf;
+            that.ctpid=result.res.ctpId
+            that.cashid=result.res.cashId
+            that.xtbid=result.res.xtbId
+            that.ccfid=result.res.ccfId
           }
         })
         .catch(err => {});
@@ -192,13 +212,13 @@ export default {
       let that=this
       api.minicart.template.choices('tongbaoCreate',{number:that.number,security:pwd}).then(result=>{
         if(result.status==200){
-          that.$message.success(result.msg)
+          alert(result.msg)
           window.location.reload()
         }else if(result.status==400){
-          that.$message.error(result.msg)
+          alert(result.msg)
         }
       }).catch(err=>{
-        that.$message.error(this.$t('message.error'))
+        alert(this.$t('message.error'))
       })
     }
   }

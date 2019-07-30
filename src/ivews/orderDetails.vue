@@ -55,7 +55,8 @@
           <li>
             {{$t('message.username')}}<span>{{username}}</span>
           </li>
-          <li>
+
+          <!-- <li>
             {{$t('message.bank')}}<span>{{bank}}</span>
           </li>
           <li>
@@ -63,20 +64,31 @@
           </li>
           <li>
             {{$t('message.bankbranch')}}<span>{{bankaddress}}</span>
-          </li>
+          </li> -->
         </ul>
       </div>
-      <div class="voucher">
+      <!-- <div class="voucher">
         <img
           :src="imgSrc"
-          @click="look()"
         >
-      </div>
-      <el-button
+      </div> -->
+      <!-- <el-button
         class="submit"
         @click="submit()"
-        v-show="show"
-      >{{$t('message.confirmtake')}}</el-button>
+        :disabled="disabled"
+      >{{$t('message.confirmtake')}}</el-button> -->
+      <el-row
+        :gutter="15"
+        style="margin-top:50px;"
+        class="cash-btn"
+      >
+        <el-col :span="7">
+          <el-button @click="look()" >{{$t('message.view')}}</el-button>
+        </el-col>
+        <el-col :span="17">
+          <el-button class="pay-btn" @click="submit1()" :disabled="disabled">{{$t('message.confirmtake')}}</el-button>
+        </el-col>
+      </el-row>
       <!--查看凭证-->
       <el-dialog
         :visible.sync="centerDialogVisible"
@@ -91,13 +103,23 @@
         >
         </span>
       </el-dialog>
+      <!--密码组件-->
+    <Pin
+      @submit="submit"
+      ref="child"
+      :centerDialogVisible="show"
+    />
     </div>
   </div>
 </template>
 
 <script>
 import api from "../API/index";
+import Pin from '../components/pin'
 export default {
+  components:{
+    Pin
+  },
   data() {
     return {
       pathUrl: "/myOrder",
@@ -111,10 +133,11 @@ export default {
       username: "",
       takeWay: "",
       imgSrc: "",
-      bank: "",
-      bankname: "",
-      bankaddress: "",
+      // bank: "",
+      // bankname: "",
+      // bankaddress: "",
       centerDialogVisible: false,
+      disabled:false,
       show:false
     };
   },
@@ -129,7 +152,7 @@ export default {
         .choices("withdrawDetail", { id: id })
         .then(result => {
           if (result.status == 200) {
-            that.amount = result.res.amount;
+            that.amount = result.res.fc;
             that.date = result.res.date;
             that.dollar = result.res.usdt;
             that.rmb = result.res.rmb;
@@ -140,35 +163,39 @@ export default {
             that.bankaddress=result.res.bankBranch
             that.imgSrc = result.res.img;
             if(result.res.state==2){
-              that.show=true
-            }else{
               that.disabled=false
+            }else{
+              that.disabled=true
             }
           } else if (result.status == 400) {
-            that.$message.error(result.msg);
+            alert(result.msg);
           }
         })
         .catch(err => {
-          that.$message.error(this.$t("message.error"));
+          alert(this.$t("message.error"));
         });
     },
-    submit() {
+    submit1(){
+      let that=this
+      that.$refs.child.open(that.show);
+    },
+    submit(pwd) {
       let that = this;
       let id = that.$route.query.id;
       api.minicart.template
-        .choices("completeWithdraw", { id: id })
+        .choices("completeWithdraw", { id: id,security:pwd })
         .then(result => {
           if (result.status == 200) {
-            that.$message.success(result.msg);
+            alert(result.msg);
             setTimeout(() => {
               window.location.reload();
             }, 1000);
           } else if (result.status == 400) {
-            that.$message.error(result.msg);
+            alert(result.msg);
           }
         })
         .catch(err => {
-          that.$message.error(this.$t("message.error"));
+          alert(this.$t("message.error"));
         });
     },
     look() {

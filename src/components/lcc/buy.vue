@@ -67,7 +67,7 @@ export default {
       dialogVisible:false,
       price: "0.00",
       total: "0.00",
-      tongbaoPrice:''
+      //tongbaoPrice:''
     };
   },
   mounted() {
@@ -75,20 +75,20 @@ export default {
   },
   updated() {
     let that=this
-    that.total=(Math.floor(that.num*that.tongbaoPrice/that.price*100)/100).toFixed(2)
+    that.total=(Math.floor(that.num*that.price*100)/100).toFixed(2)
   },
   methods: {
     getData(){
       let that=this
       api.minicart.template.choices('tongzhengbuyView').then(result=>{
         if(result.status==200){
-          that.price=result.res.price
-          that.tongbaoPrice=result.res.tongbaoPrice
+          that.price=result.res.tongbaoPrice
+          //that.tongbaoPrice=result.res.tongbaoPrice
         }else if(result.status==400){
-          that.$message.error(result.msg)
+          alert(result.msg)
         }
       }).catch(err=>{
-        that.$message.error(this.$t('message.error'))
+        alert(this.$t('message.error'))
       })
     },
     handleChange(value) {
@@ -99,15 +99,15 @@ export default {
       let amount=that.num
       api.minicart.template.choices('tongzhengCreate',{number:amount,security:pwd}).then(result=>{
         if(result.status==200){
-          that.$message.success(result.msg)
+          alert(result.msg)
           setTimeout(() => {
             window.location.reload()
           }, 1000);
         }else if(result.status==400){
-          that.$message.error(result.msg)
+          alert(result.msg)
         }
       }).catch(err=>{
-        that.$message.error(this.$t('message.error'))
+        alert(this.$t('message.error'))
       })
      },
     buy(flag){

@@ -135,7 +135,7 @@ export default {
           }
         })
         .catch(err => {
-          that.$message.error(this.$t('message.error'));
+          alert(this.$t('message.error'));
         });
     },
     change() {
@@ -151,16 +151,16 @@ export default {
         .choices("recharge/create", { amount: number, security: pwd })
         .then(result => {
           if (result.status == 200) {
-            that.$message.success(result.msg);
+            alert(result.msg);
             setTimeout(() => {
               window.location.reload();
             }, 1000);
           } else if (result.status == 400) {
-            that.$message.error(result.msg);
+            alert(result.msg);
           }
         })
         .catch(err => {
-          that.$message.error(this.$t('message.error'));
+          alert(this.$t('message.error'));
         });
     },
     submit1() {
@@ -169,7 +169,7 @@ export default {
       if (number > 0) {
         that.$refs.child.open(that.show);
       } else {
-        that.$message.warning(this.$t('message.should'));
+        alert(this.$t('message.should'));
       }
     }
   }

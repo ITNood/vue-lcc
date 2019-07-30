@@ -57,10 +57,10 @@ export default {
         if(result.status==200){
           that.items=that.items.concat(result.res)
         }else if(result.status==400){
-          that.$message.error(result.msg)
+          alert(result.msg)
         }
       }).catch(err=>{
-        that.$message.error(this.$t('message.error'))
+        alert(this.$t('message.error'))
       })
     }
   },

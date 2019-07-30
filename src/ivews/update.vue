@@ -148,15 +148,15 @@ export default {
          let that=this
          api.minicart.template.choices('home/createInvest',{id:that.payId,payId:that.type,security:pwd}).then(result=>{
              if(result.status==200){
-                 that.$message.success(result.msg)
+                 alert(result.msg)
                  setTimeout(() => {
                      that.$router.push('/home')
                  }, 500);
              }else if(result.status==400){
-                 that.$message.error(result.msg)
+                 alert(result.msg)
              }
          }).catch(err=>{
-             that.$message.error(this.$t('message.error'))
+             alert(this.$t('message.error'))
          })
      },
      submit2(){
@@ -165,7 +165,7 @@ export default {
          if(id){
             this.centerDialogVisible=true
          }else {
-            that.$message.error(this.$t('message.selectLevel'))
+            alert(this.$t('message.selectLevel'))
          }
          
      },
@@ -176,7 +176,7 @@ export default {
              that.$refs.child.open(that.show);
              that.centerDialogVisible=false
          }else {
-            that.$message.error(this.$t('message.method'))
+            alert(this.$t('message.method'))
          }
      }
  },

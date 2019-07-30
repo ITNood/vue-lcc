@@ -32,7 +32,7 @@ export default {
   },
   data() {
     return {
-      url: "/lcc",
+      url: "/assets",
       message: this.$t('message.bagHistry'),
       href: "",
       classIcon: "",

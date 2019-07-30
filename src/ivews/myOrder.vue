@@ -45,7 +45,7 @@
                       <el-col :span="14">
                         <div class="orderContent textRight">
                           <p>{{$t('message.buyTotal')}}</p>
-                          <dd>${{item.tb}}TB</dd>
+                          <dd>${{item.tb}}</dd>
                         </div>
                       </el-col>
                     </el-row>
@@ -185,10 +185,10 @@ export default {
           that.todos=that.todos.concat(result.res.withdraw)
           that.lists=that.lists.concat(result.res.usdt)
         }else if(result.status==400){
-          that.$message.error(result.msg)
+          alert(result.msg)
         }
       }).catch(err=>{
-        that.$message.error(this.$t('message.error'))
+        alert(this.$t('message.error'))
       })
     }
   },

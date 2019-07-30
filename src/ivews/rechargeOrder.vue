@@ -172,7 +172,7 @@ export default {
       account: "",
       bankAddress: "",
       img: "",
-      disabled: true,
+      disabled: false,
       usdtAddress: "",
       type: 1,
     };
@@ -195,6 +195,9 @@ export default {
             that.rmb = result.res.yuan;
             that.order = result.res.orderNo;
             that.username = result.res.truename;
+            if(result.res.img){
+              that.img=result.res.img
+            }
 
             //银行卡
             that.name = result.res.truename;
@@ -203,21 +206,17 @@ export default {
             that.bankAddress = result.res.bankBranch;
 
             //按钮
-            if (
-              result.res.state == 1 ||
-              result.res.state == 3 ||
-              result.res.state == 4
-            ) {
-              that.disabled = true;
-            } else {
+            if (result.state==1) {
               that.disabled = false;
+            } else {
+              that.disabled = true;
             }
           } else if (result.status == 400) {
-            that.$message.error(result.msg);
+            alert(result.msg);
           }
         })
         .catch(err => {
-          that.$message.error(this.$t('message.error'));
+          alert(this.$t('message.error'));
         });
     },
 
@@ -237,6 +236,7 @@ export default {
       }
     },
     submit(pwd) {
+      let that=this
       let id = that.$route.query.id;
       let img = that.img;
       let type = that.type;
@@ -249,16 +249,16 @@ export default {
         })
         .then(result => {
           if (result.status == 200) {
-            that.$message.success(result.msg);
+            alert(result.msg);
             setTimeout(() => {
               window.location.reload();
             }, 1000);
           } else if (result.status == 400) {
-            that.$message.error(result.msg);
+            alert(result.msg);
           }
         })
         .catch(err => {
-          that.$message.error(this.$t('message.error'));
+          alert(this.$t('message.error'));
         });
     },
     submit1(){

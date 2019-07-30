@@ -156,11 +156,11 @@ export default {
             that.percent = result.res.percent;
             that.items=that.items.concat(result.res.record)
           } else if (result.status == 400) {
-            that.$message.error(result.msg);
+            alert(result.msg);
           }
         })
         .catch(err => {
-          that.$message.error(this.$t('message.error'));
+          alert(this.$t('message.error'));
         });
     },
     //全部取出
@@ -181,20 +181,20 @@ export default {
       if (value) {
         that.$refs.child.open(that.show);
       }else{
-          that.$message.error(this.$t('message.please'))
+          alert(this.$t('message.please'))
       }
     },
     submit(pwd) {
         let that=this
         api.minicart.template.choices('resultTakeOutCreate',{amount:that.value,security:pwd}).then(result=>{
             if(result.status==200){
-                that.$message.success(result.msg)
+                alert(result.msg)
                 window.location.reload()
             }else if(result.status==400){
-                that.$message.error(result.msg)
+                alert(result.msg)
             }
         }).catch(err=>{
-            that.$message.error(this.$t('message.error'))
+            alert(this.$t('message.error'))
         })
     }
   }

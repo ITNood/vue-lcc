@@ -88,11 +88,11 @@ export default {
             that.data = result.res.today;
             that.week = result.res.week;
           } else if (result.status == 400) {
-            that.$message.error(result.msg);
+            alert(result.msg);
           }
         })
         .catch(err => {
-          that.$message.error(this.$t('message.error'));
+          alert(this.$t('message.error'));
         });
     },
     scan() {

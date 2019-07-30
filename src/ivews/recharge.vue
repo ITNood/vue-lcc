@@ -75,10 +75,10 @@ export default {
           that.codeUrl=result.res.img
           that.address=result.res.address
         }else if(result.status==400){
-          that.$message.error(result.msg)
+          alert(result.msg)
         }
       }).catch(err=>{
-        that.$message.error(this.$t('message.error'))
+        alert(this.$t('message.error'))
       })
     },
     hold() {

@@ -108,10 +108,10 @@ export default {
                  //记录
                  that.items=that.items.concat(result.res.record)
              }else if(result.status==400){
-                 that.$message.error(result.msg)
+                 alert(result.msg)
              }
          }).catch(err=>{
-             that.$message.error(this.$t('message.error'))
+             alert(this.$t('message.error'))
          })
      },
      select(){
@@ -121,13 +121,13 @@ export default {
          let that=this
          api.minicart.template.choices('transfer/create',{amount:that.amount,type:that.type,username:that.username,security:pwd}).then(result=>{
              if(result.status==200){
-                 that.$message.success(result.msg)
+                 alert(result.msg)
                  window.location.reload()
              }else if(result.status==400){
-                 that.$message.error(result.msg)
+                 alert(result.msg)
              }
          }).catch(err=>{
-             that.$message.error(this.$t('message.error'))
+             alert(this.$t('message.error'))
          })
      },
      submit1(){
@@ -137,7 +137,7 @@ export default {
          if(user&&number){
             that.$refs.child.open(that.show);
          }else {
-             that.$message.warning(this.$t('message.accountnull'))
+             alert(this.$t('message.accountnull'))
          }
          
       }

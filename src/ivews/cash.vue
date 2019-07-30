@@ -107,10 +107,10 @@ export default {
                   //提现订单
                   that.items=that.items.concat(result.res.record)
               }else if(result.status==400){
-                  that.$message.error(result.msg)
+                  alert(result.msg)
               }
           }).catch(err=>{
-              that.$message.error(this.$t('message.error'))
+              alert(this.$t('message.error'))
           })
       },
       change(val){
@@ -125,12 +125,12 @@ export default {
          let that=this
              api.minicart.template.choices('cashWithdrwaSubmit',{amount:that.amount,security:pwd}).then(result=>{
              if(result.status==200){
-                 that.$message.success(result.msg)
+                 alert(result.msg)
              }else if(result.status==400){
-                 that.$message.error(result.msg)
+                 alert(result.msg)
              }
          }).catch(err=>{
-             that.$message.error(this.$t('message.error'))
+             alert(this.$t('message.error'))
          })
          
       },
@@ -140,7 +140,7 @@ export default {
          if(number){
          that.$refs.child.open(that.show);
          }else{
-             that.$message.warning(this.$t('message.enterAmount'))
+             alert(this.$t('message.enterAmount'))
          }
       }
   },

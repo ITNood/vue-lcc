@@ -69,7 +69,9 @@
       <el-button
         class="submit"
         @click="submit()"
-      >{{$t('message.download')}}</el-button>
+        v-if="show"
+      >{{$t('message.confirm')}}</el-button>
+      <el-button v-else class="submit" @click="submit1()">{{$t('message.confirm')}}</el-button>
     </div>
   </div>
 </template>
@@ -84,17 +86,21 @@ export default {
       form: {
         detail: "",
         img: "",
-        title: ""
+        title: "",
+        id:''
       },
-      imgSrc: ""
+      imgSrc: "",
+      show:true
     };
   },
   mounted() {
     let id = this.$route.query.id;
     if (id) {
       this.title = this.$t('message.workreply');
+      this.show=false
     } else {
       this.title =this.$t('message.work');
+      this.show=true
     }
   },
   methods: {
@@ -125,15 +131,30 @@ export default {
         .choices("feedback", data)
         .then(result => {
           if (result.status == 200) {
-            that.$message.success(result.msg);
+            alert(result.msg);
             that.$router.push("/report");
           } else if (result.status == 400) {
-            that.$message.error(result.msg);
+            alert(result.msg);
           }
         })
         .catch(err => {
-          that.$message.error(that.$t('message.error'));
+          alert(that.$t('message.error'));
         });
+    },
+    submit1(){
+      let that=this
+      let id=that.$route.query.id
+      that.form.id=id
+      let data=that.form
+      api.minicart.template.choices('feedbackReply',data).then(result=>{
+        if(result.status==200){
+          alert(result.msg)
+        }else if(result.status==400){
+          alert(result.msg)
+        }
+      }).catch(err=>{
+        alert(that.$t('message.error'))
+      })
     }
   }
 };

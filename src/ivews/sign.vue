@@ -100,10 +100,10 @@ export default {
                  //直邀伙伴
                  that.items=that.items.concat(result.res.child)
              }else if(result.status==400){
-                 that.$message.error(result.msg)
+                 alert(result.msg)
              }
          }).catch(err=>{
-             that.$message.error('错误!')
+             alert(that.$t('message.error'))
          })
      }
  },

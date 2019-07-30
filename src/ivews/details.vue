@@ -51,10 +51,10 @@ export default {
                  that.title=result.res.title
                  that.details=result.res.detail
              }else if(result.status==400){
-                 that.$message.error(result.msg)
+                 alert(result.msg)
              }
          }).catch(err=>{
-             that.$message.error(this.$t('message.error'))
+             alert(this.$t('message.error'))
          })
      }
  },

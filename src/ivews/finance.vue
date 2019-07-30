@@ -141,10 +141,10 @@ export default {
           that.todos=that.todos.concat(result.res.order1)
           that.items=that.items.concat(result.res.order2)
         }else if(result.status==400){
-          that.$message.error(result.msg)
+          alert(result.msg)
         }
       }).catch(err=>{
-        that.$message.error('错误!')
+        alert(that.$t('message.error'))
       })
     }
   },

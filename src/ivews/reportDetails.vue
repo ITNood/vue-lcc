@@ -98,11 +98,11 @@ export default {
             }
             that.items=that.items.concat(result.res.data)
           } else if (result.status == 400) {
-            that.$message.error(result.msg);
+            alert(result.msg);
           }
         })
         .catch(err => {
-          that.$message.error(this.$t('message.error'));
+          alert(this.$t('message.error'));
         });
     },
     look(ev) {

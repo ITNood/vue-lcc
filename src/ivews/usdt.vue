@@ -9,14 +9,14 @@
     <div class="container" style="margin-bottom:0;">
       <div class="lcc">
         <h1><span>$</span>{{usdt}}</h1>
-        <p>{{number}}LCC</p>
+        <!-- <p>{{number}}LCC</p> -->
       </div>
 
       <div
         class="finance"
         style="padding:0;border-top:2px solid #2059ff"
       >
-        <ul class="financeList">
+        <ul class="financeList" v-show="show">
           <li
             v-for="(list,index) in lists"
             :key="index"
@@ -62,7 +62,8 @@ export default {
       href: "",
       classIcon: "",
       usdt: "0.00",
-      number: 100,
+     // number: 100,
+     show:false,
       lists: [
         {
           url: "/recharge",
@@ -93,11 +94,16 @@ export default {
         if(result.status==200){
           that.usdt=result.res.usdt
           that.items=that.items.concat(result.res.data)
+          if(result.res.isNode==0){
+            that.show=false
+          }else{
+            that.show=true
+          }
         }else if(result.status==400){
-          that.$message.error(result.msg)
+          alert(result.msg)
         }
       }).catch(err=>{
-        that.$message.error(this.$t('message.error'))
+        alert(this.$t('message.error'))
       })
     }
   },

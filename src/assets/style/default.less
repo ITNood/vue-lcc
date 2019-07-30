@@ -59,7 +59,8 @@ img {
 .cash-btn {
     .el-button {
         width: 100%;
-        border: none
+        border: none;
+        padding:12px 0;
     }
 
     .pay-btn {
@@ -1085,7 +1086,7 @@ img {
         background: @background;
         padding: 15px;
         overflow: auto;
-        height: calc(100vh - 405px);
+        //height: calc(100vh - 405px);
 
         li {
             position: relative;
@@ -1750,14 +1751,25 @@ img {
                 }
             }
 
-            b {
+            .floatright {
                 float: right;
-                font-size: 20px;
-                line-height: 37px;
-                color: @fontcolor;
-                font-weight: normal;
-                font-family: number;
+                text-align: right;
+
+                b {
+                    font-size: 20px;
+                    color: @fontcolor;
+                    font-weight: normal;
+                    font-family: number;
+                }
+                a{
+                    display: block;
+                    color: @fontcolor;
+                    font-size: 12px;
+                    text-decoration: none;
+                }
             }
+
+
         }
     }
 }
@@ -2205,15 +2217,15 @@ img {
             overflow: hidden;
             display: block;
             padding: 8px;
-            width: 35px;
-            height: 35px;
+            width: 30px;
+            height: 30px;
             top: 0;
             left: 0;
             background: #2e3547;
 
             img {
-                width: 30px;
-                height: 35px;
+                width: 20px;
+                height: 28px;
                 display: block;
                 margin: 0 auto;
             }
@@ -3574,6 +3586,6 @@ strong {
     color: #C0C4CC
 }
 
-.el-loading-mask{
+.el-loading-mask {
     background-color: transparent
 }

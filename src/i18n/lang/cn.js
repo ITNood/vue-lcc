@@ -1,6 +1,8 @@
 import zhLocale from 'element-ui/lib/locale/lang/zh-CN' //引入element语言包
 const cn = {
     message: {
+        'it':'余额为0，请充值',
+        'choose':'请选择收款方式',
         'title':'标题',
         'thetitle':'请输入标题',
         'workreply': '工单回复',

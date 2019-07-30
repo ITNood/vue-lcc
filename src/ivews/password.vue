@@ -206,16 +206,16 @@ export default {
             .choices("changePassword", data)
             .then(response => {
               if (response.status == 200) {
-                that.$message.success(response.msg);
+                alert(response.msg);
                 //window.location.reload();
                 window.localStorage.removeItem("token");
                  that.$router.push('/login')
               } else if (response.status == 400) {
-                that.$message.error(response.msg);
+                alert(response.msg);
               }
             })
             .catch(err => {
-              that.$message.error(this.$t('message.error'));
+              alert(this.$t('message.error'));
             });
         }
       });

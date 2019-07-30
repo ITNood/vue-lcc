@@ -108,16 +108,16 @@ export default {
         .choices("insertPayAddress", data)
         .then(result => {
           if (result.status == 200) {
-            that.$message.success(result.msg);
+            alert(result.msg);
             setTimeout(() => {
               that.$router.push("/takeWay");
             }, 500);
           } else if (result.status == 400) {
-            that.$message.error(result.msg);
+            alert(result.msg);
           }
         })
         .catch(err => {
-          that.$message.error(this.$t("message.error"));
+          alert(this.$t("message.error"));
         });
     },
     //编辑bank
@@ -131,16 +131,16 @@ export default {
         .choices("updatePayAddress", data)
         .then(result => {
           if (result.status == 200) {
-            that.$message.success(result.msg);
+            alert(result.msg);
             setTimeout(() => {
               that.$router.push("/takeWay");
             }, 500);
           } else if (result.status == 400) {
-            that.$message.error(result.msg);
+            alert(result.msg);
           }
         })
         .catch(err => {
-          that.$message.error(this.$t("message.error"));
+          alert(this.$t("message.error"));
         });
     },
     getData() {
@@ -161,7 +161,7 @@ export default {
           }
         })
         .catch(err => {
-          that.$message.error(this.$t("message.error"));
+          alert(this.$t("message.error"));
         });
     }
   }

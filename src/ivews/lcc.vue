@@ -50,7 +50,7 @@ export default {
       number:'100',
       show2:false,
       show1:false,
-      number:1,
+      number:'',
       date:'',
       data:'',
       show:false,
@@ -70,12 +70,13 @@ export default {
                  that.data=result.res.todayData.data
                  that.maxValue=result.res.max
                  that.minValue=result.res.min
-                 that.lcc=result.res.fc
+                 that.lcc=result.res.fcUsdt
+                 that.number=result.res.fc
              }else if(result.status==400){
-                 that.$message.error(result.msg)
+                 alert(result.msg)
              }
          }).catch(err=>{
-             that.$message.error(this.$t('message.error'))
+             alert(this.$t('message.error'))
          })
      },
      btn1(data){

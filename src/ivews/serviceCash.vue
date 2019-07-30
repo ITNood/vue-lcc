@@ -75,7 +75,7 @@
           </div>
         </div>
       </div>
-      <el-button class="submit" @click="submit1()">{{$t('message.thepay')}}</el-button>
+      <el-button class="submit" @click="submit1()" :disabled="disabled">{{$t('message.thepay')}}</el-button>
     </div>
     <!--密码组件-->
     <Pin
@@ -107,7 +107,8 @@ export default {
       bank: "",
       account: "",
       address: "",
-      img:''
+      img:'',
+      disabled:false
     };
   },
   mounted() {
@@ -127,11 +128,19 @@ export default {
                   that.amount=result.res.usdt
                   that.account=result.res.bankAccount
                   that.address=result.res.bankBranch
+                  if(result.res.img){
+                    that.img=result.res.img
+                  }
+                  if(result.res.state==1){
+                    that.disabled=false
+                  }else{
+                    that.disabled=true
+                  }
               }else if(result.status==400){
-                  that.$message.error(result.msg)
+                  alert(result.msg)
               }
           }).catch(err=>{
-              that.$message.error(this.$t('message.error'))
+              alert(this.$t('message.error'))
           })
       },
       uploadChange(ev) {
@@ -151,18 +160,18 @@ export default {
     },
     submit(pwd) {
         let that=this
-        let id=thta.$route.query.id
-        api.minicart.template.choices('serviceConfirmPay',{id:id,img:that.img}).then(result=>{
+        let id=that.$route.query.id
+        api.minicart.template.choices('serviceConfirmPay',{id:id,img:that.img,security:pwd}).then(result=>{
             if(result.status==200){
-                that.$message.success(result.msg)
+                alert(result.msg)
                 setTimeout(() => {
                     window.location.reload()
                 }, 1000);
             }else if(result.status==400){
-                that.$message.error(result.msg)
+                alert(result.msg)
             }
         }).catch(err=>{
-            that.$message.error(this.$t('message.error'))
+            alert(this.$t('message.error'))
         })
     },
     submit1(){

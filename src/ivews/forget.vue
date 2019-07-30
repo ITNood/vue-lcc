@@ -150,11 +150,11 @@ export default {
               }, 1000);
             }
           } else if (result.status == 400) {
-            that.$message.error(result.msg);
+            alert(result.msg);
           }
         })
         .catch(err => {
-          that.$message.error(that.$t("message.error"));
+          alert(that.$t("message.error"));
         });
     },
     forget(){
@@ -162,13 +162,13 @@ export default {
         let data=that.form
         api.minicart.template.choices('resetPwd',data).then(result=>{
             if(result.status==200){
-                that.$message.success(result.msg)
+                alert(result.msg)
                 that.$router.push('/login')
             }else if(result.status==400){
-                that.$message.error(result.msg)
+                alert(result.msg)
             }
         }).catch(err=>{
-            that.$message.error(that.$t('message.error'))
+            alert(that.$t('message.error'))
         })
     }
   }

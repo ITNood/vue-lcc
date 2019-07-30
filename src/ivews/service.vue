@@ -157,7 +157,7 @@ export default {
                   }
               }
           }).catch(err=>{
-              that.$message.error('错误!')
+              alert(that.$t('message.error'))
           })
       },
        //全部取出
@@ -167,7 +167,7 @@ export default {
          if(rmb>0){
             that.amount=rmb
          }else{
-             that.$message.warning('余额为0，请充值！')
+             alert(taht.$t('message.it'))
          }
          
      },
@@ -178,15 +178,15 @@ export default {
          let number=that.amount
          api.minicart.template.choices('changeBalance',{amount:number,type:3,security:pwd}).then(result=>{
              if(result.status==200){
-                 that.$message.success(result.msg)
+                 alert(result.msg)
                  setTimeout(() => {
                      window.location.reload()
                  }, 1000);
              }else if(result.status==400){
-                 that.$message.error(result.msg)
+                 alert(result.msg)
              }
          }).catch(err=>{
-             that.$message.error('错误!')
+             alert(that.$t('message.error'))
          })
      },
      submit1(){
@@ -195,7 +195,7 @@ export default {
          if(number>0){
              that.$refs.child.open(that.show);
          }else {
-             that.$message.warning('取出信用额度不能为0！')
+             alert(that.$t('message.should'))
          }
      }
   },

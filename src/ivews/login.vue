@@ -104,12 +104,12 @@ export default {
                   }
                 }
               } else if (result.status == 400) {
-                that.$message.error(result.msg);
+                alert(result.msg);
               }
             })
             .catch(err => {
               console.log(111);
-              that.$message.error(err.msg);
+              alert(err.msg);
             });
         }
       });
