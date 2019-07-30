@@ -22,7 +22,7 @@
       </vue-particles> -->
     <div class="content">
       <div style="padding:0 50px;">
-        <img src="../assets/img/logo.png">
+        <img src="../assets/img/market1.png">
         <h4>The world's first</h4>
         <h4>decentralized travel</h4>
         <h4>payment</h4>

@@ -206,7 +206,7 @@ export default {
             that.bankAddress = result.res.bankBranch;
 
             //按钮
-            if (result.state==1) {
+            if (result.res.state==1) {
               that.disabled = false;
             } else {
               that.disabled = true;

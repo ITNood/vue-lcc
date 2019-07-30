@@ -12,7 +12,7 @@
     >
       <div class="recharge">
         <div class="rechargeContent">
-          <p>{{$t('message.type')}}: {{cut}}</p>
+          <p style="font-size:16px;">{{$t('message.type')}}: <span style="color:red">{{cut}}</span></p>
           <img :src="codeUrl">
           <el-button
             class="hold"

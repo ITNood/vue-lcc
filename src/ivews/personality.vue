@@ -49,7 +49,7 @@
             class="demo-ruleForm"
           >
 
-            <el-form-item
+            <!-- <el-form-item
               class="text"
               prop="avatar"
               style="display:none"
@@ -59,7 +59,7 @@
                 v-model="ruleForm.avatar"
               >
               </el-input>
-            </el-form-item>
+            </el-form-item> -->
 
             <el-form-item
               class="text"
@@ -70,6 +70,8 @@
                 class="set"
                 v-model="ruleForm.nickname"
                 :placeholder="$t('message.enter')"
+                maxlength="6"
+                minlength="2"
               >
               </el-input>
               <!-- <img
@@ -110,7 +112,7 @@ export default {
         { list: require("../assets/img/5.png") },
         { list: require("../assets/img/6.png") },
         { list: require("../assets/img/7.png") },
-        { list: require("../assets/img/9.png") },
+        { list: require("../assets/img/8.png") },
         { list: require("../assets/img/9.png") },
         { list: require("../assets/img/10.png") },
         { list: require("../assets/img/11.png") }
@@ -204,12 +206,12 @@ export default {
         .then(response => {
           console.log("成功");
           if (response.status == 200) {
-            this.$message.success(response.msg);
+            alert(response.msg);
             setTimeout(() => {
               this.$router.push("/my");
             }, 500);
           } else if (response.status == 400) {
-            this.$message.error(response.msg);
+           alert(response.msg);
           }
         })
         .catch(err => {
