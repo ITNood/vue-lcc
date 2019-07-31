@@ -234,7 +234,7 @@ export default {
       if ("WebSocket" in window) {
         console.log("您的浏览器支持 WebSocket!");
         // 打开一个 web socket
-        var ws = new WebSocket("ws://192.168.0.105:2020");
+        var ws = new WebSocket("ws://66.42.54.253:2020");//66.42.54.253  192.168.0.105
 
         ws.onopen = function() {
           var json = JSON.stringify({
