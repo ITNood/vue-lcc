@@ -116,7 +116,7 @@ export default {
                 that.number=result.res.amount
                 that.username=result.res.truename
                 that.date=result.res.date
-                that.amount=result.res.payment
+                that.amount=result.res.rmb
                 if(result.res.img){
                     that.img=result.res.img
                 }
