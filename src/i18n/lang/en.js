@@ -29,7 +29,7 @@ const en = {
         'usernull': 'User name cannot be empty',
         'pwdnull': 'Password cannot be empty',
         'listPrice':'Price',
-        'buyone': 'Each user can only purchase one matching, matching only allows one upgrade opportunity, please choose carefully',
+        'buyone': 'Each user can only purchase one matching',
         'Cancelled':'Cancelled',
         'notlogin': 'Whether to log out or not',
         'patiently': 'Initiate complaint, customer service personnel will intervene, please wait patiently',

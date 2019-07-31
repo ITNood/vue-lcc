@@ -37,7 +37,7 @@
             <el-col :span="12">
               <ul class="rightList">
                 <li>{{$t('message.matchAmount')}}:<span>{{item.given_amount}}</span></li>
-                <li>{{$t('message.listPrice')}}:<span style="color:#2059ff">{{item.invest}}{{$t('message.integral')}}</span></li>
+                <li>{{$t('message.listPrice')}}:<span style="color:#2059ff">{{item.invest}}USDT</span></li>
               </ul>
             </el-col>
           </el-row>

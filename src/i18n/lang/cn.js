@@ -29,7 +29,7 @@ const cn = {
         'usernull':'用户名不能为空',
         'pwdnull':'密码不能为空',
         'listPrice': '售价',
-        'buyone':'每个用户只限购买一份配套, 配套只允许一次升级机会，请慎重选择',
+        'buyone':'每个用户只限购买一份配套',
         'Cancelled':'已取消',
         'notlogin':'是否退出登录',
         'patiently':'发起申诉，客服人员即将介入处理，请耐心等候',
