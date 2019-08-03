@@ -136,7 +136,7 @@
 <script>
 import api from "../API/index.js";
 import Top from "../components/top";
-const keys = () => [1, 2, 3, 4, 5, 6, 7, 8, 9, "", 0];
+const keys = () => [1, 2, 3, 4, 5, 6, 7, 8, 9,'', 0];
 export default {
   data() {
     var validatePass = (rule, value, callback) => {
@@ -165,6 +165,7 @@ export default {
       classIcon: "",
       activeName: "first",
       tips: this.$t('message.setPwd'),
+      test:'',
       a: 1,
       ruleForm: {
         oldPwd: "",
@@ -261,23 +262,28 @@ export default {
         let data = this.ruleForm2;
         let that = this;
         //输完密码后执行操作
-        console.log(parseInt(this.password.join(" ").replace(/\s/g, "")));
+       // console.log(parseInt(this.password.join(" ").replace(/\s/g, "")));
         if (this.a == 1) {
-          let oldPwd = parseInt(this.password.join(" ").replace(/\s/g, ""));
-          console.log(oldPwd);
+          //let oldPwd = parseInt(this.password.join(" ").replace(/\s/g,""));
+          let  oldPwd =this.password.join("")
+          console.log(oldPwd)
           that.ruleForm2.oldPwd = oldPwd;
           this.clearPasswordHandle();
           this.a = 2;
           that.tips = this.$t('message.setnewPin');
         } else if (this.a == 2) {
-          let pwd = parseInt(this.password.join(" ").replace(/\s/g, ""));
-          console.log(pwd);
+          //console.log(this.password)
+          let pwd =this.password.join("")
+          //let pwd = this.password.join("")-0
+         // console.log(this.password)
+         console.log(pwd);
           that.ruleForm2.pwd = pwd;
           this.clearPasswordHandle();
           this.a = 3;
           that.tips = this.$t('message.confirmpin');
         } else if (this.a == 3) {
-          let confirmPwd = parseInt(this.password.join(" ").replace(/\s/g, ""));
+          //console.log(this.password)
+          let confirmPwd = this.password.join("")
           console.log(confirmPwd);
           that.ruleForm2.confirmPwd = confirmPwd;
           //提交PIN密码

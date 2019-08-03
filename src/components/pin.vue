@@ -96,7 +96,7 @@ export default {
         //输完密码后执行操作
         //输完密码之后，这里函数里提交
         
-       let password=parseInt(this.password.join(" ").replace(/\s/g, ""));
+       let password=this.password.join("")
     // console.log(this.amnout)
         this.$emit('submit',password)
 
