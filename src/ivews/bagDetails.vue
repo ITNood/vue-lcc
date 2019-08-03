@@ -15,7 +15,9 @@
             >
               <p>{{item.date}}</p>
               <h5>{{item.detail}}</h5>
-              <span>{{item.state=1 ? '+':'-'}}{{item.amount}}</span>
+              <!-- <span :style="{color:(item.state=1?'#05ce7e':'#e53c1d')}">{{item.state=1 ? '+':'-'}}{{item.amount}}</span> -->
+              <span v-if="item.state==1" style="color:#05ce7e">+{{item.amount}}</span>
+            <span v-else style="color:#e53c1d">-{{item.amount}}</span>
             </li>
           </ul>
         </div>

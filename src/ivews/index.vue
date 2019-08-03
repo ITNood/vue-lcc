@@ -1,25 +1,9 @@
 <template>
-  <div class="home">
-    <!-- <vue-particles
-        color="#fff"
-        :particleOpacity="0.7"
-        :particlesNumber="60"
-        shapeType="circle"
-        :particleSize="4"
-        linesColor="#fff"
-        :linesWidth="1"
-        :lineLinked="true"
-        :lineOpacity="0.4"
-        :linesDistance="150"
-        :moveSpeed="2"
-        :hoverEffect="true"
-        hoverMode="grab"
-        :clickEffect="true"
-        clickMode="push"
-        class="lizi"
-        style="height:100vh"
-      >
-      </vue-particles> -->
+  <div class="home" 
+    v-loading="loading"
+    element-loading-text="拼命加载中"
+    element-loading-spinner="el-icon-loading"
+    element-loading-background="rgba(0, 0, 0, 0.8)">
     <div class="content">
       <div style="padding:0 50px;">
         <img src="../assets/img/market1.png">
@@ -42,10 +26,13 @@
 export default {
   data() {
     return {
-
+      loading:true
     };
   },
+ 
   mounted() {
+    console.log(123)
+    this.loading=false
     let token=window.localStorage.getItem('token')
     if(token){
       this.$router.push('/home')

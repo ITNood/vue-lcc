@@ -1,6 +1,13 @@
 import enLocale from 'element-ui/lib/locale/lang/en' //引入element语言包
 const en = {
     message: {
+        'selled': 'You will commission the platform to sell FC',
+        'selled1':'No handling charge for sale',
+        'buyed': 'You will commission the platform to purchase FC',
+        'buyed1':'5% deduction is required for purchase as handling fee',
+        'remainday':'Remaining days',
+        'payUs': 'Payable US Dollars',
+        'allChange': 'All Exchange',
         'check':'Check the details',
         'change':'Please choose',
         'it':'The balance is 0. Please recharge it',
@@ -122,7 +129,9 @@ const en = {
         'total': 'Total',
         'standard': 'Standard',
         'settling': 'Be settled Week',
+        'settling1': 'Pending settlement times',
         'settled': 'Settled Week',
+        'settled1': 'Settled times',
         'day': 'Day',
         'week': 'Week',
         'ing': 'Conduct',

@@ -39,7 +39,8 @@
                 <li v-for="(item,index) in items" :key="index">
                     <p>{{item.date}}</p>
                     <h5>{{item.detail}}</h5>
-                    <span>{{item.amount}}</span>
+                     <span v-if="item.state==1" style="color:#05ce7e">+{{item.amount}}</span>
+                     <span v-else style="color:#e53c1d">-{{item.amount}}</span>
                 </li>
             </ul>
         </div>

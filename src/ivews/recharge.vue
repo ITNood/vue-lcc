@@ -47,7 +47,7 @@
 <script>
 import Top from "../components/top";
 import Clipboard from "clipboard";
-import api from '../API/index'
+import api from "../API/index";
 export default {
   components: {
     Top
@@ -55,31 +55,34 @@ export default {
   data() {
     return {
       url: "/usdt",
-      message: this.$t('message.zone'),
+      message: this.$t("message.zone"),
       href: "",
       classIcon: "",
       cut: "",
-      codeUrl: '',
+      codeUrl: "",
       address: ""
     };
   },
   mounted() {
-    this.getData()
+    this.getData();
   },
   methods: {
-    getData(){
-      let that=this
-      api.minicart.template.choices('rechargeUsdtAddress').then(result=>{
-        if(result.status==200){
-          that.cut=result.res.type
-          that.codeUrl=result.res.img
-          that.address=result.res.address
-        }else if(result.status==400){
-          alert(result.msg)
-        }
-      }).catch(err=>{
-        alert(this.$t('message.error'))
-      })
+    getData() {
+      let that = this;
+      api.minicart.template
+        .choices("rechargeUsdtAddress")
+        .then(result => {
+          if (result.status == 200) {
+            that.cut = result.res.type;
+            that.codeUrl = result.res.img;
+            that.address = result.res.address;
+          } else if (result.status == 400) {
+            alert(result.msg);
+          }
+        })
+        .catch(err => {
+          alert(this.$t("message.error"));
+        });
     },
     hold() {
       //console.log('下载图片')
@@ -98,7 +101,7 @@ export default {
       clipboard.on("error", e => {
         // 不支持复制
         Message({
-          message: this.$t('message.copyerror'),
+          message: this.$t("message.copyerror"),
           type: "warning"
         });
         // 释放内存

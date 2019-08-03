@@ -13,13 +13,13 @@
                 <el-row>
                     <el-col :span="12">
                         <div class="bag" style="border-right:1px solid #313743">
-                            <p>{{$t('message.dollar')}}</p>
+                            <p>USDT</p>
                             <h5>${{dollar}}</h5>
                         </div>
                     </el-col>
                     <el-col :span="12">
                         <div class="bag">
-                            <p>{{$t('message.rmb')}}</p>
+                            <p>{{$t('message.credit')}}</p>
                             <h5>￥{{rmb}}</h5>
                         </div>
                     </el-col>
@@ -30,7 +30,7 @@
                     <p>{{$t('message.creditLine')}}</p>
                     <div class="get-out">
                         <el-input v-model="amount" :placeholder="$t('message.enterCredit')"></el-input>
-                        <el-button class="take" @click="getAll()">{{$t('message.getAll')}}</el-button>
+                        <el-button class="take" @click="getAll()">{{$t('message.allChange')}}</el-button>
                     </div>
                 </li>
             </ul>

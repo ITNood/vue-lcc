@@ -98,7 +98,7 @@ export default {
   },
   data() {
     return {
-      img: require("../assets/img/photo.png"),
+      img: require('../assets/img/photo.png'),
       username: "",
       id: "",
       show: true,

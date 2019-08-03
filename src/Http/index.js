@@ -9,7 +9,7 @@ Vue.use(Router)
 // 创建axios实例
 //let token = window.localStorage.getItem("token") 
 const Axios = axios.create({
-    baseURL: "http://www.hxfc.com/",//fc.home.fc9m.com  www.hxfc.com
+    baseURL: "http://fc.home.fc9m.com/",//fc.home.fc9m.com  www.hxfc.com
     timeout: 5000,//超时请求
     maxRedirects: 1,
     headers: { "Content-Type": 'application/json' },
@@ -29,7 +29,6 @@ Axios.interceptors.request.use(
         return Promise.reject(err)
     }
 )
-
 
 var loadinginstace;
 
@@ -74,7 +73,7 @@ Axios.interceptors.response.use(
 
         Message({
             //请求超时时间
-            message: json_response.message || this.$t('message.interface'), type: 'error', duration: 30 * 1000
+            message: json_response.message || this.$t('message.interface'), type: 'error', duration: 60 * 1000
         });
 
         return Promise.reject(net_response);

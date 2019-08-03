@@ -35,10 +35,10 @@
             {{$t('message.username')}}<span>{{nickname}}</span>
           </li>
           <li>
-            {{$t('message.cashamount')}}<span>{{number}}</span>
+            {{$t('message.payUs')}}<span>${{number}}</span>
           </li>
           <li>
-            {{$t('message.payable')}}<span>{{amount}}</span>
+            {{$t('message.payable1')}}<span>￥{{amount}}</span>
           </li>
           <li>
             {{$t('message.bank')}}<span>{{bank}}</span>

@@ -31,7 +31,7 @@
               ></el-progress>
               <div class="percentText">
                 <h5>{{todo.weekNumber}}</h5>
-                <p>{{$t('message.weeks')}}</p>
+                <p>{{$t('message.remainday')}}</p>
               </div>
             </div>
 
@@ -43,10 +43,10 @@
                 {{$t('message.standard')}}：<span>{{todo.salary}}</span>
               </li>
               <li>
-                {{$t('message.settling')}}：<span>{{todo.waitAmount}}</span>
+                {{$t('message.settling1')}}：<span>{{todo.waitAmount}}</span>
               </li>
               <li>
-                {{$t('message.settled')}}：<span>{{todo.getAmount}}</span>
+                {{$t('message.settled1')}}：<span>{{todo.getAmount}}</span>
               </li>
             </ul>
           </div>

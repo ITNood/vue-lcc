@@ -167,24 +167,6 @@ export default {
         this.points=number*this.price
   },
   methods: {
-      getResult(){
-          let that=this
-          api.minicart.template.choices('tongbaoRecord').then(result=>{
-              if(result.status==200){
-                  that.cashPoints=result.res.cash
-                  that.price=result.res.price
-              }else if(result.status==400){
-                  alert(result.msg)
-              }
-          }).catch(err=>{
-              alert(this.$t('message.error'))
-          })
-      },
-      handleChange1(){
-          let that=this
-          let number=that.number
-          that.points=number*that.price
-      },
     getData() {
       let that = this;
       api.minicart.template
@@ -203,6 +185,25 @@ export default {
         })
         .catch(err => {});
     },
+      getResult(){
+          let that=this
+          api.minicart.template.choices('tongbaoRecord').then(result=>{
+              if(result.status==200){
+                  that.cashPoints=result.res.cash
+                  that.price=result.res.price
+              }else if(result.status==400){
+                  alert(result.msg)
+              }
+          }).catch(err=>{
+              alert(this.$t('message.error'))
+          })
+      },
+      handleChange1(){
+          let that=this
+          let number=that.number
+          that.points=number*that.price
+      },
+    
     submit1(){
         let that=this
         that.$refs.child.open(that.show);

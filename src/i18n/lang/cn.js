@@ -1,6 +1,13 @@
 import zhLocale from 'element-ui/lib/locale/lang/zh-CN' //引入element语言包
 const cn = {
     message: {
+        'selled': '您将委托平台售出FC',
+        'selled1':'售出不收手续费',
+        'buyed': '您将委托平台购买FC',
+        'buyed1':'买入需扣除5%作为手续费',
+        'remainday': '剩余日数',
+        'payUs':'应付美金',
+        'allChange':'全部兑换',
         'check':'查看明细',
         'change':'请选择',
         'it':'余额为0，请充值',
@@ -12,7 +19,7 @@ const cn = {
         'view':'查看凭证',
         'payamount':'付款金额',
         'thepay':'确认付款',
-        'payable':'应付金额',
+        'payable1': '应付金额',
         'cashamount':'提现数量',
         'orderTime':'订单时间',
         'for':'升级需支付',
@@ -122,7 +129,9 @@ const cn = {
         'total': '薪酬总额',
         'standard': '薪酬标准',
         'settling': '待结算周',
+        'settling1': '待结算次',
         'settled': '已结算周',
+        'settled1':'已结算次',
         'day': '天',
         'week': '周',
         'ing': '进行中',

@@ -7,7 +7,8 @@
       :close-on-click-modal="false"
       class="lccOpen"
     >
-      <p>{{$t('message.buy')}}</p>
+      <p>{{$t('message.buyed')}}</p>
+      <p>{{$t('message.buyed1')}}</p>
       <b></b>
       <ul class="lccList">
         <li>

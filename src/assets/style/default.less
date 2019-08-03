@@ -1634,7 +1634,7 @@ img {
             p {
                 color: @input;
                 margin: 0;
-
+                line-height: 32px
             }
 
             h5 {
@@ -2029,7 +2029,6 @@ img {
     overflow: hidden;
 
     .performContent {
-        height: calc(100vh - 308px);
         overflow-y: auto;
     }
 }
@@ -2402,7 +2401,7 @@ img {
 *
 *
 */
-.run {
+.run1 {
     padding-top: 20px;
 
     .runData {
@@ -2415,23 +2414,28 @@ img {
                 clear: both;
                 display: block;
                 content: '';
+                overflow: visible;
+                height: 0;
             }
 
             li {
                 width: 33.33%;
                 float: left;
                 text-align: center;
+                display: block;
 
                 h5 {
-                    color: @fontcolor;
+                    color: #fff !important;
                     margin: 0;
                     font-size: 14px;
                     font-weight: normal;
+                    display: block;
                 }
 
                 p {
-                    color: @input;
+                    color: #999 !important;
                     margin: 5px 0 0;
+                    display: block;
                 }
             }
         }

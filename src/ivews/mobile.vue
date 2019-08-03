@@ -63,6 +63,7 @@ export default {
       newText:'',
       disabled2:false,
       form:{
+          mobile:'',
           value:'1',
           oldCode:'',
           newCode:'',
@@ -112,7 +113,7 @@ export default {
       let that=this
       api.minicart.template.choices('getUser').then(result=>{
         if(result.status==200){
-          that.mobile=result.res.mobile
+          that.form.mobile=result.res.mobile
         }else if(result.status==400){
           alert(result.msg)
         }
