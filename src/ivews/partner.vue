@@ -30,7 +30,7 @@
                 </el-select>
             </el-form-item>
 
-            <el-form-item :label="$t('message.users')" prop="account" class="signed">
+            <el-form-item :label="$t('message.users')" prop="pUser" class="signed">
                 <el-input v-model="form.pUser" :disabled="disabled" :placeholder="$t('message.reset')"></el-input>
             </el-form-item>
         </el-form>

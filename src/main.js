@@ -8,7 +8,6 @@ import axios from 'axios'
 import 'element-ui/lib/theme-chalk/index.css'
 import './assets/style/default.less'
 import i18n from './i18n/i18n';
-import VueParticles from 'vue-particles'//粒子背景
 import './assets/fonts/iconfont.css'
 import echarts from 'echarts'
 Vue.prototype.$echarts = echarts
@@ -18,7 +17,6 @@ Vue.prototype.$axios = axios
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
-Vue.use(VueParticles)
 
 /* eslint-disable no-new */
 new Vue({
