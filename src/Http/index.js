@@ -10,7 +10,7 @@ Vue.use(Router)
 //let token = window.localStorage.getItem("token") 
 const Axios = axios.create({
     baseURL: "http://www.hxfc.com/",//fc.home.fc9m.com  www.hxfc.com
-    timeout: 5000,//超时请求
+    timeout: 10000,//超时请求
     maxRedirects: 1,
     headers: { "Content-Type": 'application/json' },
 })

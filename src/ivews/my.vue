@@ -17,7 +17,7 @@
         class="means"
         to="/personality"
       >
-        <img :src="img">
+       <img :src="img">
         <div class="meansText">
           <h5>{{username}}</h5>
           <p>ID:{{id}}</p>

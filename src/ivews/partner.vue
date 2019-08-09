@@ -110,16 +110,28 @@ export default {
   mounted() {
       this.getData()
   },
-  updated() {
-       let number=this.form.type
+  watch: {
+       user(olduser,newuser){
+           let number=this.form.type
       if(number==1){
           this.form.pUser=this.user;
           this.disabled=true
-      }else{
+      }else if(number==2){
           this.form.pUser=''
           this.disabled=false
       }
+       }
   },
+//   updated() {
+//        let number=this.form.type
+//       if(number==1){
+//           this.form.pUser=this.user;
+//           this.disabled=true
+//       }else if(number==2){
+//           this.form.pUser=''
+//           this.disabled=false
+//       }
+//   },
   methods: {
       getData(){
           let that=this
@@ -144,7 +156,7 @@ export default {
           if(number==1){
               that.form.pUser=that.user
               that.disabled=true
-          }else {
+          }else if(number==2) {
               that.form.pUser=''
               that.disabled=false
           }
