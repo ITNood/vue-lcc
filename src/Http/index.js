@@ -9,7 +9,7 @@ Vue.use(Router)
 // 创建axios实例
 //let token = window.localStorage.getItem("token") 
 const Axios = axios.create({
-    baseURL: "http://fc.home.fc9m.com/",//fc.home.fc9m.com  www.hxfc.com
+    baseURL: process.env.NODE_ENV === 'production' ? "http://fc.home.fc9m.com/" : "/api/",//fc.home.fc9m.com  www.hxfc.com
     timeout: 10000,//超时请求
     maxRedirects: 1,
     headers: { "Content-Type": 'application/json' },
@@ -63,7 +63,7 @@ Axios.interceptors.response.use(
             window.location.href = window.location.origin + "#/login"
         //    this.$router.push('/login')
         } else if (net_response.data.status === 400) {
-           // alert(net_response.data.msg)
+            //返回400状态的操作
         }
 
         //返回数据
