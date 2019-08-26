@@ -1,6 +1,11 @@
 import enLocale from 'element-ui/lib/locale/lang/en' //引入element语言包
 const en = {
     message: {
+        'nodeHistry':'Node record',
+        'residual': 'Residual amount',
+        'received':'Amount received',
+        'amounted': 'Capping amount',
+        'node': 'Super Node',
         'selled': 'You will commission the platform to sell FC',
         'selled1':'No handling charge for sale',
         'buyed': 'You will commission the platform to purchase FC',

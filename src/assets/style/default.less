@@ -3575,3 +3575,87 @@ strong {
 .el-loading-mask {
     background-color: transparent
 }
+
+
+.node {
+    padding-top: 15px;
+
+    .nodeprogress {
+        width: 100px;
+        position: relative;
+        display: block;
+        margin: 0 auto;
+
+        .propressTxt {
+            position: absolute;
+            text-align: center;
+            padding-top: 25px;
+            top: 0;
+            left: 0;
+            width: 100px;
+            height: 100px;
+
+            h5 {
+                color: @blue;
+                margin: 0;
+                font-family: number;
+                font-size: 16px;
+                line-height: 30px;
+                font-weight: normal
+            }
+
+            p {
+                color: @fontcolor;
+                margin: 0;
+                line-height: 20px;
+            }
+        }
+    }
+
+    .nodelist {
+        margin-top: 25px;
+        color: @fontcolor;
+        text-align: center;
+
+        h5 {
+            font-family: number;
+            font-size: 14px;
+            line-height: 30px;
+            margin: 0;
+            font-weight: normal
+        }
+
+        p {
+            margin: 0;
+        }
+    }
+
+
+}
+
+.nodeHistry {
+    margin-top: 25px;
+
+    p {
+        color: @fontcolor;
+        margin: 0;
+        margin-bottom: 15px;
+    }
+
+    #listNodeHistry {
+        overflow: hidden;
+
+        .nodeheight {
+            height: calc(100vh - 320px);
+            overflow-y: auto;
+
+            .listNode {
+                color: @fontcolor;
+                line-height: 30px;
+                border-bottom: #313743 1px solid;
+                margin-bottom: 8px;
+            }
+        }
+
+    }
+}

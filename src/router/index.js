@@ -389,6 +389,13 @@ export default new Router({
       component: () => {
         return import('../ivews/wallet')
       }
+    },
+    {
+      path: '/node',
+      name: 'node',
+      component: () => {
+        return import('../ivews/node')
+      }
     }
   ]
 })

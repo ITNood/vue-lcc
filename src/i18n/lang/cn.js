@@ -1,6 +1,11 @@
 import zhLocale from 'element-ui/lib/locale/lang/zh-CN' //引入element语言包
 const cn = {
     message: {
+        'nodeHistry':'节点记录',
+        'residual':'剩余金额',
+        'received':'已领金额',
+        'amounted':'封顶金额',
+        'node':'超级节点',
         'selled': '您将委托平台售出FC',
         'selled1':'售出不收手续费',
         'buyed': '您将委托平台购买FC',

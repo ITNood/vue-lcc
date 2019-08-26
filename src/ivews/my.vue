@@ -64,6 +64,12 @@
                 <div class="listText">{{$t('message.shoper')}}<span class="el-icon-arrow-right"></span></div>
               </router-link>
             </li>
+            <li v-show="node">
+              <router-link to="/node">
+                <i class="icon iconfont icon-jiedian"></i>
+                <div class="listText">{{$t('message.node')}}<span class="el-icon-arrow-right"></span></div>
+              </router-link>
+            </li>
           </ul>
           <ul
             class="myselfList"
@@ -104,6 +110,7 @@ export default {
       show: true,
       show1:false,
       show2:false,
+      node:false,
       todos: [
         {
           url: "/takeWay",
@@ -153,6 +160,13 @@ export default {
               that.show = false;
             } else if (result.res.isFeedback == 1) {
               that.show = true;
+            }
+
+            //超级节点
+            if(result.res.isNode==true){
+              that.node=true
+            }else{
+              that.node=false
             }
             //服务中心
             if (result.res.isService == 0) {

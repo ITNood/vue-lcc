@@ -62,8 +62,6 @@ Axios.interceptors.response.use(
            //window.location.href="/login"
             window.location.href = window.location.origin + "#/login"
         //    this.$router.push('/login')
-        } else if (net_response.data.status === 400) {
-            //返回400状态的操作
         }
 
         //返回数据
