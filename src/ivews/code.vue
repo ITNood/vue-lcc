@@ -86,7 +86,8 @@ export default {
           var data = JSON.parse(evt.data);
           // var data=evt.data
           if (data.status == 200) {
-            setCookie("amount", data.res.amount);
+            window.localStorage.setItem("amount", data.res.amount);
+            //alert(data.res.amount)
             setTimeout(() => {
               window.location.href='#/paySuccess'
             }, 500);

@@ -15,7 +15,7 @@
             <span class="el-icon-check"></span>
             <p>{{$t('message.successful')}}</p>
             <div class="amount">- {{amount}}</div>
-            <p>{{$t('message.pass')}}</p>
+            <!-- <p>{{$t('message.pass')}}</p> -->
           </div>
           <router-link
             to="/code"
@@ -44,21 +44,11 @@ export default {
   },
   mounted() {
     let that = this;
-    let amount = getCokie("amount");
+    let amount = window.localStorage.getItem("amount");
     that.amount = amount;
   }
 };
-//获取cookie
-function getCookie(cname) {
-  var name = cname + "=";
-  var ca = document.cookie.split(";");
-  for (var i = 0; i < ca.length; i++) {
-    var c = ca[i];
-    while (c.charAt(0) == " ") c = c.substring(1);
-    if (c.indexOf(name) != -1) return c.substring(name.length, c.length);
-  }
-  return "";
-}
+
 </script>
 
 <style scoped>
