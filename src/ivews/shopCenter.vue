@@ -10,7 +10,7 @@
     <div class="shop">
       <div class="shopCash">
         <p>{{$t('message.mycash')}}</p>
-        <h5><span>$</span>{{dollar}}</h5>
+        <h5><span></span>{{dollar}}</h5>
         <p>￥{{rmb}}</p>
       </div>
       <el-row>
@@ -18,14 +18,14 @@
           :span="12"
           class="cashList"
         >
-          <h6>${{data}}</h6>
+          <h6>{{data}}</h6>
           <p>{{$t('message.dayincome')}}</p>
         </el-col>
         <el-col
           :span="12"
           class="cashList"
         >
-          <h6>${{week}}</h6>
+          <h6>{{week}}</h6>
           <p>{{$t('message.weekincome')}}</p>
         </el-col>
       </el-row>
@@ -56,7 +56,7 @@
 <script>
 import Top from "../components/top";
 import api from "../API/index";
-import jsBridge from '../assets/js/jsbridge-mini.js'
+import jsBridge from "../assets/js/jsbridge-mini.js";
 export default {
   components: {
     Top
@@ -64,13 +64,13 @@ export default {
   data() {
     return {
       url: "/my",
-      message: this.$t('message.shoper'),
+      message: this.$t("message.shoper"),
       href: "",
       classIcon: "",
       dollar: 0,
       rmb: 0,
       data: 0,
-      week: 0,
+      week: 0
     };
   },
   mounted() {
@@ -92,7 +92,7 @@ export default {
           }
         })
         .catch(err => {
-          alert(this.$t('message.error'));
+          alert(this.$t("message.error"));
         });
     },
     scan() {
@@ -102,15 +102,35 @@ export default {
         },
         function(code) {
           if (code) {
-            window.localStorage.setItem("code", code);
-            this.$router.push('/takeMoney')
+            setCookie("code", code);
+            // this.$router.push("/takeMoney");
+            window.location.href="#/takeMoney"
           } else {
-            alert(this.$t('message.sweepFail'));
+            alert(this.$t("message.sweepFail"));
           }
         }
       );
     }
   }
+};
+//设置cookie
+function setCookie(cname, cvalue, exdays) {
+	var d = new Date();
+	d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 100000));
+	var expires = "expires=" + d.toUTCString();
+	document.cookie = cname + "=" + cvalue + "; " + expires;
+};
+
+//获取cookie
+function getCookie(cname) {
+	var name = cname + "=";
+	var ca = document.cookie.split(';');
+	for (var i = 0; i < ca.length; i++) {
+		var c = ca[i];
+		while (c.charAt(0) == ' ') c = c.substring(1);
+		if (c.indexOf(name) != -1) return c.substring(name.length, c.length);
+	}
+	return "";
 };
 </script>
 

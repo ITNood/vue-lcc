@@ -12,7 +12,6 @@
         <h4>payment</h4>
         <i></i>
         <p>FC.COIN</p>
-
         <router-link
           to="/lang"
           class="into"
@@ -29,9 +28,7 @@ export default {
       loading:true
     };
   },
- 
   mounted() {
-    console.log(123)
     this.loading=false
     let token=window.localStorage.getItem('token')
     if(token){

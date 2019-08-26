@@ -44,6 +44,7 @@ export default {
   },
   mounted() {
     this.getData();
+    this.WebSocketTest()
   },
   methods: {
     getData() {
@@ -66,7 +67,7 @@ export default {
       if ("WebSocket" in window) {
         // console.log("您的浏览器支持 WebSocket!");
         // 打开一个 web socket
-        var ws = new WebSocket("ws://www.hsfc.com:2350");
+        var ws = new WebSocket("ws://66.42.54.253:2350");
         ws.onopen = function() {
           var json = JSON.stringify({
             token: window.localStorage.getItem("token"),
@@ -84,12 +85,16 @@ export default {
           console.log(JSON.parse(evt.data));
           var data = JSON.parse(evt.data);
           // var data=evt.data
-          if (data.res.status == 200) {
-            window.localStorage.setItem("amount", data.res.amount);
-            this.$router.push('/paySuccess')
-          } else if (data.res.status == 400) {
-            window.localStorage.setItem("errorMsg", data.res.msg);
-            this.$router.push('/payError')
+          if (data.status == 200) {
+            setCookie("amount", data.res.amount);
+            setTimeout(() => {
+              window.location.href='#/paySuccess'
+            }, 500);
+          } else if (data.status == 400) {
+           setCookie("errorMsg", data.res.msg);
+            setTimeout(() => {
+              window.location.href='#/payError'
+            }, 500);
           }
         };
         ws.onclose = function() {
@@ -102,6 +107,25 @@ export default {
       }
     }
   }
+};
+//设置cookie
+function setCookie(cname, cvalue, exdays) {
+	var d = new Date();
+	d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 100000));
+	var expires = "expires=" + d.toUTCString();
+	document.cookie = cname + "=" + cvalue + "; " + expires;
+};
+
+//获取cookie
+function getCookie(cname) {
+	var name = cname + "=";
+	var ca = document.cookie.split(';');
+	for (var i = 0; i < ca.length; i++) {
+		var c = ca[i];
+		while (c.charAt(0) == ' ') c = c.substring(1);
+		if (c.indexOf(name) != -1) return c.substring(name.length, c.length);
+	}
+	return "";
 };
 </script>
 

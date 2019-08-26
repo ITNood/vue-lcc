@@ -1,6 +1,7 @@
 import zhLocale from 'element-ui/lib/locale/lang/zh-CN' //引入element语言包
 const cn = {
     message: {
+        'status': '状态',
         'nodeHistry':'节点记录',
         'residual':'剩余金额',
         'received':'已领金额',

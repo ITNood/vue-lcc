@@ -14,7 +14,7 @@
             </div>
             <div class="moneyInput">
                 <p>{{$t('message.takeAmont')}}</p>
-                <div class="amount"><span>$</span>{{amount}}</div>
+                <div class="amount"><span></span>{{amount}}</div>
             </div>
         </div>
     </div>
@@ -31,7 +31,7 @@
                 <span class="el-icon-back"></span>
             </li>
         </ul>
-        <el-button class="submit" style="width:85%;margin:30px auto;display:block" @click="submit()">{{$t('messageconfirm')}}</el-button>
+        <el-button class="submit" style="width:85%;margin:30px auto;display:block" @click="submit()">{{$t('message.confirm')}}</el-button>
     </div>
   </div>
 </template>
@@ -58,12 +58,15 @@ export default {
       code:''
     };
   },
+  mounted() {
+    this.getData()
+  },
   methods: {
     getData(){
       let that=this
-      let code=window.localStorage.getItem('code')
+      let code=getCookie('code')
       that.code=code
-      console.log(code)
+      //console.log(code)
       api.minicart.template.choices('getPayUser',{tokenStr:code}).then(result=>{
         if(result.status==200){
           that.imgSrc=result.res.avatar
@@ -77,13 +80,18 @@ export default {
     submit(){
       let that=this
       console.log(that.amount)
-      api.minicart.template.choices('SweepCodePay',{tokenStr:that.code}).then(result=>{
+      //alert(that.code)
+      api.minicart.template.choices('SweepCodePay',{tokenStr:that.code,amount:that.amount}).then(result=>{
         if(result.status==200){
-          window.localStorage.setItem('success',result.msg)
-          that.$router.push('/success')
+          window.localStorage.setItem("success",that.amount)
+          setTimeout(() => {
+            that.$router.push('/success')
+          }, 500);
         }else if(result.status==400){
-          window.localStorage.setItem('error',result.msg)
-          that.$router.push('/error')
+          window.localStorage.setItem("error",result.msg)
+          setTimeout(() => {
+            that.$router.push('/error')
+          }, 500);
         }
       }).catch(err=>{
         alert(this.$t('message.error'))
@@ -108,6 +116,25 @@ export default {
           console.log(len)
       }
   },
+};
+//设置cookie
+function setCookie(cname, cvalue, exdays) {
+	var d = new Date();
+	d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 100000));
+	var expires = "expires=" + d.toUTCString();
+	document.cookie = cname + "=" + cvalue + "; " + expires;
+};
+
+//获取cookie
+function getCookie(cname) {
+	var name = cname + "=";
+	var ca = document.cookie.split(';');
+	for (var i = 0; i < ca.length; i++) {
+		var c = ca[i];
+		while (c.charAt(0) == ' ') c = c.substring(1);
+		if (c.indexOf(name) != -1) return c.substring(name.length, c.length);
+	}
+	return "";
 };
 </script>
 
