@@ -36,7 +36,7 @@ export default {
   data() {
     return {
       url: "/lcc",
-      message: this.$t('message.codePay'),
+      message: this.$t("message.codePay"),
       href: "",
       classIcon: "",
       code: ""
@@ -44,7 +44,7 @@ export default {
   },
   mounted() {
     this.getData();
-    this.WebSocketTest()
+    this.WebSocketTest();
   },
   methods: {
     getData() {
@@ -59,7 +59,7 @@ export default {
           }
         })
         .catch(err => {
-          alert(this.$t('message.error'));
+          alert(this.$t("message.error"));
         });
     },
     //-----------------------------------------------
@@ -89,12 +89,12 @@ export default {
             window.localStorage.setItem("amount", data.res.amount);
             //alert(data.res.amount)
             setTimeout(() => {
-              window.location.href='#/paySuccess'
+              window.location.href = "#/paySuccess";
             }, 500);
           } else if (data.status == 400) {
-           setCookie("errorMsg", data.res.msg);
+            setCookie("errorMsg", data.res.msg);
             setTimeout(() => {
-              window.location.href='#/payError'
+              window.location.href = "#/payError";
             }, 500);
           }
         };
@@ -111,23 +111,23 @@ export default {
 };
 //设置cookie
 function setCookie(cname, cvalue, exdays) {
-	var d = new Date();
-	d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 100000));
-	var expires = "expires=" + d.toUTCString();
-	document.cookie = cname + "=" + cvalue + "; " + expires;
-};
+  var d = new Date();
+  d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 100000);
+  var expires = "expires=" + d.toUTCString();
+  document.cookie = cname + "=" + cvalue + "; " + expires;
+}
 
 //获取cookie
 function getCookie(cname) {
-	var name = cname + "=";
-	var ca = document.cookie.split(';');
-	for (var i = 0; i < ca.length; i++) {
-		var c = ca[i];
-		while (c.charAt(0) == ' ') c = c.substring(1);
-		if (c.indexOf(name) != -1) return c.substring(name.length, c.length);
-	}
-	return "";
-};
+  var name = cname + "=";
+  var ca = document.cookie.split(";");
+  for (var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == " ") c = c.substring(1);
+    if (c.indexOf(name) != -1) return c.substring(name.length, c.length);
+  }
+  return "";
+}
 </script>
 
 <style scoped>

@@ -14,11 +14,11 @@
           <div class="payContent">
             <span class="el-icon-check"></span>
             <p>{{$t('message.collection')}}</p>
-            <div class="amount">- {{amount}}</div>
+            <div class="amount">+ {{amount}}</div>
             <p>{{$t('message.business')}}</p>
           </div>
           <router-link
-            to="/takeMoney"
+            to="/shopCenter"
             class="over"
           >{{$t('message.complete')}}</router-link>
         </div>
@@ -35,7 +35,7 @@ export default {
   },
   data() {
     return {
-      url: "/takeMoney",
+      url: "/shopCenter",
       message: "",
       href: "",
       classIcon: "",
