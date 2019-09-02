@@ -1,11 +1,21 @@
 <template>
   <div>
-    <Top
-      :pathUrl="url"
-      :title="message"
-      :appUrl="href"
-      :font="classIcon"
-    />
+    <el-header
+      height="50px"
+      id="top"
+    >
+      <el-col :span="6">
+        <a
+          @click="back()"
+          class="el-icon-arrow-left back"
+        ></a>
+      </el-col>
+      <el-col :span="12">
+        <h5 style="height:50px;">{{$t('message.bagHistry')}}</h5>
+      </el-col>
+      
+    </el-header>
+
     <div
       class="container"
       style="margin-bottom:0"
@@ -18,9 +28,15 @@
           >
             <p>{{item.date}}</p>
             <h5>{{item.detail}}</h5>
-            <!-- <span :style="{color:(item.state=1 ? '#05ce7e':'#e53c1d')}">{{item.state=1 ? '+':'-'}}{{item.amount}}</span> -->
-            <span v-if="item.state==1" style="color:#05ce7e">+{{item.amount}}</span>
-            <span v-else style="color:#e53c1d">-{{item.amount}}</span>
+            <!-- <span :style="{color:(item.state==1 ? '#05ce7e':'#e53c1d')}">{{item.state==1 ? '+':'-'}}{{item.amount}}</span> -->
+            <span
+              v-if="item.state==1"
+              style="color:#05ce7e"
+            >+{{item.amount}}</span>
+            <span
+              v-else
+              style="color:#e53c1d"
+            >-{{item.amount}}</span>
           </li>
         </ul>
       </div>
@@ -48,6 +64,9 @@ export default {
     this.getData();
   },
   methods: {
+    back() {
+      this.$router.go(-1);
+    },
     getData() {
       let that = this;
       let id = that.$route.query.id;

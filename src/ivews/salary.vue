@@ -72,7 +72,7 @@
             v-for="(todo,index) in todos"
             :key="index"
           >
-            {{todo.name}}<i>{{value*todo.ratio}}</i>
+            {{todo.name}}<i>{{(Math.floor(value*todo.ratio*100)/100).toFixed(2)}}</i>
           </li>
           <!-- <li>
                     自定兑换现金余额<i>{{cash}}</i>
@@ -168,12 +168,12 @@ export default {
       let that = this;
       let number = that.wages;
       that.value = number;
-      that.fee = number * that.fee1;
+      that.fee = (Math.floor(number * that.fee1*100)/100).toFixed(2)
     },
     change() {
       let that = this;
       //   console.log(that.value)
-      that.fee = that.value * that.fee1;
+      that.fee = (Math.floor(that.value * that.fee1*100)/100).toFixed(2);
     },
     submit1() {
       let that = this;

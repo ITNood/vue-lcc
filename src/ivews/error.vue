@@ -17,7 +17,7 @@
                     <div class="amount"></div>
                     <p>{{error}}</p>
                 </div>
-                <router-link to="/takeMoney" class="over">{{$t('message.complete')}}</router-link>
+                <router-link to="/shopCenter" class="over">{{$t('message.complete')}}</router-link>
             </div>
         </div>
     </div>
@@ -33,7 +33,7 @@ export default {
   },
   data() {
     return {
-      url: "/takeMoney",
+      url: "/shopCenter",
       message: "",
       href: "",
       classIcon: "",

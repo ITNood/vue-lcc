@@ -6,7 +6,10 @@
       :appUrl="href"
       :font="classIcon"
     />
-    <div class="container" style="margin-bottom:0">
+    <div
+      class="container"
+      style="margin-bottom:0"
+    >
       <div class="node">
         <div class="nodeprogress">
           <el-progress
@@ -41,6 +44,20 @@
           </el-col>
         </el-row>
       </div>
+      <div class="purse">
+        <ul class="purseList">
+          <li>
+            <img src="../assets/img/lock.png">
+            <div class="purseText">
+              <h5>{{$t('message.lock')}}</h5>
+            </div>
+            <div class="floatright">
+              <b>{{ctp}}</b>
+              <router-link to="/wallet?id=12">{{$t('message.check')}}</router-link>
+            </div>
+          </li>
+        </ul>
+      </div>
 
       <div class="nodeHistry">
         <p>{{$t('message.nodeHistry')}}</p>
@@ -74,7 +91,7 @@
 
 <script>
 import Top from "../components/top";
-import api from '../API/index'
+import api from "../API/index";
 export default {
   components: {
     Top
@@ -82,7 +99,7 @@ export default {
   data() {
     return {
       url: "/my",
-      message: this.$t('message.node'),
+      message: this.$t("message.node"),
       href: "",
       classIcon: "",
       nodepercent: "",
@@ -90,28 +107,30 @@ export default {
       total: "",
       geted: "",
       price: "",
-      items: []
+      items: [],
+      ctp:''
     };
   },
   mounted() {
-      this.getdata()
+    this.getdata();
   },
   methods: {
-      getdata(){
-          let that=this
-          api.minicart.template.choices('user/getNode').then(result=>{
-              if(result.status==200){
-                  that.geted=result.res.receive
-                  that.total=result.res.maxAmount
-                  that.price=result.res.remaining
-                  that.percent=result.res.percent
-                  that.items=that.items.concat(result.res.record)
-              }else if(result.status==400){
-                  alert(result.msg)
-              }
-          })
-      }
-  },
+    getdata() {
+      let that = this;
+      api.minicart.template.choices("user/getNode").then(result => {
+        if (result.status == 200) {
+          that.geted = result.res.receive;
+          that.total = result.res.maxAmount;
+          that.price = result.res.remaining;
+          that.percent = result.res.percent;
+          that.ctp=result.res.lockFc
+          that.items = that.items.concat(result.res.record);
+        } else if (result.status == 400) {
+          alert(result.msg);
+        }
+      });
+    }
+  }
 };
 </script>
 
