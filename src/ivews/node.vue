@@ -108,7 +108,7 @@ export default {
       geted: "",
       price: "",
       items: [],
-      ctp:''
+      ctp: ""
     };
   },
   mounted() {
@@ -123,7 +123,7 @@ export default {
           that.total = result.res.maxAmount;
           that.price = result.res.remaining;
           that.percent = result.res.percent;
-          that.ctp=result.res.lockFc
+          that.ctp = result.res.lockFc;
           that.items = that.items.concat(result.res.record);
         } else if (result.status == 400) {
           alert(result.msg);

@@ -9,7 +9,7 @@ Vue.use(Router)
 // 创建axios实例
 //let token = window.localStorage.getItem("token") 
 const Axios = axios.create({
-    baseURL: process.env.NODE_ENV === 'production' ? "http://fc.home.fc9m.com/" : "/api/",//fc.home.fc9m.com  www.hxfc.com
+    baseURL: process.env.NODE_ENV === 'production' ? "http://fc.home.fc9m.com/" : "/api/",
     timeout: 10000,//超时请求
     maxRedirects: 1,
     headers: { "Content-Type": 'application/json' },
@@ -32,8 +32,6 @@ Axios.interceptors.request.use(
 
 var loadinginstace;
 
-// override axios's default accept
-//Axios.defaults.headers.common['Accept'] = 'application/json'
 
 // 拦截所有的 api 请求，未来可做权限检查，缓存，代理等
 Axios.interceptors.request.use(
