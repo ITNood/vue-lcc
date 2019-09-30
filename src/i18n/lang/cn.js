@@ -1,6 +1,11 @@
 import zhLocale from 'element-ui/lib/locale/lang/zh-CN' //引入element语言包
 const cn = {
     message: {
+        'paymuch':'付款金额不能为0',
+        'paymenterr':'付款失败',
+        'paymentsucc':'付款成功',
+        'payCode': '付款',
+        'scan':'扫一扫',
         'lock':'锁仓FC',
         'status': '状态',
         'nodeHistry':'节点记录',

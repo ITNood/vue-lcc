@@ -396,6 +396,27 @@ export default new Router({
       component: () => {
         return import('../ivews/node')
       }
+    },
+    {
+      path: '/payCode',
+      name: 'payCode',
+      component: () => {
+        return import('../ivews/payCode')
+      }
+    },
+    {
+      path: '/paymentSucc',
+      name: 'paymentSucc',
+      component: ()=>{
+        return import('../ivews/paymentSucc')
+      }
+    },
+    {
+      path: '/paymentErr',
+      name: 'paymentErr',
+      component: () => {
+        return import('../ivews/paymentErr')
+      }
     }
   ]
 })

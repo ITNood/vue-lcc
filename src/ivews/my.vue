@@ -17,7 +17,7 @@
         class="means"
         to="/personality"
       >
-       <img :src="img">
+        <img :src="img">
         <div class="meansText">
           <h5>{{username}}</h5>
           <p>ID:{{id}}</p>
@@ -46,6 +46,12 @@
       <div class="myList">
         <div class="myHeight">
           <ul class="myselfList">
+            <li v-show="scan">
+              <a @click="scanCode()">
+                <i class="icon iconfont icon-saoyisao"></i>
+                <div class="listText">{{$t('message.scan')}}<span class="el-icon-arrow-right"></span></div>
+              </a>
+            </li>
             <li v-show="show">
               <router-link to="/report">
                 <i class="icon iconfont icon-dingdanwancheng"></i>
@@ -95,22 +101,23 @@
 </template>
 
 <script>
-
 import api from "../API/index.js";
 import Bottom from "../components/bottom";
+import jsBridge from "../assets/js/jsbridge-mini.js";
 export default {
   components: {
     Bottom
   },
   data() {
     return {
-      img: require('../assets/img/photo.png'),
+      img: require("../assets/img/photo.png"),
       username: "",
       id: "",
       show: true,
-      show1:false,
-      show2:false,
-      node:false,
+      show1: false,
+      show2: false,
+      node: false,
+      scan:false,
       todos: [
         {
           url: "/takeWay",
@@ -144,7 +151,23 @@ export default {
     this.getData();
   },
   methods: {
-
+    //扫码
+    scanCode() {
+      jsBridge.scan(
+        {
+          needResult: true //默认为false，扫描结果由App处理；true则直接返回扫描结果
+        },
+        function(code) {
+          if (code) {
+            localStorage.setItem("resultCode", JSON.stringify("code"));
+            // this.$router.push('/payCode')
+            window.location.href="#/payCode"
+          } else {
+            alert(this.$t("message.sweepFail"));
+          }
+        }
+      );
+    },
     getData() {
       let that = this;
       api.minicart.template
@@ -155,6 +178,13 @@ export default {
             that.id = result.res.id; //id
             that.img = result.res.avatar; //头像
 
+            //扫码
+            if(result.res.is_sweep==0){
+              this.scan=false
+            }else {
+              this.scan=true
+            }
+
             //报单中心
             if (result.res.isFeedback == 0) {
               that.show = false;
@@ -163,22 +193,22 @@ export default {
             }
 
             //超级节点
-            if(result.res.isNode==true){
-              that.node=true
-            }else{
-              that.node=false
+            if (result.res.isNode == true) {
+              that.node = true;
+            } else {
+              that.node = false;
             }
             //服务中心
             if (result.res.isService == 0) {
-             this.show1=false
+              this.show1 = false;
             } else if (result.res.isService == 1) {
-              that.show1=true
+              that.show1 = true;
             }
             //商户中心
             if (result.res.merchant == true) {
-             that.show2=true
+              that.show2 = true;
             } else if (result.res.merchant == false) {
-             that.show2=false
+              that.show2 = false;
             }
           }
         })

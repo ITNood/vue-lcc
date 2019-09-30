@@ -10,6 +10,7 @@ Vue.use(Router)
 //let token = window.localStorage.getItem("token") 
 const Axios = axios.create({
     baseURL: process.env.NODE_ENV === 'production' ? "http://fc.home.fc9m.com/" : "/api/",
+    //baseURL:'http://www.hxfc.com/',
     timeout: 10000,//超时请求
     maxRedirects: 1,
     headers: { "Content-Type": 'application/json' },

@@ -10,6 +10,9 @@ import './assets/style/default.less'
 import i18n from './i18n/i18n';
 import './assets/fonts/iconfont.css'
 import echarts from 'echarts'
+
+// import store from './store/store';
+
 Vue.prototype.$echarts = echarts
 
 axios.defaults.withCredentials = true
@@ -23,6 +26,7 @@ new Vue({
   el: '#app',
   i18n,
   router,
+  //store:store,
   components: { App },
   template: '<App/>'
 })

@@ -1,6 +1,11 @@
 import enLocale from 'element-ui/lib/locale/lang/en' //引入element语言包
 const en = {
     message: {
+        'paymuch':'Payment amount cannot be 0',
+        'paymenterr':'Failure of payment',
+        'paymentsucc':'Successful payment',
+        'payCode':'Payment',
+        'scan':'Sweep code',
         'lock':'Lock Position FC',
         'status':'Status',
         'nodeHistry':'Node record',

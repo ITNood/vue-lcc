@@ -38,8 +38,8 @@
                 <i><img :src="item.img"></i>
                 <el-row class="bagContent">
                     <el-col :span="12">
-                        <h5>{{item.name}}</h5>
-                        <p>{{item.text}}</p>
+                        <h5 style="line-height:43px;font-size:20px">{{item.name}}</h5>
+                        <!-- <p>{{item.text}}</p> -->
                     </el-col>
                     <el-col class="text-right" :span="12">
                         <h5>${{item.price}}</h5>
@@ -54,7 +54,8 @@
 
 <script>
 import Bottom from "../components/bottom";
-import api from '../API/index'
+import api from '../API/index';
+
 export default {
   components: {
     Bottom

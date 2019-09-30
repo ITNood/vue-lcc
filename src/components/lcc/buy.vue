@@ -79,6 +79,14 @@ export default {
     that.total=(Math.floor(that.num*that.price*100)/100).toFixed(2)
   },
   methods: {
+     buy(flag){
+         this.dialogVisible=!this.dialogVisible
+    },
+    newbuy(){
+      this.buy();
+      this.$refs.child.open();
+
+    },
     getData(){
       let that=this
       api.minicart.template.choices('tongzhengbuyView').then(result=>{
@@ -111,14 +119,7 @@ export default {
         alert(this.$t('message.error'))
       })
      },
-    buy(flag){
-         this.dialogVisible=!this.dialogVisible
-    },
-    newbuy(){
-      this.buy();
-      this.$refs.child.open();
-
-    },
+   
   }
 };
 </script>

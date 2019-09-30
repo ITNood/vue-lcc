@@ -8,12 +8,6 @@ export default {
             //return await http.post('/minicart/template/choices')
         },
 
-        async login(url, params) {
-            //console.log(data)
-            return await http.post(url, params)
-            
-        },
-
         async get(url, params) {
             //console.log(data)
             return await http.get(url, params)
