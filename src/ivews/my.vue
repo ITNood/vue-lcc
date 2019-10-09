@@ -104,6 +104,7 @@
 import api from "../API/index.js";
 import Bottom from "../components/bottom";
 import jsBridge from "../assets/js/jsbridge-mini.js";
+import {mapState} from 'vuex'
 export default {
   components: {
     Bottom
@@ -117,7 +118,7 @@ export default {
       show1: false,
       show2: false,
       node: false,
-      scan:false,
+      scan: false,
       todos: [
         {
           url: "/takeWay",
@@ -147,6 +148,7 @@ export default {
       ]
     };
   },
+  
   mounted() {
     this.getData();
   },
@@ -159,9 +161,10 @@ export default {
         },
         function(code) {
           if (code) {
-            localStorage.setItem("resultCode", JSON.stringify(code));
+            //localStorage.setItem("resultCode", JSON.stringify(code));
             // this.$router.push('/payCode')
-            window.location.href="#/payCode"
+            this.$store.commit("codeResult", code);
+            window.location.href = "#/payCode";
           } else {
             alert(this.$t("message.sweepFail"));
           }
@@ -179,10 +182,10 @@ export default {
             that.img = result.res.avatar; //头像
 
             //扫码
-            if(result.res.is_sweep==0){
-              this.scan=false
-            }else {
-              this.scan=true
+            if (result.res.is_sweep == 0) {
+              this.scan = false;
+            } else {
+              this.scan = true;
             }
 
             //报单中心

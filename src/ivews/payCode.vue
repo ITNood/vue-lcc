@@ -117,20 +117,23 @@ export default {
         };
         //接收数据
         ws.onmessage = function(evt) {
-            console.log(evt)
+          console.log(evt);
           let result = JSON.parse(evt.data);
           console.log(result);
           if (result.status == 200) {
             load.close();
-             localStorage.setItem("paymentSucc", JSON.stringify(result.res.fc));
+            //localStorage.setItem("paymentSucc", JSON.stringify(result.res.fc));
+            that.$store.commit("setpaymentSucc", result.res.fc);
             window.location.href = "#/paymentSucc";
-            localStorage.removeItem('resultCode')
+            //localStorage.removeItem("resultCode");
+            that.$store.commit('codeResult','')
           } else if (result.status == 400) {
             load.close();
-            // localStorage.setItem("paymentErr", JSON.stringify());
-            that.$store.commit("setpaymentSucc",result.msg)
+            // localStorage.setItem("paymentErr", JSON.stringify(result.msg));
+            that.$store.commit("paymentErr", result.msg);
             window.location.href = "#/paymentErr";
-            localStorage.removeItem('resultCode')
+            //localStorage.removeItem("resultCode");
+            that.$store.commit('codeResult','')
           }
         };
 

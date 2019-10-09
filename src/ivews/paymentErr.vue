@@ -42,9 +42,9 @@ export default {
   },
   mounted() {
     console.log(this.$store.state.paymentErr)
-    let msg=window.localStorage.getItem("paymentErr")
+    //let msg=window.localStorage.getItem("paymentErr")
     //alert(msg)
-    this.error=msg
+    this.error=this.$store.state.paymentErr
   },
   
 };
