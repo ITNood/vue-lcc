@@ -27,8 +27,6 @@
 <script>
 import api from '../API/index'
 import Top from "../components/top";
-// import {mapState} from 'vuex'
-
 export default {
   components: {
     Top
@@ -42,10 +40,8 @@ export default {
       error:''
     };
   },
-//     computed:({
-//       ...mapState(["paymentErr"])
-//   }),
   mounted() {
+    console.log(this.$store.state.paymentErr)
     let msg=window.localStorage.getItem("paymentErr")
     //alert(msg)
     this.error=msg

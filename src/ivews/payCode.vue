@@ -115,10 +115,8 @@ export default {
           console.log("错误");
           console.log(error);
         };
-
         //接收数据
         ws.onmessage = function(evt) {
-            let that = this
             console.log(evt)
           let result = JSON.parse(evt.data);
           console.log(result);
@@ -129,7 +127,8 @@ export default {
             localStorage.removeItem('resultCode')
           } else if (result.status == 400) {
             load.close();
-            localStorage.setItem("paymentErr", JSON.stringify(result.msg));
+            // localStorage.setItem("paymentErr", JSON.stringify());
+            that.$store.commit("setpaymentSucc",result.msg)
             window.location.href = "#/paymentErr";
             localStorage.removeItem('resultCode')
           }
