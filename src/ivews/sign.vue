@@ -59,10 +59,11 @@
               :key="index"
             >
               <img :src="item.avatar">
-              <span>{{item.invest}}</span>
+              <!-- <span></span> -->
               <el-row :gutter="8">
-                <el-col :span="12">{{item.username}}</el-col>
-                <el-col :span="12">{{item.mobile}}</el-col>
+                <el-col :span="8">{{item.username}}</el-col>
+                <el-col :span="8" style="text-align:center">{{item.mobile}}</el-col>
+                <el-col :span="8" style="text-align:right">{{item.invest}}</el-col>
               </el-row>
             </li>
           </ul>
