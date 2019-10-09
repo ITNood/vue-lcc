@@ -104,7 +104,7 @@
 import api from "../API/index.js";
 import Bottom from "../components/bottom";
 import jsBridge from "../assets/js/jsbridge-mini.js";
-import {mapState} from 'vuex'
+import { mapState } from "vuex";
 export default {
   components: {
     Bottom
@@ -148,7 +148,7 @@ export default {
       ]
     };
   },
-  
+
   mounted() {
     this.getData();
   },

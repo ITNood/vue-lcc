@@ -47,7 +47,7 @@ export default {
     };
   },
   mounted() {
-    console.log(this.$store.state.paymentSucc)
+    //console.log(this.$store.state.paymentSucc)
     //let msg = window.localStorage.getItem("paymentSucc");
     this.amount = this.$store.state.paymentSucc;
   }
