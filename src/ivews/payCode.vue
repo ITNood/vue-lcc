@@ -84,6 +84,7 @@ export default {
     getData() {
       let that = this;
       let code = localStorage.getItem("resultCode");
+      //alert(code)
       that.code = code;
     },
     WebSocketTest() {

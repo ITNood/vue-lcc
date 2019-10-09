@@ -159,7 +159,7 @@ export default {
         },
         function(code) {
           if (code) {
-            localStorage.setItem("resultCode", JSON.stringify("code"));
+            localStorage.setItem("resultCode", JSON.stringify(code));
             // this.$router.push('/payCode')
             window.location.href="#/payCode"
           } else {
