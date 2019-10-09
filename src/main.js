@@ -11,7 +11,7 @@ import i18n from './i18n/i18n';
 import './assets/fonts/iconfont.css'
 import echarts from 'echarts'
 
-// import store from './store/store';
+import store from './store';
 
 Vue.prototype.$echarts = echarts
 
@@ -26,7 +26,7 @@ new Vue({
   el: '#app',
   i18n,
   router,
-  //store:store,
+  store:store,
   components: { App },
   template: '<App/>'
 })

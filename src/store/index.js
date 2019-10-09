@@ -6,7 +6,7 @@ Vue.use(Vuex);
 let store = new Vuex.Store({
     state: {
         paymentSucc: "",
-        paymentErr:""
+        paymentErr:"000000"
     },
     mutations: {
         setpaymentSucc(state, paymentSuccess) {
@@ -16,10 +16,9 @@ let store = new Vuex.Store({
         },
         paymentErr(state, paymentError) {
             state.paymentErr = paymentError
-
         }
     },
-    actions: {},
+    actions:{},
 
     getters: {},
     modules: {}
