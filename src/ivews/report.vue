@@ -16,10 +16,10 @@
                       <h5>{{item.title}}</h5>
                       <p>{{item.date}}</p>
                       <div class="reportStauts">
-                         <span v-if="item.state==1" :style="{color:(item.state==1?'#e53c1d':'')}">{{$t('message.wait')}}</span>
-                         <span v-if="item.state==2" :style="{color:(item.state==2?'#3eb36f':'')}">{{$t('message.Processing')}}</span>
-                         <span v-if="item.state==3" :style="{color:(item.state==3?'#999':'')}">{{$t('message.end')}}</span>
-                         <i class="el-icon-arrow-right"></i>
+                        <span v-if="item.state==1" :style="{color:(item.state==1?'#e53c1d':'')}">{{$t('message.wait')}}</span>
+                        <span v-if="item.state==2" :style="{color:(item.state==2?'#3eb36f':'')}">{{$t('message.Processing')}}</span>
+                        <span v-if="item.state==3" :style="{color:(item.state==3?'#999':'')}">{{$t('message.end')}}</span>
+                        <i class="el-icon-arrow-right"></i>
                       </div>
                   </router-link>
               </li>

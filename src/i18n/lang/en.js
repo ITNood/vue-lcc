@@ -1,6 +1,10 @@
 import enLocale from 'element-ui/lib/locale/lang/en' //引入element语言包
 const en = {
     message: {
+        'notransfer':'The number of transfers cannot be 0',
+        'sharefc':'The current FC',
+        'shiftfc':'You will transfer FC to Dorne circulation FC wallet',
+        'shift':'transfer',
         'paymuch':'Payment amount cannot be 0',
         'paymenterr':'Failure of payment',
         'paymentsucc':'Successful payment',

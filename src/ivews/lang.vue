@@ -79,7 +79,6 @@ export default {
     }
   },
   created() {
-    let that = this;
     localStorage.lang == undefined ? "cn" : localStorage.lang;
   }
 };

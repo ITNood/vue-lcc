@@ -1,6 +1,10 @@
 import zhLocale from 'element-ui/lib/locale/lang/zh-CN' //引入element语言包
 const cn = {
     message: {
+        'notransfer':'转移数量不能为0',
+        'sharefc':'当前FC',
+        'shiftfc':'您将把FC转移至 Dorne 流通FC钱包',
+        'shift':'转移',
         'paymuch':'付款金额不能为0',
         'paymenterr':'付款失败',
         'paymentsucc':'付款成功',

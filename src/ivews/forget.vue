@@ -132,6 +132,7 @@ export default {
         .choices("getResetPhoneCode", data)
         .then(result => {
           if (result.status == 200) {
+            //验证码倒计时
             const TIME_COUNT = 60;
             if (!that.timer) {
               that.disabled = true;

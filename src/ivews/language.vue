@@ -35,6 +35,7 @@ export default {
     };
   },
   updated() {
+    console.log(this.$t('message.language'))
     this.message=this.$t('message.language')
   },
   mounted() {

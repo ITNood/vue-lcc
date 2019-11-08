@@ -11,16 +11,16 @@ let store = new Vuex.Store({
     },
     mutations: {
         setpaymentSucc(state, paymentSuccess) {
-            console.log(paymentSuccess)
+            // console.log(paymentSuccess)
             state.paymentSucc = paymentSuccess
         },
         paymentErr(state, paymentError) {
-            console.log(paymentError)
+            // console.log(paymentError)
             state.paymentErr = paymentError
         },
         codeResult(state, resultCode) {
             state.resultCode = resultCode
-            console.log(state.resultCode)
+            // console.log(state.resultCode)
         }
     },
     actions: {//异步

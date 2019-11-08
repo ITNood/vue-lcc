@@ -49,18 +49,6 @@
             class="demo-ruleForm"
           >
 
-            <!-- <el-form-item
-              class="text"
-              prop="avatar"
-              style="display:none"
-            >
-              <el-input
-                class="set"
-                v-model="ruleForm.avatar"
-              >
-              </el-input>
-            </el-form-item> -->
-
             <el-form-item
               class="text"
               prop="nickname"
@@ -74,11 +62,6 @@
                 minlength="2"
               >
               </el-input>
-              <!-- <img
-                :src="rondom"
-                @click="getName()"
-                class="rondom"
-              > -->
             </el-form-item>
           </el-form>
 
@@ -117,7 +100,6 @@ export default {
         { list: require("../assets/img/10.png") },
         { list: require("../assets/img/11.png") }
       ],
-      //rondom: require("../assets/img/random.png"),
       ruleForm: {
         nickname: "",
         avatar: ""
@@ -138,7 +120,6 @@ export default {
   methods: {
     //上传图片
     uploadChange(ev) {
-      // console.log(ev.target.files);
       var file = ev.target.files[0];
       let that = this;
       if (window.FileReader) {
@@ -146,17 +127,13 @@ export default {
         reader.readAsDataURL(file);
         //监听文件读取结束后事件
         reader.onloadend = function(e) {
-          // 图片base64
           that.imageUrl = e.target.result;
-          // console.log(that.imageUrl);
         };
       }
     },
 
     //选择头像
     selectPhoto(ev) {
-      //console.log(ev);
-      //this.imageUrl = ev.target.currentSrc;
       let url = ev.target.currentSrc;
       console.log(url);
       var image = new Image();
@@ -179,19 +156,6 @@ export default {
           alert(err.msg);
         });
     },
-
-    //获取随机名称
-    // getName() {
-    //   let that = this;
-    //   api.minicart.template
-    //     .choices("getChinaName")
-    //     .then(response => {
-    //       if (response.status == 200) {
-    //         this.ruleForm.nickname = response.res.name;
-    //       }
-    //     })
-    //     .catch(err => {});
-    // },
 
     //提交设置
     submitName(ruleForm) {

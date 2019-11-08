@@ -15,10 +15,11 @@
          </div>
          <el-row :gutter="20">
              <el-col :span="12"><el-button class="submit" @click="btn1()" style="background:#e43c1d">{{$t('message.purch')}}</el-button></el-col>
-             <el-col :span="12"><el-button class="submit" @click="btn2()" style="background:#05cf7f">{{$t('message.sellOut')}}</el-button></el-col>
+             <!-- <el-col :span="12"><el-button class="submit" @click="btn2()" style="background:#05cf7f">{{$t('message.sellOut')}}</el-button></el-col>--> 
+             <el-col :span="12"><el-button class="submit" @click="btn2()" style="background:#05cf7f">{{$t('message.shift')}}</el-button></el-col>
          </el-row>
          <Buy  @btn1="btn1" ref="child1" :dialogVisible="show2" :num="number"/>
-         <Sell @btn2="btn2" ref="child2" :centerDialogVisible="show1"/>
+         <Transfer @btn2="btn2" ref="child2" :fc="fc1" :centerDialogVisible="show1"/>
           <!--密码组件-->
         <!-- <Pin @submit="submit" ref="child" :centerDialogVisible="show" /> -->
      </div>
@@ -32,13 +33,15 @@ import Buy from '../components/lcc/buy'
 import Sell from '../components/lcc/sell'
 import api from '../API/index'
 import Pin from '../components/pin'
+import Transfer from '../components/lcc/transfer'
 export default {
     components:{
         Top,
         Echarts,
         Buy,
         Sell,
-        Pin
+        Pin,
+        Transfer
      },
  data() {
   return {
@@ -72,6 +75,7 @@ export default {
                  that.minValue=result.res.min
                  that.lcc=result.res.fcUsdt
                  that.number=result.res.fc
+                 that.fc1=result.res.fc
              }else if(result.status==400){
                  alert(result.msg)
              }
